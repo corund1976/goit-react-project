@@ -3,7 +3,7 @@
 // import { Switch, useLocation } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 
-// import Header from 'components/Header';
+import Header from "components/Header/Header";
 import Container from "components/Container";
 import Section from "components/Section";
 
@@ -43,15 +43,18 @@ function App() {
   // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
 
   return (
-    <Container>
-      <h1>Hello World!</h1>
-      {/* {isFetchingCurrentUser ? ( */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+    <>
+      <Header />
+      <Container>
+        {/* <h1>Hello World!</h1> */} {/* UNCOMMENT BEFORE PUSH */}
+        {/* {isFetchingCurrentUser ? ( */}
+        {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <Loader type="Rings" color="#00BFFF" height={200} width={200} />
-      </div>
-      {/* ) : ( */}
-      <Section>
-        {/* <Header />
+      </div> */}
+        {/* UNCOMMENT BEFORE PUSH */}
+        {/* ) : ( */}
+        <Section>
+          {/*
           <div className={bgStyle}>
             <Suspense
               fallback={
@@ -88,9 +91,10 @@ function App() {
               </Switch>
             </Suspense>
           </div> */}
-      </Section>
-      {/* )} */}
-    </Container>
+        </Section>
+        {/* )} */}
+      </Container>
+    </>
   );
 }
 
