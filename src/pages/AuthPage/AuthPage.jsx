@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Container from 'components/Container';
+import Section from 'components/Section';
 import PageTitle from 'components/PageTitle';
 import AuthForm from 'components/AuthForm';
 
@@ -8,10 +8,10 @@ import AuthForm from 'components/AuthForm';
 
 function AuthPage() {
   return (
-    <Container>
+    <Section>
       <PageTitle />
       <AuthForm />
-    </Container>
+    </Section>
   )    
 };
 

@@ -1,9 +1,9 @@
-// import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Switch, useLocation } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
-// import Header from 'components/Header';
+import Header from 'components/Header';
 import Container from 'components/Container';
 import Section from 'components/Section';
 
@@ -13,6 +13,12 @@ import Section from 'components/Section';
 // import api from 'services/kapusta-api';
 import './App.css';
 
+// Временно сделал прямые импорты без lazy для тестирования
+import AuthPage from 'pages/AuthPage';
+import HomePage from 'pages/HomePage';
+import ExpensePage from 'pages/ExpensePage';
+import IncomePage from 'pages/IncomePage';
+import ReportPage from 'pages/ReportPage';
 // const AuthPage = lazy(() =>
 //   import('pages/AuthPage' /* webpackChunkName: "AuthPage" */),
 // );
@@ -45,40 +51,39 @@ function App() {
   
   return (
     <Container>
-      <h1>Hello World!</h1>
       {/* {isFetchingCurrentUser ? ( */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Loader type="Rings" color="#00BFFF" height={200} width={200} />
         </div>
       {/* ) : ( */}
         <Section>
-          {/* <Header />
-          <div className={bgStyle}>
-            <Suspense fallback={
+          <Header />
+          {/* <div className={bgStyle}> */}
+            {/* <Suspense fallback={
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <Loader type="Rings" color="#00BFFF" height={100} width={100} />
-                </div>}>
-              <Switch>
-                <PublicRoute path={routes.auth} restricted redirectTo={routes.home}>
+                </div>}> */}
+              {/* <Switch> */}
+                {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
                   <AuthPage />
-                </PublicRoute>
+                {/* </PublicRoute> */}
 
-                <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
+                {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
                   <HomePage />
-                </PrivateRoute>
+                {/* </PrivateRoute> */}
 
-                <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
+                {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
                   <ExpensePage />
-                </PrivateRoute>
+                {/* </PrivateRoute> */}
 
-                <PrivateRoute path={routes.income} redirectTo={routes.auth}>
+                {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
                   <IncomePage />
-                </PrivateRoute>
+                {/* </PrivateRoute> */}
 
-                <PrivateRoute path={routes.report} redirectTo={routes.auth}>
+                {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
                   <ReportPage />
-                </PrivateRoute>
-              </Switch>
+                {/* </PrivateRoute> */}
+              {/* </Switch>
             </Suspense>
           </div> */}
         </Section>

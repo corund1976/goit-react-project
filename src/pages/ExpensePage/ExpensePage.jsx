@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 
-import Container from 'components/Container';
+import Section from 'components/Section';
 import Balance from 'components/Balance';
 import GoReports from 'components/GoReports';
 import TransactionForm from 'components/TransactionForm';
@@ -12,7 +12,7 @@ import Summary from 'components/Summary';
 
 function ExpensePage() {
   return (
-    <Container>
+    <Section>
       <div>
         <Balance />
         <GoReports />
@@ -24,7 +24,7 @@ function ExpensePage() {
         <TransactionTable />
         <Summary />
       </div>
-    </Container>
+    </Section>
   );
 }
 
