@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from 'react';
+// import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Switch, useLocation } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -45,7 +45,7 @@ function App() {
   // const dispatch = useDispatch();
   // useEffect(() =>
   //   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
-  
+
   // const location = useLocation();
   // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
   
