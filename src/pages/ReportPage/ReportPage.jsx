@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from 'react-redux';
 
 import Container from "components/Container";
 import GoBack from "components/GoBack";
@@ -8,7 +8,7 @@ import IncomeExpenseTotal from "components/IncomeExpenseTotal";
 import ReportSwitch from "components/ReportSwitch";
 import ReportChart from "components/ReportChart";
 
-import s from "./ReportPage.module.scss";
+// import s from './ReportPage.module.css';
 
 function ReportPage() {
   return (

@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 
 import Container from "components/Container";
 import Balance from "components/Balance";
-import Reports from "components/Reports";
+import GoReports from "components/GoReports";
 import TransactionForm from "components/TransactionForm";
 import TransactionTable from "components/TransactionTable";
 import Summary from "components/Summary";
 
-import s from "./ExpensePage.module.css";
+// import s from './ExpensePage.module.css';
 
 function ExpensePage() {
   return (
     <Container>
       <div>
         <Balance />
-        <Reports />
+        <GoReports />
       </div>
 
       <TransactionForm />
