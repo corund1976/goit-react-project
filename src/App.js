@@ -10,21 +10,11 @@ import * as authSelectors from '/redux/selectors/authSelectors';
 import api from '/services/kapusta-api';
 import './App.css';
 
-const AuthPage = lazy(() =>
-  import('/pages/AuthPage' /* webpackChunkName: "AuthPage" */),
-);
-const HomePage = lazy(() =>
-  import('./pages/HomePage' /* webpackChunkName: "HomePage" */),
-);
-const ExpensePage = lazy(() =>
-  import('./pages/ExpensePage' /* webpackChunkName: "ExpensePage" */),
-);
-const IncomePage = lazy(() =>
-  import('./pages/IncomePage' /* webpackChunkName: "IncomePage" */),
-);
-const ReportPage = lazy(() =>
-  import('./pages/ReportPage' /* webpackChunkName: "ReportPage" */),
-);
+const AuthPage = lazy(() => import('/pages/AuthPage' /* webpackChunkName: "AuthPage" */));
+const HomePage = lazy(() => import('./pages/HomePage' /* webpackChunkName: "HomePage" */));
+const ExpensePage = lazy(() => import('./pages/ExpensePage' /* webpackChunkName: "ExpensePage" */));
+const IncomePage = lazy(() => import('./pages/IncomePage' /* webpackChunkName: "IncomePage" */));
+const ReportPage = lazy(() => import('./pages/ReportPage' /* webpackChunkName: "ReportPage" */));
 
 export default function App() {
   const token = useSelector(authSelectors.getToken);
@@ -35,7 +25,7 @@ export default function App() {
 
   const location = useLocation();
 
-  let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
+  let bgStyle = location.pathname === '/auth' ? 'main-bg-auth' : 'main-bg';
 
   return (
     <>
