@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import authActions from 'redux/auth/actions/authActions';
+import authActions from 'redux/actions/authActions';
 
 const tokenInitialState = null;
 
