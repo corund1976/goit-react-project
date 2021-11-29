@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, useLocation } from "react-router-dom";
 import Loader from "react-loader-spinner";
