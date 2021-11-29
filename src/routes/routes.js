@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  auth: '/authorization',
+  auth: '/auth',
   income: '/income',
   expense: '/expense',
   report: '/report',
