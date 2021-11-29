@@ -1,45 +1,113 @@
 .header {
   display: block;
-  max-width: 1280px;
+  max-width: 320px;
   margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .header {
+    max-width: 1280px;
+  }
 }
 
 .navDiv {
   display: flex;
-  background-color: rgb(119, 108, 108);
   height: 56px;
   justify-content: space-between;
   align-items: center;
-  padding-left: 26px;
-  padding-right: 44px;
+  padding-left: 19px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  .navDiv {
+    padding-left: 26px;
+    padding-right: 22px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .navDiv {
+    padding-right: 44px;
+  }
 }
 
 .userDiv {
   display: flex;
+  height: 36px;
 }
 
 .exitButton {
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.04em;
-  text-decoration-line: underline;
-  color: #52555f;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .exitButton {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    text-decoration-line: underline;
+    color: #52555f;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: block;
+  }
+}
+
+.mobileExitBtn {
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
+@media screen and (min-width: 768px) {
+  .mobileExitBtn {
+    display: none;
+  }
+}
 
 .userName {
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.04em;
-  color: #52555f;
-  border: none;
-  background-color: transparent;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .userName {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    border: none;
+    background-color: transparent;
+    display: flex;
+  }
 }
 
 .span {
-  border-right: 1px solid #e0e5eb;
-  margin-left: 20px;
-  margin-right: 20px;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .span {
+    border-right: 1px solid #e0e5eb;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+  }
+}
+
+.userPhoto {
+  border-radius: 20px;
+  background: #f5f6fa;
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+}
+@media screen and (min-width: 768px) {
+  .userPhoto {
+    margin-right: 10px;
+  }
+}
+
+.userData {
+  align-items: center;
+  display: flex;
 }
