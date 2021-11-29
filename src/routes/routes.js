@@ -1,4 +1,4 @@
-const routes = {
+const Routes = {
   home: '/',
   auth: '/auth',
   income: '/income',
@@ -6,4 +6,4 @@ const routes = {
   report: '/report',
 };
 
-export default routes;
+export default Routes;
