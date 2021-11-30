@@ -4,7 +4,7 @@
 import Loader from 'react-loader-spinner';
 
 import Header from 'components/Header';
-import Container from 'components/Container';
+import MainPage from 'components/MainPage';
 import Section from 'components/Section';
 
 
@@ -50,45 +50,44 @@ function App() {
   // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
   
   return (
-    <Container>
-      {/* {isFetchingCurrentUser ? ( */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Loader type="Rings" color="#00BFFF" height={200} width={200} />
-        </div>
-      {/* ) : ( */}
-        <Section>
-          <Header />
-          {/* <div className={bgStyle}> */}
-            {/* <Suspense fallback={
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Loader type="Rings" color="#00BFFF" height={100} width={100} />
-                </div>}> */}
-              {/* <Switch> */}
-                {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
-                  <AuthPage />
-                {/* </PublicRoute> */}
+    <MainPage>
+    {/* <MainPage className={bgStyle}> */}
+        {/* {isFetchingCurrentUser ? ( */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Loader type="Rings" color="#00BFFF" height={200} width={200} />
+          </div>
+        {/* ) : ( */}
+          <Section>
+            <Header />
+              {/* <Suspense fallback={
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+                  </div>}> */}
+                {/* <Switch> */}
+                  {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
+                    <AuthPage />
+                  {/* </PublicRoute> */}
 
-                {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
-                  <HomePage />
-                {/* </PrivateRoute> */}
+                  {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
+                    <HomePage />
+                  {/* </PrivateRoute> */}
 
-                {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-                  <ExpensePage />
-                {/* </PrivateRoute> */}
+                  {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
+                    <ExpensePage />
+                  {/* </PrivateRoute> */}
 
-                {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
-                  <IncomePage />
-                {/* </PrivateRoute> */}
+                  {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
+                    <IncomePage />
+                  {/* </PrivateRoute> */}
 
-                {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
-                  <ReportPage />
-                {/* </PrivateRoute> */}
-              {/* </Switch>
-            </Suspense>
-          </div> */}
-        </Section>
-      {/* )} */}
-    </Container>
+                  {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
+                    <ReportPage />
+                  {/* </PrivateRoute> */}
+                {/* </Switch>
+              </Suspense> */}
+          </Section>
+        {/* )} */}
+    </MainPage>
   );
 }
 
