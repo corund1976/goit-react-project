@@ -2,7 +2,7 @@ import s from "./MainPage.module.css";
 import Container from "../Container/Container";
 import PageTitle from "components/PageTitle/PageTitle";
 import { useSelector } from "react-redux";
-import { getIsAuthorized } from "redux/selectors/authSelectors";
+import { getIsAuthorized } from "redux/auth/authSelectors";
 
 const MainPage = ({ children }) => {
   const isLogin = useSelector(getIsAuthorized);

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import s from "./AuthForm.module.css";
-import googleSymbol from "../../images/header-authform/google-symbol.png";
-import authOperations from "redux/operations/authOperations";
+import googleSymbol from "images/header-authform/google-symbol.png";
+import authOperations from "redux/auth/authOperations";
 
 function AuthForm() {
   const [email, setEmail] = useState("");
