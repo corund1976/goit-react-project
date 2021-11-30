@@ -4,7 +4,7 @@
 import Loader from 'react-loader-spinner';
 
 import Header from 'components/Header';
-import Container from 'components/Container';
+import MainPage from 'components/MainPage';
 import Section from 'components/Section';
 
 
@@ -50,7 +50,8 @@ function App() {
   // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
   
   return (
-    {/* <div className={bgStyle}> */}
+    <MainPage>
+    {/* <MainPage className={bgStyle}> */}
         {/* {isFetchingCurrentUser ? ( */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Loader type="Rings" color="#00BFFF" height={200} width={200} />
@@ -86,7 +87,7 @@ function App() {
               </Suspense> */}
           </Section>
         {/* )} */}
-    {/* </div> */}
+    </MainPage>
   );
 }
 
