@@ -45,9 +45,6 @@ function App() {
   // useEffect(() =>
   //   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
 
-  // const location = useLocation();
-  // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
-
   return (
     <>
       <Header />
