@@ -1,0 +1,69 @@
+.balance_title {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.17;
+  color: #52555fb2;
+  margin-bottom: 6px;
+}
+.balance_submit {
+  display: inline-block;
+  color: #52555fb2;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 12px 6px 12px 6px;
+  margin-left: 0px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  background-color: #f2f5fc;
+  width: 125px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.balance_value {
+  color: #000000;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 12px 20px 12px 20px;
+  width: 125px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  background-color: #f2f5fc;
+}
+
+@media screen and (min-width: 768px) {
+  .balance_submit {
+    border-radius: 16px;
+    margin-left: 15px;
+  }
+  .balance_value {
+    border-radius: 16px;
+  }
+  .balance_form {
+    display: flex;
+    justify-content: center;
+  }
+  .balance_title {
+    margin-bottom: 0px;
+    margin-right: 21px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balance_submit {
+    border-radius: 16px;
+    margin-left: 15px;
+  }
+}
+.balance_submit:hover {
+  background-color: #ff751d;
+  color: #ffffff;
+}
