@@ -22,23 +22,10 @@
 }
 
 .outlayQuantityХ {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.14;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
   color: #e53935;
 }
 
 .income {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.14;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-
   color: #407946;
 }
 
