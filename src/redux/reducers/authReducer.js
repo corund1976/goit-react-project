@@ -6,7 +6,7 @@ import authActions from 'redux/actions/authActions';
 const tokenInitialState = null;
 
 const token = createReducer(tokenInitialState, {
-  [authActions.loginSuccess]: (_, { payload }) => payload.token,
+  [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.logoutSuccess]: () => tokenInitialState,
   [authActions.setGoogleToken]: (_, { payload }) => payload,
 });
@@ -15,9 +15,9 @@ const userInitialState = {};
 
 const user = createReducer(userInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => ({
-      email: payload.email,
-      type: payload.type,
-      balance: payload.balance,
+      // email: payload.userData.email,
+      userData: payload.userData,
+      // balance: payload.userData.balance,
     }),
   [authActions.logoutSuccess]: () => userInitialState,
   [authActions.refreshSuccess]: (_, { payload }) => payload,

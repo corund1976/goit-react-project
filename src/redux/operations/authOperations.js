@@ -8,8 +8,8 @@ const handleLogin = credentials => dispatch => {
     .login(credentials)
     .then(({ data }) => {
       // data = { message, user: { email, token, type } }
-      api.token.set(data.user.token);
-      dispatch(authActions.loginSuccess(data.user));
+      api.token.set(data);
+      dispatch(authActions.loginSuccess(data));
     })
     .catch(error => dispatch(authActions.loginError(error.message)));
 };
@@ -44,7 +44,7 @@ const handleRefresh = () => (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
-  
+
   if (token) {
     api.token.set(token);
 
