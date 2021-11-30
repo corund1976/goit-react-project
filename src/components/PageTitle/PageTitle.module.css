@@ -1,0 +1,40 @@
+.img {
+  width: 183px;
+  height: auto;
+  margin: 85px 85px auto 40px;
+
+  @media screen and (min-width: 768px) {
+  }
+}
+.title {
+  color: #52555f;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 5px auto auto 60px;
+  padding-bottom: 140px;
+}
+
+@media screen and (min-width: 768px) {
+  .img {
+    width: 308px;
+    margin: 90px auto auto 120px;
+  }
+  .title {
+    margin: 5px auto auto 170px;
+    padding-bottom: 335px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .img {
+    width: 377px;
+    margin: 308px auto 5px 120px;
+  }
+  .title {
+    margin: auto auto auto 190px;
+    padding-bottom: 80px;
+  }
+}
