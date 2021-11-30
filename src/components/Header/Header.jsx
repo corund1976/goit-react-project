@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const isAuthorized = useSelector(getIsAuthorized);
-  const userEmail = "sdfsf@gmail.com";
-  // const userEmail = (useSelector(getUserEmail) || "");
+  // const userEmail = useSelector(getUserEmail);
+  // const shouldBeEmail = isAuthorized && userEmail;
+  // console.log("shouldBeEmail" + shouldBeEmail);
+  const userEmail = "user@gmail.com";
 
   return (
     <header className={s.header}>
@@ -17,7 +19,7 @@ const Header = () => {
         <Link to="/">
           <img src={logo} alt="logo" className={s.defaultUserPhoto} />{" "}
         </Link>
-        {isAuthorized === true && (
+        {isAuthorized && (
           <div className={s.userDiv}>
             <div className={s.userData}>
               <img
