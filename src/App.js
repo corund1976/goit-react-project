@@ -52,12 +52,6 @@ function App() {
     <>
       <Header />
       <MainPage>
-        {/* <MainPage className={bgStyle}> */}
-        {/* {isFetchingCurrentUser ? ( */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Loader type="Rings" color="#00BFFF" height={200} width={200} />
-        </div>
-        {/* ) : ( */}
         <Section>
           {/* <Suspense fallback={
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -65,7 +59,7 @@ function App() {
                   </div>}> */}
           {/* <Switch> */}
           {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
-          {/* <AuthPage /> */}
+          <AuthPage />
           {/* </PublicRoute> */}
 
           {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
@@ -86,10 +80,14 @@ function App() {
           {/* </Switch>
               </Suspense> */}
         </Section>
-        {/* )} */}
       </MainPage>
     </>
   );
 }
 
 export default App;
+
+        {/* {isFetchingCurrentUser ? ( */}
+        {/* <div style={{ display: "flex", justifyContent: "center" }}>
+          <Loader type="Rings" color="#00BFFF" height={200} width={200} />
+        </div> */}
