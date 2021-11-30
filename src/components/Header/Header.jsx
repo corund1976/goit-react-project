@@ -1,7 +1,7 @@
 import s from "./Header.module.css";
-import logo from "../../images/logo.png";
-import defaultUserPhoto from "../../images/defaultUserPhoto.jpg";
-import logoutBtn from "../../images/logoutBtn.png";
+import logo from "../../images/header-authform/logo.png";
+import defaultUserPhoto from "../../images/header-authform/defaultUserPhoto.jpg";
+import logoutBtn from "../../images/header-authform/logoutBtn.png";
 import { useSelector } from "react-redux";
 import { getIsAuthorized, getUserEmail } from "redux/selectors/authSelectors";
 import { Link } from "react-router-dom";
@@ -15,7 +15,6 @@ const Header = () => {
       <div className={s.navDiv}>
         <Link to="/">
           <img src={logo} alt="logo" className={s.defaultUserPhoto} />{" "}
-          {/* можна переробити */}
         </Link>
         {isAuthorized === true && (
           <div className={s.userDiv}>
@@ -25,7 +24,7 @@ const Header = () => {
                 alt="defaultUserPhoto"
                 className={s.userPhoto}
               />
-              <p className={s.userName}>Hi, {userEmail}!</p>
+              <p className={s.userName}>{userEmail}</p>
             </div>
             <span className={s.span}></span>
             <button type="button" className={s.exitButton}>
