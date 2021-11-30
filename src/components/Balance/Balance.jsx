@@ -10,21 +10,18 @@ const Balance = () => {
         <>
         <div className={ s.balance_form}>
             <p className={s.balance_title}>Баланс:</p>
-             {/* <label > 
-            Баланс: */}
+             <span className={s.balance_value_span}>
             <input className={s.balance_value}
               name="balance"
               pattern="^[ 0-9]+$"
               title="поле должно состоять только из цифр"
-              required
-              type="text"
-              placeholder="Введите баланс"
-                    value={input}
-              onChange={handleChange}
-            />
-          {/* </label> */}
-
-            <button type='submit' className={ s.balance_submit}>Подтвердить</button>
+              type="number"
+              // maxLength='8'
+                  value={input}
+            onChange={handleChange}
+                      />
+                      </span>
+                    <button type='submit' className={ s.balance_submit}>Подтвердить</button>
             </div>
             </>
     )

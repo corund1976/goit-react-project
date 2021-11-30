@@ -39,6 +39,16 @@
   border: 2px solid rgba(255, 255, 255, 1);
   background-color: #f2f5fc;
 }
+.balance_value_span {
+  position: relative;
+}
+.balance_value_span::after {
+  position: absolute;
+  top: 15px;
+  content: 'UAH';
+  right: 12px;
+  font-size: 10px;
+}
 
 @media screen and (min-width: 768px) {
   .balance_submit {
