@@ -1,0 +1,16 @@
+.GoToReportsLink {
+  display: block;
+  text-decoration: none;
+  color: #52555f;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.iconReport {
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+}
