@@ -15,11 +15,6 @@ const userInitialState = {};
 
 const user = createReducer(userInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload,
-  // ({
-      // email: payload.userData.email,
-      // userData: payload.userData,
-      // balance: payload.userData.balance,
-    // }),
   [authActions.logoutSuccess]: () => userInitialState,
   [authActions.refreshSuccess]: (_, { payload }) => payload,
 });
