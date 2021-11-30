@@ -1,11 +1,9 @@
 .img {
   width: 183px;
   height: auto;
-  margin: 85px 85px auto 40px;
-
-  @media screen and (min-width: 768px) {
-  }
+  /* margin: 85px 85px auto 40px; */
 }
+
 .title {
   color: #52555f;
   font-weight: bold;
@@ -13,8 +11,18 @@
   line-height: 15px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin: 5px auto auto 60px;
-  padding-bottom: 140px;
+  /* margin: 5px auto auto 60px; */
+  padding-bottom: 50px;
+}
+@media screen and (min-width: 1280px) {
+  .title {
+    padding-bottom: 140px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .title {
+    padding-bottom: 140px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -24,7 +32,6 @@
   }
   .title {
     margin: 5px auto auto 170px;
-    padding-bottom: 335px;
   }
 }
 
@@ -36,5 +43,15 @@
   .title {
     margin: auto auto auto 190px;
     padding-bottom: 80px;
+  }
+}
+
+.authTitleDiv {
+  margin-left: 30px;
+  margin-top: 86px;
+}
+@media screen and (min-width: 1280px) {
+  .authTitleDiv {
+    margin-right: 127px;
   }
 }
