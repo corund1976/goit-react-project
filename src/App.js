@@ -1,4 +1,4 @@
-// import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Switch, useLocation } from 'react-router-dom';
 import Loader from "react-loader-spinner";
@@ -50,10 +50,10 @@ function App() {
       <Header />
       <MainPage>
         <Section>
-          {/* <Suspense fallback={
+          <Suspense fallback={
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Loader type="Rings" color="#00BFFF" height={100} width={100} />
-                  </div>}> */}
+                  </div>}>
           {/* <Switch> */}
           {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
           <AuthPage />
@@ -74,8 +74,8 @@ function App() {
           {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
           <ReportPage />
           {/* </PrivateRoute> */}
-          {/* </Switch>
-              </Suspense> */}
+          {/* </Switch> */}
+          </Suspense>
         </Section>
       </MainPage>
     </>
