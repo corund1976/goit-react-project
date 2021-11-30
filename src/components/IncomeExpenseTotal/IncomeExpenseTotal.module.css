@@ -1,0 +1,64 @@
+.container {
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 20px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  align-items: center;
+
+  letter-spacing: 0.04em;
+  padding: 15px;
+  margin: auto;
+  color: #52555f;
+}
+
+.outlayQuantityХ {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #e53935;
+}
+
+.income {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #407946;
+}
+
+.vertical {
+  height: 80%;
+  width: 2px;
+  background-color: #e0e5eb;
+  display: flex;
+  align-items: center;
+  margin: auto 0;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    height: 50px;
+    border-radius: 30px;
+  }
+  .title {
+    display: flex;
+    margin: 0 20px;
+  }
+}
