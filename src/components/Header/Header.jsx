@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const isAuthorized = useSelector(getIsAuthorized);
-  const userEmail = useSelector(getUserEmail);
+  const userEmail = "sdfsf@gmail.com";
+  // const userEmail = (useSelector(getUserEmail) || "");
 
   return (
     <header className={s.header}>
