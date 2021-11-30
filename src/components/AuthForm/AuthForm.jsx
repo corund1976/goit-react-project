@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import s from './AuthForm.module.css';
-import authOperations from 'redux/operations/authOperations';
+import s from "./AuthForm.module.css";
+import authOperations from "redux/operations/authOperations";
 
 function AuthForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const error = useSelector(state => state.error);
+  const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
 
-  const changeEmailValue = event => setEmail(event.target.value);
-  const changePasswordValue = event => setPassword(event.target.value);
+  const changeEmailValue = (event) => setEmail(event.target.value);
+  const changePasswordValue = (event) => setPassword(event.target.value);
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
 
     !validateEmail(email)
-      ? setEmailError('Некорректно введен e-mail.')
-      : setEmailError('');
+      ? setEmailError("Некорректно введен e-mail.")
+      : setEmailError("");
 
     !validatePassword(password)
-      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
-      : setPasswordError('');
+      ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
+      : setPasswordError("");
 
-    !email && setEmailError('это обязательное поле');
-    !password && setPasswordError('это обязательное поле');
+    !email && setEmailError("это обязательное поле");
+    !password && setPasswordError("это обязательное поле");
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogin({ email, password }));
@@ -37,50 +37,60 @@ function AuthForm() {
 
   const onRegistration = () => {
     !validateEmail(email)
-      ? setEmailError('Некорректно введен e-mail.')
-      : setEmailError('');
+      ? setEmailError("Некорректно введен e-mail.")
+      : setEmailError("");
 
     !validatePassword(password)
-      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
-      : setPasswordError('');
+      ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
+      : setPasswordError("");
 
-    !email && setEmailError('это обязательное поле');
-    !password && setPasswordError('это обязательное поле');
+    !email && setEmailError("это обязательное поле");
+    !password && setPasswordError("это обязательное поле");
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleRegister({ email, password }));
     }
   };
 
-  const validateEmail = email => {
+  const validateEmail = (email) => {
     // eslint-disable-next-line
     const response =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return response.test(email);
   };
 
-  const validatePassword = password => {
+  const validatePassword = (password) => {
     return Boolean(password.length >= 4 && password.length <= 16);
   };
 
   const errorMessage = () => {
-    if (error === 'Request failed with status code 404') {
-      return 'Пользователь с таким email еще не зарегистрирован';
-    } else if (error === 'Request failed with status code 401') {
-      return 'Некорректный пароль или email';
-    } else if (error === 'Request failed with status code 409') {
-      return 'Пользователь с таким email уже зарегистрирован';
+    if (error === "Request failed with status code 404") {
+      return "Пользователь с таким email еще не зарегистрирован";
+    } else if (error === "Request failed with status code 401") {
+      return "Некорректный пароль или email";
+    } else if (error === "Request failed with status code 409") {
+      return "Пользователь с таким email уже зарегистрирован";
     }
   };
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={s.authForm}>
         <div>
           <div>
-            <label htmlFor="AuthForm__email">
-              {emailError && <span style={{ color: 'red' }}>*</span>}
-              Электронная почта:
+            <p className={s.inputInfo}>
+              Вы можете авторизоваться с помощью Google Account:
+            </p>
+            <button type="submit">Google</button>
+            <p className={s.inputInfo}>
+              Или зайти с помощью e-mail и пароля, предварительно
+              зарегистрировавшись:
+            </p>
+          </div>
+          <div>
+            <label htmlFor="AuthForm__email" className={s.inputTitle}>
+              {emailError && <span style={{ color: "red" }}>*</span>}
+              <span className={s.inputTitleStar}>*</span>Электронная почта:
             </label>
             <input
               type="email"
@@ -89,38 +99,40 @@ function AuthForm() {
               value={email}
               onChange={changeEmailValue}
               placeholder="name@mail.com"
+              className={s.inputForm}
             />
             <p>{emailError}</p>
           </div>
           <div>
-            <label htmlFor="AuthForm__password">
-              {passwordError && <span style={{ color: 'red' }}>*</span>}
-              Пароль:
+            <label htmlFor="AuthForm__password" className={s.inputTitle}>
+              {passwordError && <span style={{ color: "red" }}>*</span>}
+              <span className={s.inputTitleStar}>*</span>Пароль:
             </label>
             <div>
               <input
-                type={isPasswordShown ? 'text' : 'password'}
+                type={isPasswordShown ? "text" : "password"}
                 name="password"
                 id="AuthForm__password"
                 value={password}
                 onChange={changePasswordValue}
                 placeholder="Пароль"
+                className={s.inputForm}
               />
               <button
                 type="button"
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
               >
-                {isPasswordShown ? 'Скрыть' : 'Показать'} пароль
+                {isPasswordShown ? "Скрыть" : "Показать"} пароль
               </button>
             </div>
             <p>{passwordError}</p>
           </div>
         </div>
         <div>
-          <button type="submit">
+          <button className={s.inputBtn} type="submit">
             Войти
           </button>
-          <button type="button" onClick={onRegistration}>
+          <button className={s.inputBtn} type="button" onClick={onRegistration}>
             Регистрация
           </button>
         </div>
@@ -128,6 +140,6 @@ function AuthForm() {
       </form>
     </>
   );
-};
+}
 
 export default AuthForm;
