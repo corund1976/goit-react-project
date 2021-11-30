@@ -11,7 +11,7 @@ const Header = () => {
   // const userEmail = useSelector(getUserEmail);
   // const shouldBeEmail = isAuthorized && userEmail;
   // console.log("shouldBeEmail" + shouldBeEmail);
-  const userEmail = "user@gmail.com";
+  const userEmailDefault = "user@gmail.com";
 
   return (
     <header className={s.header}>
@@ -27,7 +27,10 @@ const Header = () => {
                 alt="defaultUserPhoto"
                 className={s.userPhoto}
               />
-              <p className={s.userName}>{userEmail}</p>
+              <p className={s.userName}>
+                {/* {isAuthorized ? userEmail : userEmailDefault} */}
+                {userEmailDefault}
+              </p>
             </div>
             <span className={s.span}></span>
             <button type="button" className={s.exitButton}>

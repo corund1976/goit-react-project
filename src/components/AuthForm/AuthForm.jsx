@@ -95,7 +95,7 @@ function AuthForm() {
             Или зайти с помощью e-mail и пароля, предварительно
             зарегистрировавшись:
           </p>
-          <div>
+          <div className={s.inputDiv}>
             <label htmlFor="AuthForm__email" className={s.inputTitle}>
               {emailError && <span style={{ color: "red" }}>*</span>}
               Электронная почта:
