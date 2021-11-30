@@ -17,8 +17,7 @@ const Header = () => {
           <img src={logo} alt="logo" className={s.defaultUserPhoto} />{" "}
           {/* можна переробити */}
         </Link>
-        {isAuthorized ===
-          false /* змінити на true коли авторизація буде працювати */ && (
+        {isAuthorized === true && (
           <div className={s.userDiv}>
             <div className={s.userData}>
               <img
