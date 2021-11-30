@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import s from "./AuthForm.module.css";
+import googleSymbol from "../../images/header-authform/google-symbol.png";
 import authOperations from "redux/operations/authOperations";
 
 function AuthForm() {
@@ -77,20 +78,27 @@ function AuthForm() {
     <>
       <form onSubmit={onSubmit} className={s.authForm}>
         <div>
-          <div>
-            <p className={s.inputInfo}>
-              Вы можете авторизоваться с помощью Google Account:
-            </p>
-            <button type="submit">Google</button>
-            <p className={s.inputInfo}>
-              Или зайти с помощью e-mail и пароля, предварительно
-              зарегистрировавшись:
-            </p>
+          <p className={s.inputInfo}>
+            Вы можете авторизоваться с помощью Google Account:
+          </p>
+          <div className={s.googleInfo}>
+            <button className={s.googelBtn} type="submit">
+              <img
+                src={googleSymbol}
+                alt="googleSymbol"
+                className={s.googleSymbol}
+              />
+              Google
+            </button>
           </div>
+          <p className={s.inputInfo}>
+            Или зайти с помощью e-mail и пароля, предварительно
+            зарегистрировавшись:
+          </p>
           <div>
             <label htmlFor="AuthForm__email" className={s.inputTitle}>
               {emailError && <span style={{ color: "red" }}>*</span>}
-              <span className={s.inputTitleStar}>*</span>Электронная почта:
+              Электронная почта:
             </label>
             <input
               type="email"
@@ -101,14 +109,13 @@ function AuthForm() {
               placeholder="name@mail.com"
               className={s.inputForm}
             />
-            <p>{emailError}</p>
+            <p className={s.errorMessage}>{emailError}</p>
           </div>
           <div>
             <label htmlFor="AuthForm__password" className={s.inputTitle}>
-              {passwordError && <span style={{ color: "red" }}>*</span>}
-              <span className={s.inputTitleStar}>*</span>Пароль:
+              {passwordError && <span style={{ color: "red" }}>*</span>}Пароль:
             </label>
-            <div>
+            <div className={s.pswInp}>
               <input
                 type={isPasswordShown ? "text" : "password"}
                 name="password"
@@ -121,14 +128,15 @@ function AuthForm() {
               <button
                 type="button"
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
+                className={s.showPassBtn}
               >
-                {isPasswordShown ? "Скрыть" : "Показать"} пароль
+                {isPasswordShown ? "hide" : "show"}
               </button>
             </div>
-            <p>{passwordError}</p>
+            <p className={s.errorMessage}>{passwordError}</p>
           </div>
         </div>
-        <div>
+        <div className={s.btnDiv}>
           <button className={s.inputBtn} type="submit">
             Войти
           </button>
