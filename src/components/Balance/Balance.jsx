@@ -4,7 +4,7 @@ import s from './Balance.module.css'
 const Balance = () => {
     const [input, setInput]= useState('00.00')
     const handleChange = e => {
-        const input = setInput(e.target.value)
+      setInput(e.target.value);
     }
     return (
         <>
