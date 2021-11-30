@@ -17,9 +17,9 @@ const logout = () => axios.post('/auth/logout');
 const refresh = sessionId => axios.post('auth/refresh', sessionId); //sessionId={sid}
 const setGoogleToken = () => axios.get('/auth/google');
 /* Transaction */
-const setIncome = incomeItem => axios.post('/transaction/income', incomeItem); //incomeItem={description,amount,date}
+const postIncome = incomeItem => axios.post('/transaction/income', incomeItem); //incomeItem={description,amount,date}
 const getIncome = () => axios.get('/transaction/income');
-const setExpense = expenseItem => axios.post('/transaction/expense', expenseItem); //expenseItem={description,amount,date,category}
+const postExpense = expenseItem => axios.post('/transaction/expense', expenseItem); //expenseItem={description,amount,date,category}
 const getExpense = () => axios.get('/transaction/expense');
 const deleteTransaction = transactionId => axios.delete(`/transaction/${transactionId}`);
 const getIncomeCategories = () => axios.get('/transaction/income-categories');
@@ -38,9 +38,9 @@ export default {
   refresh,
   setGoogleToken,
   // Transaction
-  setIncome,
+  postIncome,
   getIncome,
-  setExpense,
+  postExpense,
   getExpense,
   deleteTransaction,
   getIncomeCategories,

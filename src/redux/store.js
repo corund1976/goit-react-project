@@ -3,8 +3,9 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth';
-// import { transactionsReducer } from './transactions';
-// import { userReducer } from './user';
+import { transactionReducer } from './transactions';
+import { categoriesReducer } from './categories';
+import { userReducer } from './user';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -23,8 +24,9 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    // transactions: transactionsReducer,
-    // user: userReducer,
+    transactions: transactionReducer,
+    categories: categoriesReducer,
+    user: userReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
