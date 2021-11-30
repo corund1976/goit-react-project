@@ -10,10 +10,10 @@ const MainPage = ({ children }) => {
         <Container>
           <img className={s.img} src={logo} alt="kapusta" />
           <h1 className={s.title}>Smart Finance</h1>
+          {children}
+          <div className={s.bottom}></div>
         </Container>
       </div>
-
-      <div className={s.bottom}>{children}</div>
     </div>
   );
 };
