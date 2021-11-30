@@ -1,23 +1,25 @@
 import s from "./Header.module.css";
-import logo from "../../images/logo.png";
-import defaultUserPhoto from "../../images/defaultUserPhoto.jpg";
-import logoutBtn from "../../images/logoutBtn.png";
+import logo from "../../images/header-authform/logo.png";
+import defaultUserPhoto from "../../images/header-authform/defaultUserPhoto.jpg";
+import logoutBtn from "../../images/header-authform/logoutBtn.png";
 import { useSelector } from "react-redux";
-import { getIsAuthorized, getUserEmail } from "redux/selectors/authSelectors";
+import { getIsAuthorized, getUserEmail } from "redux/auth/authSelectors";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const isAuthorized = useSelector(getIsAuthorized);
-  const userEmail = useSelector(getUserEmail);
+  // const userEmail = useSelector(getUserEmail);
+  // const shouldBeEmail = isAuthorized && userEmail;
+  // console.log("shouldBeEmail" + shouldBeEmail);
+  const userEmail = "user@gmail.com";
 
   return (
     <header className={s.header}>
       <div className={s.navDiv}>
         <Link to="/">
           <img src={logo} alt="logo" className={s.defaultUserPhoto} />{" "}
-          {/* можна переробити */}
         </Link>
-        {isAuthorized === true && (
+        {isAuthorized && (
           <div className={s.userDiv}>
             <div className={s.userData}>
               <img
@@ -25,7 +27,7 @@ const Header = () => {
                 alt="defaultUserPhoto"
                 className={s.userPhoto}
               />
-              <p className={s.userName}>Hi, {userEmail}!</p>
+              <p className={s.userName}>{userEmail}</p>
             </div>
             <span className={s.span}></span>
             <button type="button" className={s.exitButton}>

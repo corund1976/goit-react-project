@@ -1,5 +1,5 @@
 import api from 'services/kapusta-api';
-import authActions from 'redux/actions/authActions';
+import authActions from 'redux/auth/authActions';
 
 const handleLogin = credentials => dispatch => {
   dispatch(authActions.loginRequest());
@@ -7,7 +7,25 @@ const handleLogin = credentials => dispatch => {
   api
     .login(credentials)
     .then(({ data }) => {
-      // data = { message, user: { email, token, type } }
+      // data = {
+      //   accessToken,
+      //   refreshToken,
+      //   sid,
+      //   userData: {
+      //     email,
+      //     balance,
+      //     id,
+      //     transactions: [
+      //       {
+      //         description,
+      //         category,
+      //         amount,
+      //         date,
+      //         _id,
+      //       }
+      //     ]
+      //   }
+      // }
       api.token.set(data);
       dispatch(authActions.loginSuccess(data));
     })
@@ -40,7 +58,7 @@ const handleLogout = () => dispatch => {
     .catch(error => dispatch(authActions.logoutError(error.message)));
 };
 
-const handleRefresh = () => (dispatch, getState) => {
+const handleRefresh = sessionId => (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
@@ -51,9 +69,9 @@ const handleRefresh = () => (dispatch, getState) => {
     dispatch(authActions.refreshRequest());
 
     api
-      .refresh()
+      .refresh(sessionId)
       .then(({ data }) => {
-        // data = { balance, email, type }
+        // data = { newAccessToken, newRefreshToken, newSid }
         dispatch(authActions.refreshSuccess(data));
       })
       .catch(error => dispatch(authActions.refreshError(error.message)));

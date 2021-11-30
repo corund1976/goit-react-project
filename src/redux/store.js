@@ -1,15 +1,10 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import rootReducer from 'redux/rootReducer';
+import { authReducer } from './auth';
+// import { transactionsReducer } from './transactions';
+// import { userReducer } from './user';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -19,12 +14,20 @@ const middleware = [
   }),
 ];
 
-const store = configureStore({
-  reducer: rootReducer,
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+export const store = configureStore({
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    // transactions: transactionsReducer,
+    // user: userReducer,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
 
-const persistor = persistStore(store);
-// eslint-disable-next-line
-export default { store, persistor };
+export const persistor = persistStore(store);

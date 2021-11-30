@@ -1,0 +1,159 @@
+.authForm {
+  background-color: #fff;
+  width: 300px;
+  height: 525px;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+  padding: 40px 18px 53px 18px;
+  margin-top: 50px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .authForm {
+    width: 436px;
+    height: 535px;
+    padding: 50px 80px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .authForm {
+    width: 436px;
+    height: 535px;
+    padding: 50px 85px 53px 85px;
+    margin-top: 117px;
+  }
+}
+
+.inputForm {
+  background: #f6f7fb;
+  border-radius: 30px;
+  width: 253px;
+  height: 52px;
+  border-color: transparent;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .inputForm {
+    width: 265px;
+    height: 52px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .inputForm {
+    width: 265px;
+    height: 52px;
+  }
+}
+
+.inputForm::placeholder {
+  color: #a6abb9;
+}
+
+.inputTitle {
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+}
+
+.errorMessage {
+  font-size: 11px;
+}
+
+.inputBtn {
+  background: #f5f6fb;
+  border-radius: 16px;
+  width: 125px;
+  height: 44px;
+  border-color: transparent;
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.inputBtn:hover,
+.inputBtn:focus {
+  background: #ff751d;
+  filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+  color: #ffffff;
+}
+
+.inputBtn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.inputInfo {
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: #52555f;
+  margin-bottom: 24px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .inputInfo {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+}
+
+.googelBtn {
+  width: 122px;
+  height: 40px;
+  filter: drop-shadow(1px 2px 3px rgba(170, 178, 197, 0.2));
+  background: #f6f7fb;
+  border-radius: 26px;
+  border-color: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.googelBtn:hover,
+.googelBtn:focus {
+  background-color: #1d346a;
+  color: #f6f7fb;
+  filter: drop-shadow(1px 2px 2px #1d346a);
+}
+
+.googleInfo {
+  text-align: center;
+}
+
+.googleSymbol {
+  margin-right: 10px;
+}
+
+.showPassBtn {
+  width: 40px;
+  height: 25px;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.pswInp {
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.btnDiv {
+  margin-top: 40px;
+  display: flex;
+}
