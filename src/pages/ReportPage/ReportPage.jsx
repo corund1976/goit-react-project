@@ -1,6 +1,6 @@
 // import { useSelector } from 'react-redux';
 
-import Container from "components/Container";
+import Section from "components/Section";
 import GoBack from "components/GoBack";
 import Balance from "components/Balance";
 import Calendar from "components/Calendar";
@@ -12,7 +12,7 @@ import ReportChart from "components/ReportChart";
 
 function ReportPage() {
   return (
-    <Container>
+    <Section>
       <div>
         <GoBack />
         <Balance />
@@ -22,7 +22,7 @@ function ReportPage() {
       <IncomeExpenseTotal />
       <ReportSwitch />
       <ReportChart />
-    </Container>
+    </Section>
   );
 }
 
