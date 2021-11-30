@@ -84,7 +84,10 @@ function App() {
 
 export default App;
 
-        {/* {isFetchingCurrentUser ? ( */}
-        {/* <div style={{ display: "flex", justifyContent: "center" }}>
-          <Loader type="Rings" color="#00BFFF" height={200} width={200} />
-        </div> */}
+// {
+//   isFetchingCurrentUser ? (
+//     <div style={{ display: "flex", justifyContent: "center" }}>
+//       <Loader type="Rings" color="#00BFFF" height={200} width={200} />
+//     </div>
+//   )
+// }
