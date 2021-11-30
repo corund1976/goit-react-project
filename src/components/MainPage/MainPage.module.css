@@ -1,0 +1,69 @@
+.top {
+  width: 100%;
+  height: 40%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 100px;
+
+  background: url(../../images/mainImg/down.svg) bottom 50% right -15% no-repeat;
+  background-size: 83px;
+  background-color: #f5f6fb;
+}
+.bottom {
+  background: url(../../images/mainImg/rightTop.svg) bottom 0px left 35px
+    no-repeat;
+  width: 100%;
+  height: 40%;
+}
+.img {
+  width: 183px;
+  height: auto;
+  margin: 85px 85px auto 40px;
+
+  @media screen and (min-width: 768px) {
+  }
+}
+.title {
+  color: #52555f;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 5px auto auto 60px;
+  padding-bottom: 140px;
+}
+@media screen and (min-width: 768px) {
+  .top {
+    background: url(../../images/mainImg/Group\ 37.svg) top 30px left 5px
+      repeat-x;
+    background-color: #f5f6fb;
+    height: 60%;
+    box-shadow: none;
+  }
+  .bottom {
+    background: url(../../images/mainImg/two.svg) bottom 65px left 103px
+      no-repeat;
+  }
+  .img {
+    width: 308px;
+    margin: 90px auto auto 120px;
+  }
+  .title {
+    margin: 5px auto auto 170px;
+    padding-bottom: 335px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .top {
+    height: 60%;
+  }
+  .img {
+    width: 377px;
+    margin: 308px auto 5px 230px;
+  }
+  .title {
+    margin: auto auto auto 302px;
+    padding-bottom: 80px;
+  }
+}
