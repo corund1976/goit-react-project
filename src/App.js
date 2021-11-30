@@ -4,9 +4,8 @@
 import Loader from "react-loader-spinner";
 
 import Header from "components/Header";
-import Container from "components/Container";
+import MainPage from "components/MainPage";
 import Section from "components/Section";
-
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
@@ -51,18 +50,18 @@ function App() {
   return (
     <>
       <Header />
-      <Container>
+      <MainPage>
+        {/* <MainPage className={bgStyle}> */}
         {/* {isFetchingCurrentUser ? ( */}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Loader type="Rings" color="#00BFFF" height={200} width={200} />
         </div>
         {/* ) : ( */}
         <Section>
-          {/* <div className={bgStyle}> */}
           {/* <Suspense fallback={
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Loader type="Rings" color="#00BFFF" height={100} width={100} />
-                </div>}> */}
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+                  </div>}> */}
           {/* <Switch> */}
           {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
           <AuthPage />
@@ -84,11 +83,10 @@ function App() {
           <ReportPage />
           {/* </PrivateRoute> */}
           {/* </Switch>
-            </Suspense>
-          </div> */}
+              </Suspense> */}
         </Section>
         {/* )} */}
-      </Container>
+      </MainPage>
     </>
   );
 }
