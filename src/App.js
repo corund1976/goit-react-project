@@ -7,7 +7,6 @@ import Header from 'components/Header';
 import MainPage from 'components/MainPage';
 import Section from 'components/Section';
 
-
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
