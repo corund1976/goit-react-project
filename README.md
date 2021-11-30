@@ -40,7 +40,11 @@ npm i react-calendar
     yarn add react-loader-spinner
 
 11. Набор иконок react-icons
-    npm i react-icons
+    npm i react-
+
+12. A collection of hooks to measure things in React
+    npm i react-use-size или
+    yarn add react-use-size
 
 xxxxxxxxxxxxxxx....Деплой на Netlify....хххххххххххххххххххххх
 
