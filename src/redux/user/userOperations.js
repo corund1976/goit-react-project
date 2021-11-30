@@ -1,7 +1,7 @@
 import api from 'services/kapusta-api';
 import userActions from 'redux/user/userActions';
 
-const handleupdateUserBalance = balance => dispatch => {
+const handleUpdateUserBalance = balance => dispatch => {
   dispatch(userActions.updateUserBalanceRequest());
 
   api
@@ -13,7 +13,7 @@ const handleupdateUserBalance = balance => dispatch => {
     .catch(error => dispatch(userActions.updateUserBalanceError(error.message)));
 };
 
-const handlegetUserInfo = () => dispatch => {
+const handleGetUserInfo = () => dispatch => {
   dispatch(userActions.getUserInfoRequest());
 
   api
@@ -39,6 +39,6 @@ const handlegetUserInfo = () => dispatch => {
 
 // eslint-disable-next-line
 export default {
-  handleupdateUserBalance,
-  handlegetUserInfo,
+  handleUpdateUserBalance,
+  handleGetUserInfo,
 };
