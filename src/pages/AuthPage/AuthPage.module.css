@@ -1,0 +1,8 @@
+.authPage {
+  display: block;
+}
+@media screen and (min-width: 1280px) {
+  .authPage {
+    display: flex;
+  }
+}

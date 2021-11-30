@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import Section from 'components/Section';
-import PageTitle from 'components/PageTitle';
-import AuthForm from 'components/AuthForm';
+import Section from "components/Section";
+import PageTitle from "components/PageTitle";
+import AuthForm from "components/AuthForm";
 
-// import s from './AuthPage.module.css';
+import s from "./AuthPage.module.css";
 
 function AuthPage() {
   return (
     <Section>
-      <PageTitle />
-      <AuthForm />
+      <div className={s.authPage}>
+        <PageTitle />
+        <AuthForm />
+      </div>
     </Section>
-  )    
-};
+  );
+}
 
 export default AuthPage;

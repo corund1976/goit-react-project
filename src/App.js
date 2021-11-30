@@ -1,11 +1,11 @@
 // import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Switch, useLocation } from 'react-router-dom';
-import Loader from 'react-loader-spinner';
+import Loader from "react-loader-spinner";
 
-import Header from 'components/Header';
-import MainPage from 'components/MainPage';
-import Section from 'components/Section';
+import Header from "components/Header";
+import MainPage from "components/MainPage";
+import Section from "components/Section";
 
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
@@ -65,7 +65,7 @@ function App() {
                   </div>}> */}
           {/* <Switch> */}
           {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
-          <AuthPage />
+          {/* <AuthPage /> */}
           {/* </PublicRoute> */}
 
           {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
