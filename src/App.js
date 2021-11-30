@@ -1,11 +1,12 @@
 // import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Switch, useLocation } from 'react-router-dom';
-import Loader from "react-loader-spinner";
+import Loader from 'react-loader-spinner';
 
-import Header from "components/Header";
-import MainPage from "components/MainPage";
-import Section from "components/Section";
+import Header from 'components/Header';
+import MainPage from 'components/MainPage';
+import Section from 'components/Section';
+
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
