@@ -15,7 +15,7 @@ const register = credentials => axios.post('/auth/register', credentials); //cre
 const login = credentials => axios.post('/auth/login', credentials); //credentials={email,password}
 const logout = () => axios.post('/auth/logout');
 const refresh = sessionId => axios.post('auth/refresh', sessionId); //sessionId={sid}
-// const google = () => axios.get('/auth/google');
+const setGoogleToken = () => axios.get('/auth/google');
 /* Transaction */
 const setIncome = incomeItem => axios.post('/transaction/income', incomeItem); //incomeItem={description,amount,date}
 const getIncome = () => axios.get('/transaction/income');
@@ -36,7 +36,7 @@ export default {
   login,
   logout,
   refresh,
-  // google,
+  setGoogleToken,
   // Transaction
   setIncome,
   getIncome,

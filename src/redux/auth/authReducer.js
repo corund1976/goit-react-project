@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import authActions from 'redux/actions/authActions';
+import authActions from 'redux/auth/authActions';
 
 const tokenInitialState = null;
 
@@ -14,11 +14,12 @@ const token = createReducer(tokenInitialState, {
 const userInitialState = {};
 
 const user = createReducer(userInitialState, {
-  [authActions.loginSuccess]: (_, { payload }) => ({
+  [authActions.loginSuccess]: (_, { payload }) => payload,
+  // ({
       // email: payload.userData.email,
-      userData: payload.userData,
+      // userData: payload.userData,
       // balance: payload.userData.balance,
-    }),
+    // }),
   [authActions.logoutSuccess]: () => userInitialState,
   [authActions.refreshSuccess]: (_, { payload }) => payload,
 });

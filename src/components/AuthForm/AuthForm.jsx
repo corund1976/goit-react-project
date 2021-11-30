@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import s from './AuthForm.module.css';
-import authOperations from 'redux/operations/authOperations';
+import authOperations from 'redux/auth/authOperations';
 
 function AuthForm() {
   const [email, setEmail] = useState('');

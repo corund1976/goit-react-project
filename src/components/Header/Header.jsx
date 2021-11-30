@@ -3,7 +3,7 @@ import logo from "../../images/logo.png";
 import defaultUserPhoto from "../../images/defaultUserPhoto.jpg";
 import logoutBtn from "../../images/logoutBtn.png";
 import { useSelector } from "react-redux";
-import { getIsAuthorized, getUserEmail } from "redux/selectors/authSelectors";
+import { getIsAuthorized, getUserEmail } from "redux/auth/authSelectors";
 import { Link } from "react-router-dom";
 
 const Header = () => {
