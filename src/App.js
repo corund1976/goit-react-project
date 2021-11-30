@@ -10,14 +10,14 @@ import Section from 'components/Section';
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
-import './App.css';
+import "./App.css";
 
 // Временно сделал прямые импорты без lazy для тестирования
-import AuthPage from 'pages/AuthPage';
-import HomePage from 'pages/HomePage';
-import ExpensePage from 'pages/ExpensePage';
-import IncomePage from 'pages/IncomePage';
-import ReportPage from 'pages/ReportPage';
+import AuthPage from "pages/AuthPage";
+import HomePage from "pages/HomePage";
+import ExpensePage from "pages/ExpensePage";
+import IncomePage from "pages/IncomePage";
+import ReportPage from "pages/ReportPage";
 // const AuthPage = lazy(() =>
 //   import('pages/AuthPage' /* webpackChunkName: "AuthPage" */),
 // );
@@ -47,46 +47,48 @@ function App() {
 
   // const location = useLocation();
   // let bgStyle = (location.pathname === '/auth') ? 'main-bg-auth' : 'main-bg';
-  
+
   return (
-    <MainPage>
-    {/* <MainPage className={bgStyle}> */}
+    <>
+      <Header />
+      <MainPage>
+        {/* <MainPage className={bgStyle}> */}
         {/* {isFetchingCurrentUser ? ( */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Loader type="Rings" color="#00BFFF" height={200} width={200} />
-          </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Loader type="Rings" color="#00BFFF" height={200} width={200} />
+        </div>
         {/* ) : ( */}
-          <Section>
-            <Header />
-              {/* <Suspense fallback={
+        <Section>
+          {/* <Suspense fallback={
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Loader type="Rings" color="#00BFFF" height={100} width={100} />
                   </div>}> */}
-                {/* <Switch> */}
-                  {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
-                    <AuthPage />
-                  {/* </PublicRoute> */}
+          {/* <Switch> */}
+          {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
+          <AuthPage />
+          {/* </PublicRoute> */}
 
-                  {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
-                    <HomePage />
-                  {/* </PrivateRoute> */}
+          {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
+          <HomePage />
+          {/* </PrivateRoute> */}
 
-                  {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-                    <ExpensePage />
-                  {/* </PrivateRoute> */}
+          {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
+          <ExpensePage />
+          {/* </PrivateRoute> */}
 
-                  {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
-                    <IncomePage />
-                  {/* </PrivateRoute> */}
+          {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
+          <IncomePage />
+          {/* </PrivateRoute> */}
 
-                  {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
-                    <ReportPage />
-                  {/* </PrivateRoute> */}
-                {/* </Switch>
+          {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
+          <ReportPage />
+          {/* </PrivateRoute> */}
+          {/* </Switch>
               </Suspense> */}
-          </Section>
+        </Section>
         {/* )} */}
-    </MainPage>
+      </MainPage>
+    </>
   );
 }
 
