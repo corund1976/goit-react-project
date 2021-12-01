@@ -12,68 +12,75 @@ import { getAccessToken } from 'redux/auth/authSelectors';
 import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
-  import('pages/AuthPage' /* webpackChunkName: "AuthPage" */),
+	import('pages/AuthPage' /* webpackChunkName: "AuthPage" */)
 );
 const HomePage = lazy(() =>
-  import('pages/HomePage' /* webpackChunkName: "HomePage" */),
+	import('pages/HomePage' /* webpackChunkName: "HomePage" */)
 );
 const ExpensePage = lazy(() =>
-  import('pages/ExpensePage' /* webpackChunkName: "ExpensePage" */),
+	import('pages/ExpensePage' /* webpackChunkName: "ExpensePage" */)
 );
 const IncomePage = lazy(() =>
-  import('pages/IncomePage' /* webpackChunkName: "IncomePage" */),
+	import('pages/IncomePage' /* webpackChunkName: "IncomePage" */)
 );
 const ReportPage = lazy(() =>
-  import('pages/ReportPage' /* webpackChunkName: "ReportPage" */),
+	import('pages/ReportPage' /* webpackChunkName: "ReportPage" */)
 );
 
 function App() {
   const token = useSelector(getAccessToken);
 
-  useEffect(() => {
-    if (token) api.token.set(token);
-  }, [token]);
+	useEffect(() => {
+		if (token) api.token.set(token);
+	}, [token]);
 
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  // const dispatch = useDispatch();
-  // useEffect(() =>
-  //   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
+	// const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+	// const dispatch = useDispatch();
+	// useEffect(() =>
+	//   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
 
-  return (
-    <>
-      <Header />
-      <MainPage>
-        <Section>
-          <Suspense fallback={
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader type='Rings' color='#00BFFF' height={100} width={100} />
-            </div>}>
-            <Switch>
-              <PublicRoute path={routes.auth} restricted redirectTo={routes.home}>
-                <AuthPage />
-              </PublicRoute>
+	return (
+		<>
+			<Header />
+			<MainPage>
+				<Section>
+					<Suspense
+						fallback={
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Loader type='Rings' color='#00BFFF' height={100} width={100} />
+							</div>
+						}
+					>
+						<Switch>
+							<PublicRoute
+								path={routes.auth}
+								restricted
+								redirectTo={routes.home}
+							>
+								<AuthPage />
+							</PublicRoute>
 
-              <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
-                <HomePage />
-              </PrivateRoute>
+							<PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
+								<HomePage />
+							</PrivateRoute>
 
-              <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-                <ExpensePage />
-              </PrivateRoute>
+							<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
+								<ExpensePage />
+							</PrivateRoute>
 
-              <PrivateRoute path={routes.income} redirectTo={routes.auth}>
-                <IncomePage />
-              </PrivateRoute>
+							<PrivateRoute path={routes.income} redirectTo={routes.auth}>
+								<IncomePage />
+							</PrivateRoute>
 
-              <PrivateRoute path={routes.report} redirectTo={routes.auth}>
-                <ReportPage />
-              </PrivateRoute>
-            </Switch>
-          </Suspense>
-        </Section>
-      </MainPage>
-    </>
-  );
+							<PrivateRoute path={routes.report} redirectTo={routes.auth}>
+								<ReportPage />
+							</PrivateRoute>
+						</Switch>
+					</Suspense>
+				</Section>
+			</MainPage>
+		</>
+	);
 }
 
 export default App;
