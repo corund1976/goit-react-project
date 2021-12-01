@@ -92,3 +92,11 @@
   background-color: #ff751d;
   border-radius: 10px 10px 0px 0px;
 }
+.chart {
+  /* width: 700px; */
+  height: 600px;
+  background: #ffffff;
+
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+}

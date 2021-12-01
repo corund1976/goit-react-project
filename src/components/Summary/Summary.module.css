@@ -19,6 +19,8 @@
 }
 .list {
   padding: 0;
+  height: 240px;
+  overflow: auto;
 }
 .item {
   display: flex;
