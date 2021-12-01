@@ -3,44 +3,48 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import transactionActions from 'redux/transactions/transactionActions';
 import authActions from 'redux/auth/authActions';
+import userActions from 'redux/user/userActions';
 
 const initialState = [];
 
-const incomes = createReducer(initialState, {
+const incomesReducer = createReducer(initialState, {
   [transactionActions.getIncomeSuccess]: (_, { payload }) => payload,
   [transactionActions.postIncomeSuccess]: (state, { payload }) => [
     ...state,
     payload.transaction,
   ],
-  [transactionActions.deleteIncomeSuccess]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.transaction.id),
-  [authActions.logoutSuccess]: (_, __) => initialState,
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item.id !== payload.transactionId),
+  
+  [authActions.logoutSuccess]: () => initialState,
 });
 
-const expenses = createReducer(initialState, {
+const expensesReducer = createReducer(initialState, {
   [transactionActions.getExpenseSuccess]: (_, { payload }) => payload,
   [transactionActions.postExpenseSuccess]: (state, { payload }) => [
     ...state,
     payload.transaction,
   ],
-  [transactionActions.deleteExpenseSuccess]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.transaction.id),
-  [authActions.logoutSuccess]: (_, __) => initialState,
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item.id !== payload.transactionId),
+  [authActions.logoutSuccess]: () => initialState,
 });
+
+const transactionsReducer = createReducer(initialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.userData.transactions,
+  [authActions.logoutSuccess]: () => initialState,
+  [userActions.getUserInfoSuccess]: (_, { payload }) => payload.transactions,
+});
+
 
 export default combineReducers({
-  incomes,
-  expenses,
+  incomes: incomesReducer,
+  expenses: expensesReducer,
+  transactions: transactionsReducer,
 });
 
-// const transactionsInitialState = [];
-// const transactions = createReducer(transactionsInitialState, {
-//   [userActions.getUserInfoSuccess]: (_, { payload }) => payload,
-// });
 
-// const userInitialState = {};
 // const user = createReducer(userInitialState, {
 //   [authActions.loginSuccess]: (_, { payload }) => payload,
 //   [authActions.logoutSuccess]: () => userInitialState,
-//   [authActions.refreshSuccess]: (_, { payload }) => payload,
 // });

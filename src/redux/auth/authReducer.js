@@ -9,6 +9,7 @@ const accessTokenReducer = createReducer(accessTokenInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.logoutSuccess]: () => accessTokenInitialState,
   [authActions.setGoogleToken]: (_, { payload }) => payload,
+  [authActions.refreshSuccess]: (_, { payload }) => payload.newAccessToken,
 });
 
 const refreshTokenInitialState = null;
@@ -16,6 +17,7 @@ const refreshTokenInitialState = null;
 const refreshTokenReducer = createReducer(refreshTokenInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.refreshToken,
   [authActions.logoutSuccess]: () => refreshTokenInitialState,
+  [authActions.refreshSuccess]: (_, { payload }) => payload.newRefreshToken,
 });
 
 
@@ -24,6 +26,7 @@ const sidInitialState = null;
 const sidReducer = createReducer(sidInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.sid,
   [authActions.logoutSuccess]: () => sidInitialState,
+  [authActions.refreshSuccess]: (_, { payload }) => payload.newSid,
 });
 
 const isAuthorizedReducer = createReducer(false, {
