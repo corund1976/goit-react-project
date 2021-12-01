@@ -28,21 +28,31 @@
 Или все 7 одной командой
 npm i @reduxjs/toolkit redux-persist react-redux react-router-dom@5.3.0 axios modern-normalize prop-types
 
-8.  Запустить проект локально
+8. Индикатор загрузки Loader react-loader-spinner
+   npm install react-loader-spinner --save
+   yarn add react-loader-spinner
+
+9. Библиотека календаря (от Алёны) @material-ui/core
+   npm i @material-ui/core
+
+10. Библиотека календаря (от Алексея) @mui/material
+    npm i @mui/material или
+    yarn add @mui/material @emotion/react @emotion/styled
+
+11. Запустить проект локально
     npm start или
     yarn start
 
-xxxxxxxxxxxxxxx....Опционально....xxxxxxxxxxxxxxxxxxxxxxxxxxxx 9. Календарь React-Calendar
-npm i react-calendar
+xxxxxxxxxxxxxxx....Опционально....xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+.
 
-10. Индикатор загрузки Loader react-loader-spinner
-    npm install react-loader-spinner --save
-    yarn add react-loader-spinner
+9. Календарь React-Calendar
+   npm i react-calendar
 
-11. Набор иконок react-icons
-    npm i react-
+10. Набор иконок react-icons
+    npm i react-icons
 
-12. A collection of hooks to measure things in React
+11. A collection of hooks to measure things in React
     npm i react-use-size или
     yarn add react-use-size
 

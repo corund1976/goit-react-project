@@ -65,15 +65,15 @@ function App() {
 					{/* </PrivateRoute> */}
 
 					{/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-					<ExpensePage />
+					{/* <ExpensePage /> */}
 					{/* </PrivateRoute> */}
 
 					{/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
-					<IncomePage />
+					{/* <IncomePage /> */}
 					{/* </PrivateRoute> */}
 
           {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
-          <ReportPage />
+          {/* <ReportPage /> */}
           {/* </PrivateRoute> */}
           {/* </Switch> */}
           </Suspense>

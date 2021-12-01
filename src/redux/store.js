@@ -7,6 +7,7 @@ import { transactionReducer } from './transactions';
 import { categoriesReducer } from './categories';
 import { userReducer } from './user';
 
+
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
@@ -27,6 +28,7 @@ export const store = configureStore({
     transactions: transactionReducer,
     categories: categoriesReducer,
     user: userReducer,
+
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

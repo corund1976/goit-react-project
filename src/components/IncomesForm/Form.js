@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Calendar from 'components/Calendar';
+import CalendarTableForm from 'components/CalendarTableForm';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './IncomesForm.module.css';
@@ -79,7 +79,7 @@ export default function IncomesForm({ onHandleClick, type }) {
 	return (
 		<form className={s.form} onSubmit=''>
 			<div className={s.dataInput}>
-				<Calendar />
+				<CalendarTableForm />
 				<input
 					type='text'
 					name='product'

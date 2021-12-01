@@ -26,7 +26,7 @@ const getIncomeCategories = () => axios.get('/transaction/income-categories');
 const getExpenseCategories = () => axios.get('/transaction/expense-categories');
 const getPeriodData = date => axios.get('/transaction/period-data', date); //date=YYYY-MM
 /* User */
-const updateUserBalance = (balance) => axios.patch("/user/balance", balance); //balance={newBalance}
+const updateUserBalance = (balance) => axios.patch("/user/balance", balance); //balance={newBalance: balance}
 const getUserInfo = () => axios.get("/user");
 // eslint-disable-next-line
 export default {

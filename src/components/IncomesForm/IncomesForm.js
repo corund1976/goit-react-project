@@ -1,32 +1,41 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {
-	transactionsSelectors,
-	transactionsOperations,
-} from 'redux/transactions';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import s from './IncomesForm.module.css';
-import { expensesOpt, incomesOpt } from '../../data/selectOptions';
 
-export default function IncomesForm({ onHandleClick, type }) {
+import s from './IncomesForm.module.css';
+import { transactionsSelectors, transactionsOperations } from 'redux/transactions';
+import { getExpenseCategories, getIncomeCategories } from 'redux/categories/categoriesSelectors';
+// import { expensesOpt, incomesOpt } from '../../data/selectOptions';
+
+
+function IncomesForm({ onHandleClick, type }) {
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');
-	const [amount, setAmount] = useState('');
-	const day = useSelector(transactionsSelectors.getDay);
-	const month = useSelector(transactionsSelectors.getMonth);
-	const year = useSelector(transactionsSelectors.getYear);
-	const [showLabel, setShowlabel] = useState(false);
+  const [amount, setAmount] = useState('');
+  const [showLabel, setShowlabel] = useState(false);
 	const [categ, setCateg] = useState('');
+
+  const day = useSelector(transactionsSelectors.getDay);
+	const month = useSelector(transactionsSelectors.getMonth);
+  const year = useSelector(transactionsSelectors.getYear);
+  
+  const incomesOpt = useSelector(getIncomeCategories);
+  const expensesOpt = useSelector(getExpenseCategories);
+
 	const dispatch = useDispatch();
 
-	const data = type === 'incomes' ? incomesOpt : expensesOpt;
+  const data = type === 'incomes' ? incomesOpt : expensesOpt;
+  
 	const categoryLabel =
-		type === 'incomes' ? 'Категория дохода' : 'Категория товара';
-	const desc = type === 'incomes' ? 'Описание дохода' : 'Описание товара';
+    type === 'incomes' ? 'Категория дохода' : 'Категория товара';
+  
+  const desc = type === 'incomes' ? 'Описание дохода' : 'Описание товара';
+  
 	const emptyLabel = '';
 
 	const handleChange = event => {
@@ -129,3 +138,5 @@ export default function IncomesForm({ onHandleClick, type }) {
 		</form>
 	);
 }
+
+export default IncomesForm;
