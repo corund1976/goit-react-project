@@ -16,6 +16,7 @@ function ReportSwitch({ getActiveCategory }) {
     typeOfTransaction === "Расходы"
       ? setTypeOfTransaction("Доходы")
       : setTypeOfTransaction("Расходы");
+    setActiveCategory("");
   };
 
   const toggleClass = (e) => {
@@ -55,7 +56,7 @@ function ReportSwitch({ getActiveCategory }) {
     })
     .filter((item) => item !== undefined);
   return (
-    <>
+    <div className={s.container}>
       <div className={s.switch_button}>
         <button type='button' onClick={cbOnClick} className={s.button}>
           <svg className={s.wrapper}>
@@ -70,7 +71,7 @@ function ReportSwitch({ getActiveCategory }) {
         </button>
       </div>
       <ul className={s.list}>{elements}</ul>
-    </>
+    </div>
   );
 }
 
