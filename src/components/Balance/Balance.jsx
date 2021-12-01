@@ -17,7 +17,7 @@ const Balance = () => {
      dispatch(userOperations.handleUpdateUserBalance({newBalance: balance}))
     }
     return (
-        <>
+        
         <div className={ s.balance_form}>
             <p className={s.balance_title}>Баланс:</p>
              <span className={s.balance_value_span}>
@@ -32,7 +32,7 @@ const Balance = () => {
                       </span>
           <button type='button' className={s.balance_submit} onClick={ addBalance}>Подтвердить</button>
             </div>
-            </>
+            
     )
 }
 export default Balance;

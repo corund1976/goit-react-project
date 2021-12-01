@@ -68,7 +68,7 @@
   .summaryTab {
     display: block;
     padding-bottom: 57px;
-    background-image: url("../../images/homepage/bg-desk-bot.svg");
+    background-image: url('../../images/homepage/bg-desk-bot.svg');
     background-repeat: no-repeat;
     background-position: right bottom 57px;
   }
@@ -84,4 +84,29 @@
 .tableContainer {
   display: flex;
   justify-content: space-between;
+}
+.balanceHeader {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .balanceHeader {
+    flex-direction: row;
+    margin-bottom: 58px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .balanceHeader {
+    margin-bottom: 58px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balanceHeader {
+    margin-bottom: 9px;
+    justify-content: space-between;
+  }
 }

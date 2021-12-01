@@ -19,7 +19,7 @@ function ExpensePage() {
 
   return (
     <Section>
-      <div>
+      <div className={ s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
