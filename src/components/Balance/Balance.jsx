@@ -1,20 +1,21 @@
 import { useState } from "react"
 import s from './Balance.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import userOperations from '../../redux/user/userOperations'
+import { getUpdateBalance } from '../../redux/user/userSelectors'
 
 const Balance = () => {
+  const balance=useSelector(getUpdateBalance)
   const dispatch = useDispatch();
-  const [input, setInput] = useState('00.00')
-
+  const [input, setInput] = useState(balance)
+  
     const handleChange = e => {
       setInput(e.target.value);
   }
-   const addBalance = () => {
+  const addBalance = () => {
      const balance = Number(input);
      dispatch(userOperations.handleUpdateUserBalance({newBalance:balance}))
- 
-      }
+    }
     return (
         <>
         <div className={ s.balance_form}>
