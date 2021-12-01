@@ -6,7 +6,6 @@ export const getPeriod = createAsyncThunk(
   async (date, { rejectWithValue }) => {
     try {
       const { data } = await api.getPeriodData(date);
-      console.log(data);
       return data;
     } catch (err) {
       console.log(err);
