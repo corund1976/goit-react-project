@@ -1,24 +1,16 @@
-import { Suspense, lazy, useEffect } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
-import { Switch, useLocation } from 'react-router-dom';
-import Loader from "react-loader-spinner";
+import { Suspense, lazy, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
-import Header from "components/Header";
-import MainPage from "components/MainPage";
-import Section from "components/Section";
+import Header from 'components/Header';
+import MainPage from 'components/MainPage';
+import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
-// import { authOperations, authSelectors } from 'redux/auth';
-// import api from 'services/kapusta-api';
-import "./App.css";
-import "./index.css";
+import { getToken } from 'redux/auth/authSelectors';
+import api from 'services/kapusta-api';
 
-// Временно сделал прямые импорты без lazy для тестирования
-// import AuthPage from "pages/AuthPage";
-// import HomePage from "pages/HomePage";
-// import ExpensePage from "pages/ExpensePage";
-// import IncomePage from "pages/IncomePage";
-// import ReportPage from "pages/ReportPage";
 const AuthPage = lazy(() =>
   import('pages/AuthPage' /* webpackChunkName: "AuthPage" */),
 );
@@ -36,10 +28,11 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  // const token = useSelector(authSelectors.getToken);
-  // useEffect(() => {
-  //   if (token) api.token.set(token);
-  // }, [token]);
+  const token = useSelector(getToken);
+
+  useEffect(() => {
+    if (token) api.token.set(token);
+  }, [token]);
 
   // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   // const dispatch = useDispatch();
@@ -53,7 +46,7 @@ function App() {
         <Section>
           <Suspense fallback={
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+              <Loader type='Rings' color='#00BFFF' height={100} width={100} />
             </div>}>
             <Switch>
               <PublicRoute path={routes.auth} restricted redirectTo={routes.home}>
@@ -87,8 +80,8 @@ export default App;
 
 // {
 //   isFetchingCurrentUser ? (
-//     <div style={{ display: "flex", justifyContent: "center" }}>
-//       <Loader type="Rings" color="#00BFFF" height={200} width={200} />
+//     <div style={{ display: 'flex', justifyContent: 'center' }}>
+//       <Loader type='Rings' color='#00BFFF' height={200} width={200} />
 //     </div>
 //   )
 // }
