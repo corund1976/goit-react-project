@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import getPeriodData from "../../services/kapusta-api";
 import api from "services/kapusta-api";
+
 export const getPeriod = createAsyncThunk(
   "transactions/getPeriodData",
   async (date, { rejectWithValue }) => {

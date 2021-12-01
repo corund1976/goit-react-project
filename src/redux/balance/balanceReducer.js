@@ -11,8 +11,8 @@ const balanceReducer = createReducer(balanceInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.userData.balance,
   [authActions.logoutSuccess]: () => balanceInitialState,
   
-  [userActions.getUserInfoSuccess]: (_, { payload }) => payload.balance,
   [userActions.updateUserBalanceSuccess]: (_, { payload }) => payload.newBalance,
+  [userActions.getUserInfoSuccess]: (_, { payload }) => payload.balance,
 
   [transactionActions.postIncomeSuccess]: (state, { payload }) => payload.newBalance,
   [transactionActions.postExpenseSuccess]: (state, { payload }) => payload.newBalance,

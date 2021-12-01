@@ -43,7 +43,9 @@ npm i @reduxjs/toolkit redux-persist react-redux react-router-dom@5.3.0 axios mo
     npm install --save react-tabs или
     yarn add react-tabs
 
-12. Запустить проект локально
+12. Библиотека для работы с графиками @nivo/bar
+    npm i @nivo/bar
+13. Запустить проект локально
     npm start или
     yarn start
 
