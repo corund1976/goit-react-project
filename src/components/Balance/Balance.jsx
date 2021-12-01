@@ -1,10 +1,20 @@
 import { useState } from "react"
 import s from './Balance.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import userOperations from '../../redux/user/userOperations'
+import { getUpdateBalance } from '../../redux/user/userSelectors'
 
 const Balance = () => {
-    const [input, setInput]= useState('00.00')
+  const balance=useSelector(getUpdateBalance)
+  const dispatch = useDispatch();
+  const [input, setInput] = useState(balance)
+  
     const handleChange = e => {
       setInput(e.target.value);
+  }
+  const addBalance = () => {
+     const balance = Number(input);
+     dispatch(userOperations.handleUpdateUserBalance({newBalance:balance}))
     }
     return (
         <>
@@ -16,12 +26,11 @@ const Balance = () => {
               pattern="^[ 0-9]+$"
               title="поле должно состоять только из цифр"
               type="number"
-              // maxLength='8'
                   value={input}
             onChange={handleChange}
                       />
                       </span>
-                    <button type='submit' className={ s.balance_submit}>Подтвердить</button>
+          <button type='button' className={s.balance_submit} onClick={ addBalance}>Подтвердить</button>
             </div>
             </>
     )
