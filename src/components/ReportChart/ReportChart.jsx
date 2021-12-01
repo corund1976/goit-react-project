@@ -37,10 +37,10 @@ function ReportChart({ activeCategory, activeTrancaction }) {
   if (!dataForChart) dataForChart = [];
 
   return (
-    <section className={s.chart}>
+    <section className={s.container}>
       {!!dataForChart.length && (
         <ResponsiveBar
-          className={s.chart}
+          // className={s.chart}
           data={dataForChart}
           keys={["Сумма"]}
           indexBy='Подкатегория'
