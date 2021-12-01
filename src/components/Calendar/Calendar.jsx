@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import s from '../Calendar/Calendar.module.css'
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import s from "../Calendar/Calendar.module.css";
+import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -16,34 +18,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CalendarView() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const date = new Date();
-   const [selectedDate, setSelectedDate] = useState(`${date.getFullYear()}-${date.getMonth()+1}`);
+  const [selectedDate, setSelectedDate] = useState(
+    `${date.getFullYear()}-${date.getMonth() + 1}`
+  );
 
   const handleDateChange = (e) => {
     const { value } = e.target;
     setSelectedDate(value);
-    console.log(value)
+    console.log(value);
+    dispatch(getPeriod(value));
   };
 
   return (
-    <div className={ s.calendarBlock}>
-      <p className={ s.calendarStyle}>Текущий период</p>
+    <div className={s.calendarBlock}>
+      <p className={s.calendarStyle}>Текущий период</p>
       <form className={classes.container} noValidate>
-      <TextField
-        id="date"
+        <TextField
+          id="date"
           type="month"
-           format="MM/yyyy"
-          defaultValue={ selectedDate}
+          format="MM/yyyy"
+          defaultValue={selectedDate}
           className={classes.textField}
-          onChange={handleDateChange }
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
+          onChange={handleDateChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
       </form>
-    </div>  
+    </div>
   );
 }
-   
+
 export default CalendarView;
