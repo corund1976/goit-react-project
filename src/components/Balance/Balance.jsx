@@ -6,15 +6,14 @@ import userOperations from '../../redux/user/userOperations'
 const Balance = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState('00.00')
-  const [balance, setBalance] =useState('0')
+
     const handleChange = e => {
       setInput(e.target.value);
   }
-   const addBalance = e => {
-     e.preventDefault();
-     const balance = Number(e.target.value);
-     dispatch(userOperations.handleUpdateUserBalance({balance}))
-     setBalance(balance)
+   const addBalance = () => {
+     const balance = Number(input);
+     dispatch(userOperations.handleUpdateUserBalance({newBalance:balance}))
+ 
       }
     return (
         <>
@@ -26,12 +25,11 @@ const Balance = () => {
               pattern="^[ 0-9]+$"
               title="поле должно состоять только из цифр"
               type="number"
-              // maxLength='8'
                   value={input}
             onChange={handleChange}
                       />
                       </span>
-          <button type='submit' className={s.balance_submit} onClick={ addBalance}>Подтвердить</button>
+          <button type='button' className={s.balance_submit} onClick={ addBalance}>Подтвердить</button>
             </div>
             </>
     )
