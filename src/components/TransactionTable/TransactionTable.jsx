@@ -1,5 +1,10 @@
+import Table from '../IncomesTable/Table/Table';
 function TransactionTable() {
-  return <h2>TransactionTable</h2>
-};
+	return (
+		<>
+			<Table />
+		</>
+	);
+}
 
 export default TransactionTable;

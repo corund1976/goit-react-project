@@ -1,5 +1,15 @@
+import BalanceViewTab from 'components/BalanceViewTab';
+import IncomesForm from 'components/IncomesForm/Form';
+
 function TransactionForm() {
-  return <h2>TransactionForm</h2>
-};
+	return (
+		<>
+			<div>
+				<BalanceViewTab />
+			</div>
+			<IncomesForm />
+		</>
+	);
+}
 
 export default TransactionForm;

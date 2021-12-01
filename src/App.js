@@ -10,14 +10,15 @@ import Section from "components/Section";
 // import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
-import "./App.css";
+import './App.css';
+import './index.css';
 
 // Временно сделал прямые импорты без lazy для тестирования
-import AuthPage from "pages/AuthPage";
-import HomePage from "pages/HomePage";
-import ExpensePage from "pages/ExpensePage";
-import IncomePage from "pages/IncomePage";
-import ReportPage from "pages/ReportPage";
+import AuthPage from 'pages/AuthPage';
+import HomePage from 'pages/HomePage';
+import ExpensePage from 'pages/ExpensePage';
+import IncomePage from 'pages/IncomePage';
+import ReportPage from 'pages/ReportPage';
 // const AuthPage = lazy(() =>
 //   import('pages/AuthPage' /* webpackChunkName: "AuthPage" */),
 // );
@@ -35,15 +36,15 @@ import ReportPage from "pages/ReportPage";
 // );
 
 function App() {
-  // const token = useSelector(authSelectors.getToken);
-  // useEffect(() => {
-  //   if (token) api.token.set(token);
-  // }, [token]);
+	// const token = useSelector(authSelectors.getToken);
+	// useEffect(() => {
+	//   if (token) api.token.set(token);
+	// }, [token]);
 
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  // const dispatch = useDispatch();
-  // useEffect(() =>
-  //   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
+	// const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+	// const dispatch = useDispatch();
+	// useEffect(() =>
+	//   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
 
   return (
     <>
@@ -59,17 +60,17 @@ function App() {
           <AuthPage />
           {/* </PublicRoute> */}
 
-          {/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
-          <HomePage />
-          {/* </PrivateRoute> */}
+					{/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
+					<HomePage />
+					{/* </PrivateRoute> */}
 
-          {/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-          <ExpensePage />
-          {/* </PrivateRoute> */}
+					{/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
+					<ExpensePage />
+					{/* </PrivateRoute> */}
 
-          {/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
-          <IncomePage />
-          {/* </PrivateRoute> */}
+					{/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
+					<IncomePage />
+					{/* </PrivateRoute> */}
 
           {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
           <ReportPage />
