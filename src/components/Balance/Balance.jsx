@@ -16,7 +16,6 @@ const Balance = () => {
   const dispatch = useDispatch();
 
   const addBalance = () => {
-    const newBalance = Number(input);
     dispatch(userOperations.handleUpdateUserBalance({ newBalance: newBalance }))
   }
   
