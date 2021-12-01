@@ -1,11 +1,21 @@
 import { useState } from "react"
 import s from './Balance.module.css'
+import { useDispatch } from 'react-redux';
+import userOperations from '../../redux/user/userOperations'
 
 const Balance = () => {
-    const [input, setInput]= useState('00.00')
+  const dispatch = useDispatch();
+  const [input, setInput] = useState('00.00')
+  const [balance, setBalance] =useState('0')
     const handleChange = e => {
       setInput(e.target.value);
-    }
+  }
+   const addBalance = e => {
+     e.preventDefault();
+     const balance = Number(e.target.value);
+     dispatch(userOperations.handleUpdateUserBalance({balance}))
+     setBalance(balance)
+      }
     return (
         <>
         <div className={ s.balance_form}>
@@ -21,7 +31,7 @@ const Balance = () => {
             onChange={handleChange}
                       />
                       </span>
-                    <button type='submit' className={ s.balance_submit}>Подтвердить</button>
+          <button type='submit' className={s.balance_submit} onClick={ addBalance}>Подтвердить</button>
             </div>
             </>
     )

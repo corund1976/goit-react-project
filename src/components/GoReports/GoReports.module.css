@@ -8,6 +8,10 @@
   text-align: center;
   display: flex;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.GoToReportsLink:hover {
+  color: #ff751d;
 }
 .iconReport {
   width: 24px;

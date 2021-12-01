@@ -2,6 +2,10 @@
   display: block;
   text-decoration: none;
   color: #ffffff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.goBackLink:hover {
+  color: #ff751d;
 }
 @media screen and (min-width: 768px) {
   .goBackLink {
