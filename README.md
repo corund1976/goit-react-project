@@ -39,7 +39,11 @@ npm i @reduxjs/toolkit redux-persist react-redux react-router-dom@5.3.0 axios mo
     npm i @mui/material или
     yarn add @mui/material @emotion/react @emotion/styled
 
-11. Запустить проект локально
+11. Библиотека для работы с таблицами react-tabs
+    npm install --save react-tabs или
+    yarn add react-tabs
+
+12. Запустить проект локально
     npm start или
     yarn start
 
