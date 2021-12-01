@@ -24,6 +24,8 @@
   width: 125px;
   letter-spacing: 0.02em;
   cursor: pointer;
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .balance_value {
   color: #000000;
@@ -38,13 +40,15 @@
   border-bottom-left-radius: 16px;
   border: 2px solid rgba(255, 255, 255, 1);
   background-color: #f2f5fc;
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
 }
 .balance_value_span {
   position: relative;
 }
 .balance_value_span::after {
   position: absolute;
-  top: 15px;
+  top: 9px;
+  font-weight: bold;
   content: 'UAH';
   right: 12px;
   font-size: 10px;
@@ -65,6 +69,14 @@
   .balance_title {
     margin-bottom: 0px;
     margin-right: 21px;
+  }
+  .balance_value_span::after {
+    position: absolute;
+    top: 16px;
+    font-weight: bold;
+    content: 'UAH';
+    right: 12px;
+    font-size: 10px;
   }
 }
 @media screen and (min-width: 1280px) {

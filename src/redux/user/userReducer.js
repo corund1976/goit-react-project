@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import userActions from 'redux/user/userActions';
 
-const balanceInitialState = null;
+const balanceInitialState = 0;
 
 const balance = createReducer(balanceInitialState, {
   [userActions.updateUserBalanceSuccess]: (_, { payload }) => payload,
