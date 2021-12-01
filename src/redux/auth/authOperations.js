@@ -1,7 +1,7 @@
-import api from 'services/kapusta-api';
-import authActions from 'redux/auth/authActions';
+import api from "services/kapusta-api";
+import authActions from "redux/auth/authActions";
 
-const handleLogin = credentials => dispatch => {
+const handleLogin = (credentials) => (dispatch) => {
   dispatch(authActions.loginRequest());
 
   api
@@ -30,10 +30,10 @@ const handleLogin = credentials => dispatch => {
       dispatch(authActions.loginSuccess(data));
       // dispatch(transactionActions.postIncomeSuccess(data.POST))
     })
-    .catch(error => dispatch(authActions.loginError(error.message)));
+    .catch((error) => dispatch(authActions.loginError(error.message)));
 };
 
-const handleRegister = credentials => dispatch => {
+const handleRegister = (credentials) => (dispatch) => {
   dispatch(authActions.registerRequest());
 
   api
@@ -44,11 +44,11 @@ const handleRegister = credentials => dispatch => {
       // запрос на логин - сразу же после регистрации
       handleLogin(credentials)(dispatch);
     })
-    .catch(error => dispatch(authActions.registerError(error.message)));
+    .catch((error) => dispatch(authActions.registerError(error.message)));
 };
 
-const handleLogout = () => dispatch => {
- dispatch(authActions.logoutRequest());
+const handleLogout = () => (dispatch) => {
+  dispatch(authActions.logoutRequest());
 
   api
     .logout()
@@ -56,10 +56,10 @@ const handleLogout = () => dispatch => {
       api.token.unset();
       dispatch(authActions.logoutSuccess());
     })
-    .catch(error => dispatch(authActions.logoutError(error.message)));
+    .catch((error) => dispatch(authActions.logoutError(error.message)));
 };
 
-const handleRefresh = sessionId => (dispatch, getState) => {
+const handleRefresh = (sessionId) => (dispatch, getState) => {
   const {
     auth: { accessToken, refreshToken },
   } = getState();
@@ -75,8 +75,21 @@ const handleRefresh = sessionId => (dispatch, getState) => {
         // data = { newAccessToken, newRefreshToken, newSid }
         dispatch(authActions.refreshSuccess(data));
       })
-      .catch(error => dispatch(authActions.refreshError(error.message)));
+      .catch((error) => dispatch(authActions.refreshError(error.message)));
   }
+};
+
+const handleGoogleAuth = (token) => (dispatch) => {
+  dispatch(authActions.setGoogleTokenRequest());
+  api.token.set(token);
+  api
+    .setGoogleToken()
+    .then(({ data }) => {
+      console.log({ data }, "assadasdasdasdasd");
+      api.token.set(data.accessToken);
+      dispatch(authActions.setGoogleTokenSuccess(data));
+    })
+    .catch((error) => dispatch(authActions.setGoogleTokenError(error.message)));
 };
 
 // eslint-disable-next-line
@@ -85,4 +98,5 @@ export default {
   handleLogin,
   handleLogout,
   handleRefresh,
+  handleGoogleAuth,
 };
