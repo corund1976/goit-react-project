@@ -1,21 +1,23 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import userActions from 'redux/user/userActions';
+import authActions from 'redux/auth/authActions';
 
-const balanceInitialState = 0;
+const userEmailInitialState = null;
 
-const balance = createReducer(balanceInitialState, {
-  [userActions.updateUserBalanceSuccess]: (_, { payload }) => payload.newBalance,
+const userEmailReducer = createReducer(userEmailInitialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.userData.email,
+  [authActions.logoutSuccess]: () => userEmailInitialState,
 });
 
-const transactionsInitialState = [];
+const userIdInitialState = null;
 
-const transactions = createReducer(transactionsInitialState, {
-  [userActions.getUserInfoSuccess]: (_, { payload }) => payload,
+const userIdReducer = createReducer(userIdInitialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.userData.id,
+  [authActions.logoutSuccess]: () => userIdInitialState,
 });
 
 export default combineReducers({
-  balance,
-  transactions,
+  userEmail: userEmailReducer,
+  userId: userIdReducer,
 });

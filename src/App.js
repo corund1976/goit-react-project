@@ -8,7 +8,7 @@ import MainPage from 'components/MainPage';
 import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
-import { getToken } from 'redux/auth/authSelectors';
+import { getAccessToken } from 'redux/auth/authSelectors';
 import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
@@ -28,7 +28,7 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  const token = useSelector(getToken);
+  const token = useSelector(getAccessToken);
 
   useEffect(() => {
     if (token) api.token.set(token);

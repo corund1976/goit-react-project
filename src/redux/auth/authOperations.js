@@ -61,11 +61,11 @@ const handleLogout = () => dispatch => {
 
 const handleRefresh = sessionId => (dispatch, getState) => {
   const {
-    auth: { token },
+    auth: { accessToken, refreshToken },
   } = getState();
 
-  if (token) {
-    api.token.set(token);
+  if (accessToken) {
+    api.token.set(refreshToken);
 
     dispatch(authActions.refreshRequest());
 

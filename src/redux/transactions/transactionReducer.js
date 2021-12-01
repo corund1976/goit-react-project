@@ -32,3 +32,15 @@ export default combineReducers({
   incomes,
   expenses,
 });
+
+// const transactionsInitialState = [];
+// const transactions = createReducer(transactionsInitialState, {
+//   [userActions.getUserInfoSuccess]: (_, { payload }) => payload,
+// });
+
+// const userInitialState = {};
+// const user = createReducer(userInitialState, {
+//   [authActions.loginSuccess]: (_, { payload }) => payload,
+//   [authActions.logoutSuccess]: () => userInitialState,
+//   [authActions.refreshSuccess]: (_, { payload }) => payload,
+// });

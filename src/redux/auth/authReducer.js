@@ -3,20 +3,27 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import authActions from 'redux/auth/authActions';
 
-const tokenInitialState = null;
+const accessTokenInitialState = null;
 
-const tokenReducer = createReducer(tokenInitialState, {
+const accessTokenReducer = createReducer(accessTokenInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
-  [authActions.logoutSuccess]: () => tokenInitialState,
+  [authActions.logoutSuccess]: () => accessTokenInitialState,
   [authActions.setGoogleToken]: (_, { payload }) => payload,
 });
 
-const userInitialState = {};
+const refreshTokenInitialState = null;
 
-const userReducer = createReducer(userInitialState, {
-  [authActions.loginSuccess]: (_, { payload }) => payload,
-  [authActions.logoutSuccess]: () => userInitialState,
-  [authActions.refreshSuccess]: (_, { payload }) => payload,
+const refreshTokenReducer = createReducer(refreshTokenInitialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.refreshToken,
+  [authActions.logoutSuccess]: () => refreshTokenInitialState,
+});
+
+
+const sidInitialState = null;
+
+const sidReducer = createReducer(sidInitialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.sid,
+  [authActions.logoutSuccess]: () => sidInitialState,
 });
 
 const isAuthorizedReducer = createReducer(false, {
@@ -27,7 +34,8 @@ const isAuthorizedReducer = createReducer(false, {
 });
 
 export default combineReducers({
-  token: tokenReducer,
-  user: userReducer,
+  accessToken: accessTokenReducer,
+  refreshToken: refreshTokenReducer,
+  sid: sidReducer,
   isAuthorized: isAuthorizedReducer,
 });
