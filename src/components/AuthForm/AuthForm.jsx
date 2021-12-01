@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { GoogleLogin } from "react-google-login";
 
 import s from "./AuthForm.module.css";
 import googleSymbol from "images/header-authform/google-symbol.png";
@@ -74,6 +75,14 @@ function AuthForm() {
     }
   };
 
+  const clientId =
+    "263285736930-p050d1objdtu7vmkkn1md1vv86ed3eem.apps.googleusercontent.com";
+
+  const responseGoogle = (response) => {
+    // console.log(response.tokenId);
+    dispatch(authOperations.handleGoogleAuth(response.tokenId));
+  };
+
   return (
     <>
       <form onSubmit={onSubmit} className={s.authForm}>
@@ -82,14 +91,28 @@ function AuthForm() {
             Вы можете авторизоваться с помощью Google Account:
           </p>
           <div className={s.googleInfo}>
-            <button className={s.googelBtn} type="submit">
-              <img
-                src={googleSymbol}
-                alt="googleSymbol"
-                className={s.googleSymbol}
-              />
-              Google
-            </button>
+            <GoogleLogin
+              clientId={clientId}
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  className={s.googelBtn}
+                  type="submit"
+                >
+                  <img
+                    src={googleSymbol}
+                    alt="googleSymbol"
+                    className={s.googleSymbol}
+                  />
+                  Google
+                </button>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              // cookiePolicy={"single_host_origin"}
+            />
           </div>
           <p className={s.inputInfo}>
             Или зайти с помощью e-mail и пароля, предварительно
