@@ -4,11 +4,11 @@ import { createReducer } from '@reduxjs/toolkit';
 import categoriesActions from 'redux/categories/categoriesActions';
 
 const incomeCategories = createReducer([], {
-  [categoriesActions.getIncomeCategoriesSuccess]: (_, { payload }) => payload.categories,
+  [categoriesActions.getIncomeCategoriesSuccess]: (_, { payload }) => payload,
 });
 
 const expenseCategories = createReducer([], {
-  [categoriesActions.getExpenseCategoriesSuccess]: (_, { payload }) => payload.categories,
+  [categoriesActions.getExpenseCategoriesSuccess]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
