@@ -5,7 +5,7 @@ import authActions from 'redux/auth/authActions';
 
 const tokenInitialState = null;
 
-const token = createReducer(tokenInitialState, {
+const tokenReducer = createReducer(tokenInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.logoutSuccess]: () => tokenInitialState,
   [authActions.setGoogleToken]: (_, { payload }) => payload,
@@ -13,13 +13,13 @@ const token = createReducer(tokenInitialState, {
 
 const userInitialState = {};
 
-const user = createReducer(userInitialState, {
+const userReducer = createReducer(userInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload,
   [authActions.logoutSuccess]: () => userInitialState,
   [authActions.refreshSuccess]: (_, { payload }) => payload,
 });
 
-const isAuthorized = createReducer(false, {
+const isAuthorizedReducer = createReducer(false, {
   [authActions.loginSuccess]: () => true,
   [authActions.logoutSuccess]: () => false,
   [authActions.refreshSuccess]: () => true,
@@ -27,7 +27,7 @@ const isAuthorized = createReducer(false, {
 });
 
 export default combineReducers({
-  token,
-  user,
-  isAuthorized,
+  token: tokenReducer,
+  user: userReducer,
+  isAuthorized: isAuthorizedReducer,
 });
