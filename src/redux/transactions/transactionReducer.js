@@ -19,32 +19,39 @@ const incomesReducer = createReducer(initialState, {
   [authActions.logoutSuccess]: () => initialState,
 });
 
+const incomeMonthStatsReducer = createReducer(initialState, {
+  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.monthStats,
+  
+  [authActions.logoutSuccess]: () => initialState,
+});
+
 const expensesReducer = createReducer(initialState, {
   [transactionActions.getExpenseSuccess]: (_, { payload }) => payload,
-  [transactionActions.postExpenseSuccess]: (state, { payload }) => [
-    ...state,
-    payload.transaction,
-  ],
+  [transactionActions.postExpenseSuccess]: (state, { payload }) =>
+    [...state, payload.transaction],
   [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
     state.filter(item => item.id !== payload.transactionId),
+  
+  [authActions.logoutSuccess]: () => initialState,
+});
+
+const expenseMonthStatsReducer = createReducer(initialState, {
+  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.monthStats,
+
   [authActions.logoutSuccess]: () => initialState,
 });
 
 const transactionsReducer = createReducer(initialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.userData.transactions,
   [authActions.logoutSuccess]: () => initialState,
+
   [userActions.getUserInfoSuccess]: (_, { payload }) => payload.transactions,
 });
 
-
 export default combineReducers({
   incomes: incomesReducer,
+  incomeMonthStats: incomeMonthStatsReducer,
   expenses: expensesReducer,
+  expenseMonthStats: expenseMonthStatsReducer,
   transactions: transactionsReducer,
 });
-
-
-// const user = createReducer(userInitialState, {
-//   [authActions.loginSuccess]: (_, { payload }) => payload,
-//   [authActions.logoutSuccess]: () => userInitialState,
-// });
