@@ -2,9 +2,10 @@ import s from "./Header.module.css";
 import logo from "../../images/header-authform/logo.png";
 import defaultUserPhoto from "../../images/header-authform/defaultUserPhoto.jpg";
 import logoutBtn from "../../images/header-authform/logoutBtn.png";
-import { useSelector } from "react-redux";
 import { getIsAuthorized, getUserEmail } from "redux/auth/authSelectors";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import authOperations from "redux/auth/authOperations";
 
 const Header = () => {
   const isAuthorized = useSelector(getIsAuthorized);
@@ -12,6 +13,9 @@ const Header = () => {
   // const shouldBeEmail = isAuthorized && userEmail;
   // console.log("shouldBeEmail" + shouldBeEmail);
   const userEmailDefault = "user@gmail.com";
+
+  const dispatch = useDispatch();
+
 
   return (
     <header className={s.header}>
@@ -33,7 +37,8 @@ const Header = () => {
               </p>
             </div>
             <span className={s.span}></span>
-            <button type="button" className={s.exitButton}>
+            <button type="button" className={s.exitButton} onClick={() => dispatch(authOperations.handleLogout())}
+>
               Выйти
             </button>
             <button type="button" className={s.mobileExitBtn}>

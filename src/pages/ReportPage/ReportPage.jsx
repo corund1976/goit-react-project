@@ -7,10 +7,18 @@ import Calendar from "components/Calendar";
 import IncomeExpenseTotal from "components/IncomeExpenseTotal";
 import ReportSwitch from "components/ReportSwitch";
 import ReportChart from "components/ReportChart";
+import { useState } from "react";
 
 // import s from './ReportPage.module.css';
 
 function ReportPage() {
+  const [activeCategory, setActiveCategory] = useState("");
+  const [activeTrancaction, setActiveTrancaction] = useState("");
+
+  const getActiveCategory = (category, typeOfTrancaction) => {
+    setActiveCategory(category);
+    setActiveTrancaction(typeOfTrancaction);
+  };
   return (
     <Section>
       <div>
@@ -20,8 +28,11 @@ function ReportPage() {
       </div>
 
       <IncomeExpenseTotal />
-      <ReportSwitch />
-      <ReportChart />
+      <ReportSwitch getActiveCategory={getActiveCategory} />
+      <ReportChart
+        activeCategory={activeCategory}
+        activeTrancaction={activeTrancaction}
+      />
     </Section>
   );
 }
