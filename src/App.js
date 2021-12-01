@@ -1,13 +1,13 @@
 import { Suspense, lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-// import { Switch, useLocation } from 'react-router-dom';
+import { Switch, useLocation } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 
 import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
 
-// import { routes, PublicRoute, PrivateRoute } from 'routes';
+import { routes, PublicRoute, PrivateRoute } from 'routes';
 // import { authOperations, authSelectors } from 'redux/auth';
 // import api from 'services/kapusta-api';
 import './App.css';
@@ -55,27 +55,27 @@ function App() {
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Loader type="Rings" color="#00BFFF" height={100} width={100} />
                   </div>}>
-          {/* <Switch> */}
-          {/* <PublicRoute path={routes.auth} restricted redirectTo={routes.home}> */}
-          <AuthPage />
-          {/* </PublicRoute> */}
+          <Switch>
+          <PublicRoute path={routes.auth} restricted redirectTo={routes.home}>
+            <AuthPage />
+          </PublicRoute>
 
-					{/* <PrivateRoute exact path={routes.home} redirectTo={routes.auth}> */}
-					<HomePage />
-					{/* </PrivateRoute> */}
+					<PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
+            <HomePage />
+					</PrivateRoute>
 
-					{/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-					{/* <ExpensePage /> */}
-					{/* </PrivateRoute> */}
+					<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
+            <ExpensePage />
+					</PrivateRoute>
 
 					{/* <PrivateRoute path={routes.income} redirectTo={routes.auth}> */}
 					{/* <IncomePage /> */}
 					{/* </PrivateRoute> */}
 
-          {/* <PrivateRoute path={routes.report} redirectTo={routes.auth}> */}
-          {/* <ReportPage /> */}
-          {/* </PrivateRoute> */}
-          {/* </Switch> */}
+          <PrivateRoute path={routes.report} redirectTo={routes.auth}>
+          <ReportPage />
+          </PrivateRoute>
+          </Switch>
           </Suspense>
         </Section>
       </MainPage>

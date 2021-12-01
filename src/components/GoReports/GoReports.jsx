@@ -6,7 +6,7 @@ import s from '../GoReports/GoReports.module.css'
 const  GoReports = () => {
   return (
     <div>
-      <Link to='/ReportChart' className={s.GoToReportsLink}> Перейти к отчетам <img src={barChart} alt="reports" className={ s.iconReport} /></Link >
+      <Link to='/report' className={s.GoToReportsLink}> Перейти к отчетам <img src={barChart} alt="reports" className={ s.iconReport} /></Link >
     </div>
   )
 };

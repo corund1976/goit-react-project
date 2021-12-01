@@ -5,7 +5,7 @@ function GoBack() {
  
     return (
     <div>
-      <Link to='/ExpensePage' className={s.goBackLink}> <img src={goBack} alt="reports" className={ s.iconBack} /> Вернуться на главную </Link >
+      <Link to='/expense' className={s.goBackLink}> <img src={goBack} alt="reports" className={ s.iconBack} /> Вернуться на главную </Link >
     </div>
   )
 };

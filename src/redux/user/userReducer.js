@@ -6,7 +6,7 @@ import userActions from 'redux/user/userActions';
 const balanceInitialState = 0;
 
 const balance = createReducer(balanceInitialState, {
-  [userActions.updateUserBalanceSuccess]: (_, { payload }) => payload,
+  [userActions.updateUserBalanceSuccess]: (_, { payload }) => payload.newBalance,
 });
 
 const transactionsInitialState = [];
