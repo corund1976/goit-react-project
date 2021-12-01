@@ -1,8 +1,12 @@
 import { useSelector } from "react-redux";
+import {
+  getIncomeExpenseMonthStats,
+  getIncomeIncomeMonthStats,
+} from "redux/transactions/transactionSelectors";
 import s from "./Summary.module.css";
 function Summary({ transtype = "расходы" }) {
-  const summaryIncomes = useSelector(getIncomeIncomeMonthStats);
-  const summaryExpenses = useSelector(getIncomeExpenseMonthStats);
+  const summaryIncomes = useSelector(getIncomeExpenseMonthStats);
+  const summaryExpenses = useSelector(getIncomeIncomeMonthStats);
   // const summaryExpenses = {};
   // const summaryIncomes = {};
   const elements =
