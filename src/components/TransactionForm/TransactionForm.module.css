@@ -6,17 +6,17 @@
 }
 .inputWrapper::after {
   position: absolute;
-  content: "";
+  content: '';
   top: 12px;
   right: 12px;
   width: 20px;
   height: 20px;
-  background-image: url("../../images/svg/calculator.svg");
+  background-image: url('../../images/svg/calculator.svg');
 }
 
 .inputWrapper::before {
   position: absolute;
-  content: "";
+  content: '';
   top: 0px;
   right: 40px;
   width: 2px;
@@ -76,6 +76,8 @@
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
   border-radius: 16px;
   border: none;
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover,
@@ -137,17 +139,17 @@
 
   .inputWrapper::after {
     position: absolute;
-    content: "";
+    content: '';
     top: 12px;
     right: 12px;
     width: 20px;
     height: 20px;
-    background-image: url("../../images/svg/calculator.svg");
+    background-image: url('../../images/svg/calculator.svg');
   }
 
   .inputWrapper::before {
     position: absolute;
-    content: "";
+    content: '';
     top: 0px;
     right: 40px;
     width: 2px;
