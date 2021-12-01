@@ -1,67 +1,69 @@
 import PageTitle from "components/PageTitle/PageTitle";
+import { useSelector } from "react-redux";
+import {
+  expensesOfMonthSelector,
+  incomesOfMonthSelector,
+} from "redux/trans_month_stats/trans_month_stats-selectors";
 import s from "./ReportChart.module.css";
 
 function ReportChart({ activeCategory, activeTrancaction }) {
-  // const arrExpenses = useSelector(
-  //   (state) => state.transaction.period_data.expenses.incomesData
-  // );
+  const arrExpenses = useSelector(expensesOfMonthSelector);
 
-  // const arrIncomes = useSelector(
-  //   (state) => state.transaction.period_data.expenses.incomesData
-  // );
-  const arrExpenses = {
-    Транспорт: {
-      total: 4000,
-      СТО: 3500,
-      Мойка: 500,
-    },
-    "Всё для дома": {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-    Здоровье: {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-    "Коммуналка и связь": {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-    Образование: {
-      total: 4000,
-      СТО: 3500,
-      Мойка: 500,
-    },
-    Алкоголь: {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-    Продукты: {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-    Прочее: {
-      total: 1200,
-      Вазон: 150,
-      "Шкаф-купе": 1050,
-    },
-  };
-  const arrIncomes = {
-    "З/П": {
-      total: 12000,
-      Аванс: 5000,
-      Основная: 7000,
-    },
-  };
+  const arrIncomes = useSelector(incomesOfMonthSelector);
+
+  // const arrExpenses = {
+  //   Транспорт: {
+  //     total: 4000,
+  //     СТО: 3500,
+  //     Мойка: 500,
+  //   },
+  //   "Всё для дома": {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  //   Здоровье: {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  //   "Коммуналка и связь": {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  //   Образование: {
+  //     total: 4000,
+  //     СТО: 3500,
+  //     Мойка: 500,
+  //   },
+  //   Алкоголь: {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  //   Продукты: {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  //   Прочее: {
+  //     total: 1200,
+  //     Вазон: 150,
+  //     "Шкаф-купе": 1050,
+  //   },
+  // };
+  // const arrIncomes = {
+  //   "З/П": {
+  //     total: 12000,
+  //     Аванс: 5000,
+  //     Основная: 7000,
+  //   },
+  // };
 
   const arrForFilter =
     activeTrancaction === "Расходы" ? arrExpenses : arrIncomes;
-  const cards = Object.entries(arrForFilter);
+  const cards = arrForFilter === undefined ? [] : Object.entries(arrForFilter);
   let markup = "";
   const elements = cards.find((item) => item[0] === activeCategory);
   if (elements) {
