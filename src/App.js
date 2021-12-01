@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
@@ -9,7 +9,6 @@ import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
 import { getAccessToken } from 'redux/auth/authSelectors';
-import { getIncomeCategories } from 'redux/categories/categoriesSelectors';
 
 import api from 'services/kapusta-api';
 
@@ -36,13 +35,6 @@ function App() {
 		if (token) api.token.set(token);
   }, [token]);
   
-  // const IncomeCategories = useSelector(getIncomeCategories);
-  // console.log(IncomeCategories);
-
-	// const dispatch = useDispatch();
-	// useEffect(() =>
-	//   dispatch(handleGetIncomeCategories()), [dispatch]);
-
 	return (
 		<>
 			<Header />
