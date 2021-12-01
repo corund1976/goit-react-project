@@ -26,8 +26,9 @@ const handleLogin = credentials => dispatch => {
       //     ]
       //   }
       // }
-      api.token.set(data);
+      api.token.set(data.accessToken);
       dispatch(authActions.loginSuccess(data));
+      // dispatch(transactionActions.postIncomeSuccess(data.POST))
     })
     .catch(error => dispatch(authActions.loginError(error.message)));
 };
@@ -47,7 +48,7 @@ const handleRegister = credentials => dispatch => {
 };
 
 const handleLogout = () => dispatch => {
-  dispatch(authActions.logoutRequest());
+ dispatch(authActions.logoutRequest());
 
   api
     .logout()

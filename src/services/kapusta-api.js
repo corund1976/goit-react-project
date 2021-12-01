@@ -13,7 +13,7 @@ const token = {
 /* Auth */
 const register = credentials => axios.post('/auth/register', credentials); //credentials={email,password}
 const login = credentials => axios.post('/auth/login', credentials); //credentials={email,password}
-const logout = () => axios.post('/auth/logout');
+const logout = () => axios.post(`/auth/logout`);
 const refresh = sessionId => axios.post('auth/refresh', sessionId); //sessionId={sid}
 const setGoogleToken = () => axios.get('/auth/google');
 /* Transaction */
