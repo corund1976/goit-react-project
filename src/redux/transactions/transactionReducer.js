@@ -8,7 +8,7 @@ import userActions from 'redux/user/userActions';
 const initialState = [];
 
 const incomesReducer = createReducer(initialState, {
-  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload,
+  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.incomes,
   [transactionActions.postIncomeSuccess]: (state, { payload }) => [
     ...state,
     payload.transaction,
@@ -20,13 +20,13 @@ const incomesReducer = createReducer(initialState, {
 });
 
 const incomeMonthStatsReducer = createReducer(initialState, {
-  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.monthStats,
+  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.monthsStats,
   
   [authActions.logoutSuccess]: () => initialState,
 });
 
 const expensesReducer = createReducer(initialState, {
-  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload,
+  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.expenses,
   [transactionActions.postExpenseSuccess]: (state, { payload }) =>
     [...state, payload.transaction],
   [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
@@ -36,7 +36,7 @@ const expensesReducer = createReducer(initialState, {
 });
 
 const expenseMonthStatsReducer = createReducer(initialState, {
-  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.monthStats,
+  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.monthsStats,
 
   [authActions.logoutSuccess]: () => initialState,
 });

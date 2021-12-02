@@ -6,8 +6,7 @@ const handleGetIncomeCategories = () => dispatch => {
 
   api
     .getIncomeCategories()
-    .then(({ data }) => console.log(data))
-    // .then(({ data }) => dispatch(categoriesActions.getIncomeCategoriesSuccess(data)))
+    .then(({ data }) => dispatch(categoriesActions.getIncomeCategoriesSuccess(data)))
     .catch(error => dispatch(categoriesActions.getIncomeCategoriesError(error.message)))
 };
 

@@ -1,5 +1,7 @@
 import api from "services/kapusta-api";
 import authActions from "redux/auth/authActions";
+import transactionOperations from 'redux/transactions/transactionOperations';
+import categoriesOperations from 'redux/categories/categoriesOperations';
 
 const handleLogin = (credentials) => (dispatch) => {
   dispatch(authActions.loginRequest());
@@ -28,7 +30,10 @@ const handleLogin = (credentials) => (dispatch) => {
       // }
       api.token.set(data.accessToken);
       dispatch(authActions.loginSuccess(data));
-      // dispatch(transactionActions.postIncomeSuccess(data.POST))
+      dispatch(transactionOperations.handleGetIncome());
+      dispatch(transactionOperations.handleGetExpense());
+      dispatch(categoriesOperations.handleGetIncomeCategories());
+      dispatch(categoriesOperations.handleGetExpenseCategories());
     })
     .catch((error) => dispatch(authActions.loginError(error.message)));
 };

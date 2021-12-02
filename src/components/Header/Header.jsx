@@ -53,8 +53,10 @@ const Header = () => {
 
           <button
             type='button'
-            className={s.mobileExitBtn}>
-            <img src={logoutBtn} alt='logoutBtn'/>
+            className={s.mobileExitBtn}
+            onClick={() => dispatch(authOperations.handleLogout())}
+          >
+            <img src={logoutBtn} alt='logoutBtn' />
           </button>
 
         </div>
