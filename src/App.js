@@ -28,7 +28,7 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  const token = useSelector(getAccessToken);
+	const token = useSelector(getAccessToken);
 
 	useEffect(() => {
 		if (token) api.token.set(token);
@@ -52,7 +52,7 @@ function App() {
 						}
 					>
 						<Switch>
-							<PublicRoute
+							{/* <PublicRoute
 								path={routes.auth}
 								restricted
 								redirectTo={routes.home}
@@ -62,11 +62,11 @@ function App() {
 
 							<PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
 								<HomePage />
-							</PrivateRoute>
+							</PrivateRoute> */}
 
-							<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-								<ExpensePage />
-							</PrivateRoute>
+							{/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
+							<ExpensePage />
+							{/* </PrivateRoute> */}
 
 							<PrivateRoute path={routes.income} redirectTo={routes.auth}>
 								<IncomePage />

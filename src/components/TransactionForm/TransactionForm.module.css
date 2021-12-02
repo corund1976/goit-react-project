@@ -35,9 +35,13 @@
 
 	border-radius: 16px 16px 0px 0px;
 }
+.inputDescribe:focus-visible {
+	outline: none;
+	border: 2px solid var(--accent-color);
+}
 
 .inputDescribe::placeholder {
-	color: #c7ccdc;
+	font-size: 12px;
 }
 
 .priceInput {
@@ -60,6 +64,11 @@
 	border: 2px solid #ffffff;
 
 	border-radius: 22px;
+}
+
+.priceInput:focus-visible {
+	outline: none;
+	border: 2px solid var(--accent-color);
 }
 
 .btn {
@@ -128,6 +137,7 @@
 		height: 44px;
 		margin-bottom: 30px;
 	}
+
 	.inputWrapper {
 		position: relative;
 		width: 104px;
@@ -163,9 +173,7 @@
 		background-color: transparent;
 		border: 2px solid #f5f6fb;
 		border-right: none;
-
 		border-radius: 16px 0 0 0;
-
 		font-family: Roboto;
 		font-style: normal;
 		font-weight: normal;
@@ -211,14 +219,17 @@
 		text-transform: uppercase;
 		color: var(--primary-text-color);
 		background: #f5f6fb;
+		background-color: transparent;
 		box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
 		border-radius: 16px;
+		border: 1px solid #f6f7fc;
 	}
 
 	.btn:hover,
 	.btn:focus {
 		color: var(--white-color);
 		background-color: var(--accent-color);
+		border: none;
 	}
 
 	.btnWrapper {
@@ -227,6 +238,7 @@
 		align-items: center;
 		justify-content: space-between;
 		margin: 0 auto;
+		padding-bottom: 48px;
 	}
 
 	/* стили Select */
@@ -292,5 +304,8 @@
 	.inputWrapper,
 	.priceInput {
 		width: 124px;
+	}
+	.tabletFormPosition {
+		display: flex;
 	}
 }
