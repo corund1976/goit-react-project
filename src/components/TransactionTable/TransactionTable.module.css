@@ -1,40 +1,22 @@
 .tableContainer {
-	width: 605px;
-	height: 399px;
-	margin-top: 60px;
-	border-radius: 20px 20px 0 0;
-	outline: 2px solid #f5f6fb;
+	width: 97%;
+	table-layout: fixed;
+	border: none;
+	overflow-x: hidden;
 }
-@media screen and (min-width: 768px) {
-	.tableContainer {
-		margin: 0 auto;
-		width: 605px;
-		overflow: scroll;
-	}
-
-	.table {
-		width: 605px;
-	}
-}
-
-@media screen and (min-width: 1280px) {
-	.tableContainer {
-		margin: 0;
-		width: 760px;
-		overflow: visible;
-	}
-
-	.table {
-		width: 760px;
-	}
-}
-
 .table {
+	width: 586px;
 	text-align: center;
-
+	border-radius: 30px;
+	color: #000;
 	border-radius: 20px 20px 0 0;
-	overflow: hidden;
-	border-collapse: collapse;
+	background-color: #f5f6fb;
+	border-spacing: 0 2px;
+	border-left: 2px;
+	border-left-style: outset;
+	border-right-style: inset;
+	border-right-color: transparent;
+	border-left-color: transparent;
 }
 
 .headerTable {
@@ -45,15 +27,62 @@
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 	color: #000000;
-	background-color: #f5f6fb;
+	/* background-color: #f5f6fb; */
+}
+
+@media screen and (min-width: 768px) {
+	/* .tableContainer {
+		margin: 0 auto;
+		width: 605px;
+		overflow: hidden;
+	} */
+
+	/* .table {
+		width: 605px;
+	} */
+	.headerTable {
+		display: revert;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.tableContainer {
+		margin: 0;
+		width: 760px;
+		/* overflow: visible; */
+	}
+
+	.table {
+		width: 760px;
+	}
 }
 
 .tableTh {
 	height: 40px;
-	padding: 5px;
+	padding: 10px;
+}
+.thData {
+	width: 100px;
+}
+
+.thDesc {
+	max-width: 200px;
+}
+
+.thCateg {
+	width: 140px;
+}
+
+.thSum {
+	width: 130px;
+}
+.tdSum {
+	font-weight: bold;
+	width: 130px;
+	color: #407946;
 }
 .tableTd {
-	display: flex;
+	/* display: flex; */
 	padding: 5px;
 
 	font-style: normal;
@@ -112,12 +141,63 @@
 	background-color: #f5764f;
 } */
 .tr {
-	height: 40px;
-	border-bottom: 2px solid #f5f6fb;
+	line-height: 14px;
+	font-size: 12px;
+	display: revert;
+	height: 38px;
+	padding: 0 8px;
+	background: #fff;
+	color: #52555f;
+	border-bottom: 2px solid #f4f6fb;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+}
+.td {
+	display: revert;
+	align-items: center;
+	height: 38px;
+	padding: 0 8px;
+	background: #ffffff;
+	color: #52555f;
+	border-bottom: 2px solid #f4f6fb;
 	font-family: Roboto;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 400;
 	font-size: 12px;
 	line-height: 14px;
 	letter-spacing: 0.04em;
+}
+
+.bodyTableScroll {
+	height: 342px;
+	overflow-x: hidden;
+	margin-top: 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #fff;
+}
+.bodyTableScroll::-webkit-scrollbar {
+	width: 6px;
+	height: 130px;
+}
+
+.bodyTableScroll::-webkit-scrollbar-thumb {
+	background-color: #ff751d;
+	border-radius: 2px;
+}
+.listTableBorder {
+	border-radius: 0;
+}
+.transactionListTable {
+	width: 605px;
+	text-align: center;
+	border-radius: 30px;
+	color: #000;
+	border-radius: 20px 20px 0 0;
+	background-color: #f5f6fb;
+	border-spacing: 0 2px;
+	border-left: 2px;
+	border-left-style: outset;
+	border-right-style: inset;
+	border-right-color: transparent;
+	border-left-color: transparent;
 }

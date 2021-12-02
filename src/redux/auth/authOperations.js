@@ -1,5 +1,7 @@
 import api from "services/kapusta-api";
 import authActions from "redux/auth/authActions";
+import transactionOperations from 'redux/transactions/transactionOperations';
+import categoriesOperations from 'redux/categories/categoriesOperations';
 
 const handleLogin = (credentials) => (dispatch) => {
   dispatch(authActions.loginRequest());
@@ -7,28 +9,12 @@ const handleLogin = (credentials) => (dispatch) => {
   api
     .login(credentials)
     .then(({ data }) => {
-      // data = {
-      //   accessToken,
-      //   refreshToken,
-      //   sid,
-      //   userData: {
-      //     email,
-      //     balance,
-      //     id,
-      //     transactions: [
-      //       {
-      //         description,
-      //         category,
-      //         amount,
-      //         date,
-      //         _id,
-      //       }
-      //     ]
-      //   }
-      // }
       api.token.set(data.accessToken);
       dispatch(authActions.loginSuccess(data));
-      // dispatch(transactionActions.postIncomeSuccess(data.POST))
+      dispatch(transactionOperations.handleGetIncome());
+      dispatch(transactionOperations.handleGetExpense());
+      dispatch(categoriesOperations.handleGetIncomeCategories());
+      dispatch(categoriesOperations.handleGetExpenseCategories());
     })
     .catch((error) => dispatch(authActions.loginError(error.message)));
 };
@@ -39,9 +25,7 @@ const handleRegister = (credentials) => (dispatch) => {
   api
     .register(credentials)
     .then(({ data }) => {
-      // data = { email, id }
       dispatch(authActions.registerSuccess(data));
-      // запрос на логин - сразу же после регистрации
       handleLogin(credentials)(dispatch);
     })
     .catch((error) => dispatch(authActions.registerError(error.message)));
@@ -72,7 +56,6 @@ const handleRefresh = (sessionId) => (dispatch, getState) => {
     api
       .refresh(sessionId)
       .then(({ data }) => {
-        // data = { newAccessToken, newRefreshToken, newSid }
         dispatch(authActions.refreshSuccess(data));
       })
       .catch((error) => dispatch(authActions.refreshError(error.message)));
@@ -91,7 +74,6 @@ const handleGoogleAuth = (token) => (dispatch) => {
     })
     .catch((error) => dispatch(authActions.setGoogleTokenError(error.message)));
 };
-
 // eslint-disable-next-line
 export default {
   handleRegister,

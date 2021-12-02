@@ -9,6 +9,7 @@ import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
 import { getAccessToken } from 'redux/auth/authSelectors';
+
 import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
@@ -28,17 +29,12 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  const token = useSelector(getAccessToken);
+	const token = useSelector(getAccessToken);
 
 	useEffect(() => {
 		if (token) api.token.set(token);
-	}, [token]);
-
-	// const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-	// const dispatch = useDispatch();
-	// useEffect(() =>
-	//   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
-
+  }, [token]);
+  
 	return (
 		<>
 			<Header />
@@ -65,7 +61,7 @@ function App() {
 							</PrivateRoute>
 
 							<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-								<ExpensePage />
+                <ExpensePage />
 							</PrivateRoute>
 
 							<PrivateRoute path={routes.income} redirectTo={routes.auth}>

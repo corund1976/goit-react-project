@@ -87,68 +87,70 @@ function TransactionForm({ onHandleClick, type }) {
 	};
 
 	return (
-		<form className={s.form} onSubmit={handleSubmit}>
-			<div className={s.dataInput}>
-				<CalendarTableForm />
-				<input
-					type='text'
-					name='product'
-					onChange={handleInputChange}
-					value={description}
-					className={s.inputDescribe}
-					placeholder={desc}
-					autoFocus='off'
-				/>
-
-				<Box sx={{ minWidth: 120 }} className={s.box}>
-					<FormControl fullWidth className={s.form}>
-						<InputLabel
-							className={s.dropdownInput}
-							id='demo-simple-select-label'
-						>
-							{showLabel ? emptyLabel : categoryLabel}
-						</InputLabel>
-
-						<Select
-							labelId='demo-simple-select-label'
-							id='demo-simple-select'
-							value={categ}
-							label='Category'
-							onChange={handleChange}
-						>
-							{data.map(el => (
-								<MenuItem value={el} onClick={handleClick} key={el}>
-									{el}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Box>
-
-				<div className={s.inputWrapper}>
+		<div className={s.tabletFormPosition}>
+			<form className={s.form} onSubmit={handleSubmit}>
+				<div className={s.dataInput}>
+					<CalendarTableForm />
 					<input
-						type='number'
-						className={s.priceInput}
-						name='price'
-						onWheelCapture={e => {
-							e.target.blur();
-						}}
+						type='text'
+						name='product'
 						onChange={handleInputChange}
-						value={amount}
-						placeholder='00.00 UAH'
+						value={description}
+						className={s.inputDescribe}
+						placeholder={desc}
 						autoFocus='off'
 					/>
+
+					<Box sx={{ minWidth: 120 }} className={s.box}>
+						<FormControl fullWidth className={s.form}>
+							<InputLabel
+								className={s.dropdownInput}
+								id='demo-simple-select-label'
+							>
+								{showLabel ? emptyLabel : categoryLabel}
+							</InputLabel>
+
+							<Select
+								labelId='demo-simple-select-label'
+								id='demo-simple-select'
+								value={categ}
+								label='Category'
+								onChange={handleChange}
+							>
+								{data.map(el => (
+									<MenuItem value={el} onClick={handleClick} key={el}>
+										{el}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</Box>
+
+					<div className={s.inputWrapper}>
+						<input
+							type='number'
+							className={s.priceInput}
+							name='price'
+							onWheelCapture={e => {
+								e.target.blur();
+							}}
+							onChange={handleInputChange}
+							value={amount}
+							placeholder='0.00'
+							autoFocus='off'
+						/>
+					</div>
 				</div>
-				<div className={s.btnWrapper}>
-					<button type='submit' className={s.btn}>
-						Ввод
-					</button>
-					<button type='button' className={s.btn} onClick={handleBtnClear}>
-						Очистить
-					</button>
-				</div>
+			</form>
+			<div className={s.btnWrapper}>
+				<button type='submit' className={s.btn}>
+					Ввод
+				</button>
+				<button type='button' className={s.btn} onClick={handleBtnClear}>
+					Очистить
+				</button>
 			</div>
-		</form>
+		</div>
 	);
 }
 
