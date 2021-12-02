@@ -16,8 +16,9 @@ const balanceReducer = createReducer(balanceInitialState, {
 
   [transactionActions.postIncomeSuccess]: (state, { payload }) => payload.newBalance,
   [transactionActions.postExpenseSuccess]: (state, { payload }) => payload.newBalance,
+  
   [transactionActions.deleteTransactionSuccess]: (_, { payload }) => payload.newBalance,
-  });
+});
 
 export default combineReducers({
   balance: balanceReducer,
