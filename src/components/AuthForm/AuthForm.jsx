@@ -6,6 +6,10 @@ import s from "./AuthForm.module.css";
 import googleSymbol from "images/header-authform/google-symbol.png";
 import authOperations from "redux/auth/authOperations";
 
+import Checkbox from "@mui/material/Checkbox";
+import { orange } from "@mui/material/colors";
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 function AuthForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -133,6 +137,7 @@ function AuthForm() {
               id="AuthForm__email"
               value={email}
               onChange={changeEmailValue}
+              pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
               placeholder="name@mail.com"
               className={s.inputForm}
             />
@@ -149,18 +154,15 @@ function AuthForm() {
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
                 className={s.showPassBtn}
               >
-                {/* {isPasswordShown ? "hide" : "show"} */}
-                <input
-                  type="checkbox"
-                  name="isPasswordShown"
-                  id="isPasswordShown"
-                  className={s.passwordCheckbox}
-                />
-                <label
-                  htmlFor="showPassBtn"
-                  className={
-                    isPasswordShown ? s.checkboxLabelActive : s.checkboxLabel
-                  }
+                <Checkbox
+                  {...label}
+                  defaultChecked
+                  sx={{
+                    color: orange[800],
+                    "&.Mui-checked": {
+                      color: orange[800],
+                    },
+                  }}
                 />
               </button>
             </div>

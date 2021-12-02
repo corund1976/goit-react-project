@@ -6,6 +6,8 @@ import s from "./Header.module.css";
 import logo from "images/header-authform/logo.png";
 import defaultUserPhoto from "images/header-authform/defaultUserPhoto.jpg";
 import logoutBtn from "images/header-authform/logoutBtn.png";
+import Avatar from "@mui/material/Avatar";
+import { deepOrange } from "@mui/material/colors";
 
 import { getIsAuthorized } from "redux/auth/authSelectors";
 import { getUserEmail } from "redux/user/userSelectors";
@@ -25,9 +27,15 @@ const Header = ({ onClick }) => {
           {isAuthorized && (
             <div className={s.userDiv}>
               <div className={s.userData}>
-                <img
+                {/* <img
                   src={defaultUserPhoto}
                   alt="defaultUserPhoto"
+                  className={s.userPhoto}
+                /> */}
+                <Avatar
+                  sx={{ bgcolor: deepOrange[400] }}
+                  alt={userEmail}
+                  src="/broken-image.jpg"
                   className={s.userPhoto}
                 />
                 <p className={s.userName}>{isAuthorized && userEmail}</p>
