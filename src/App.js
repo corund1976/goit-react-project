@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
-// import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
@@ -11,7 +12,7 @@ import Modal from "components/Modal/Modal";
 import { routes, PublicRoute, PrivateRoute } from "routes";
 // import { getAccessToken } from 'redux/auth/authSelectors';
 
-// import transactionOperations from 'redux/transactions/transactionOperations';
+import transactionOperations from "redux/transactions/transactionOperations";
 // import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 
 // import api from 'services/kapusta-api';
@@ -44,6 +45,13 @@ function App() {
   // useEffect(() => {
   //   dispatch(transactionOperations.handleGetExpense());
   // }, [dispatch]);
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const onDelete = (transactionId) => {
+    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+  };
+
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
   };

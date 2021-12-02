@@ -40,8 +40,7 @@ const Balance = () => {
       <button type="button" className={s.balance_submit} onClick={addBalance}>
         Подтвердить
       </button>
-      {/* {!initialBalance && <BalanceModal />} */}
-      {/* <BalanceModal /> */}
+      {!initialBalance && <BalanceModal />}
     </div>
   );
 };
