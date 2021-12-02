@@ -61,7 +61,7 @@
     width: 100%;
     background: url(../../images/mainImg/down.svg) top 104px right -35px no-repeat,
       url(../../images/mainImg/two.svg) bottom 100px right 90px no-repeat;
-    background-size: 160px;
+    background-size: 83px, 160px;
     position: relative;
   }
 
