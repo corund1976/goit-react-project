@@ -14,12 +14,6 @@ const TransactionTable = ({ transtype, onClick }) => {
 
   const transactions = transtype === "доходы" ? incomes : expenses;
 
-  const dispatch = useDispatch();
-
-  const onDelete = (transactionId) => {
-    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
-  };
-
   return (
     <div className={s.dataContainer}>
       <div className={s.bodyTable}>

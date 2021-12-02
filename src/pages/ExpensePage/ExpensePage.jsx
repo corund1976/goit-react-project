@@ -13,7 +13,7 @@ import DeleteModal from "components/Modal/DeleteModal";
 
 import s from "./ExpensePage.module.css";
 
-function ExpensePage({ onClick }) {
+function ExpensePage() {
   const [type, setType] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -48,12 +48,11 @@ function ExpensePage({ onClick }) {
 
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            <TransactionForm type="expenses" onHandleClick={() => {}} />
             <TransactionForm transtype={"расходы"} onHandleClick={() => {}} />
 
             <div className={s.tableContainer}>
               <div>
-                <TransactionTable transtype={"расходы"} />
+                <TransactionTable transtype={"расходы"} onClick={toggleModal} />
               </div>
 
               <div className={s.summaryDesck}>
