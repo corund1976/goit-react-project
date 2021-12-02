@@ -111,3 +111,77 @@
   align-items: center;
   display: flex;
 }
+
+/* EXIT MODAL */
+.exitModal {
+  position: fixed;
+  margin: 0 auto;
+  top: 50%;
+  left: 40%;
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  border-radius: 30px;
+  width: 380px;
+  height: 194px;
+  background-color: #fff;
+  padding-top: 30px;
+}
+
+.btnDiv {
+  align-items: center;
+  text-align: center;
+}
+
+.modalBtn {
+  width: 125px;
+  height: 44px;
+  background: transparent;
+  border-radius: 16px;
+  color: #000;
+  border: 2px solid #f5f6fb;
+  box-sizing: border-box;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.modalBtn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.modalBtn:hover,
+.modalBtn:focus {
+  background: #ff751d;
+  color: #fff;
+}
+
+.modalTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #52555f;
+  margin-bottom: 20px;
+}
+
+.closeBtn {
+  border-color: transparent;
+  background-color: transparent;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.backdrop {
+  color: rgb(61, 36, 36);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #52555fbd;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}

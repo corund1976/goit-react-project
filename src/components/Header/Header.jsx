@@ -58,7 +58,7 @@ const Header = () => {
           )}
         </div>
       </header>
-      <ExitModal />
+      {/* <ExitModal /> */}
     </>
   );
 };
