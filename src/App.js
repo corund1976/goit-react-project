@@ -48,7 +48,7 @@ function App() {
 						}
 					>
 						<Switch>
-							{/* <PublicRoute
+							<PublicRoute
 								path={routes.auth}
 								restricted
 								redirectTo={routes.home}
@@ -58,11 +58,11 @@ function App() {
 
 							<PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
 								<HomePage />
-							</PrivateRoute> */}
+							</PrivateRoute>
 
-							{/* <PrivateRoute path={routes.expense} redirectTo={routes.auth}> */}
-							<ExpensePage />
-							{/* </PrivateRoute> */}
+							<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
+                <ExpensePage />
+							</PrivateRoute>
 
 							<PrivateRoute path={routes.income} redirectTo={routes.auth}>
 								<IncomePage />

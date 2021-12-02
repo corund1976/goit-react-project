@@ -25,9 +25,7 @@ const handleRegister = (credentials) => (dispatch) => {
   api
     .register(credentials)
     .then(({ data }) => {
-      // data = { email, id }
       dispatch(authActions.registerSuccess(data));
-      // запрос на логин - сразу же после регистрации
       handleLogin(credentials)(dispatch);
     })
     .catch((error) => dispatch(authActions.registerError(error.message)));
@@ -58,7 +56,6 @@ const handleRefresh = (sessionId) => (dispatch, getState) => {
     api
       .refresh(sessionId)
       .then(({ data }) => {
-        // data = { newAccessToken, newRefreshToken, newSid }
         dispatch(authActions.refreshSuccess(data));
       })
       .catch((error) => dispatch(authActions.refreshError(error.message)));
@@ -77,7 +74,6 @@ const handleGoogleAuth = (token) => (dispatch) => {
     })
     .catch((error) => dispatch(authActions.setGoogleTokenError(error.message)));
 };
-
 // eslint-disable-next-line
 export default {
   handleRegister,
