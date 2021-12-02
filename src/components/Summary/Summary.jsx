@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+
 import {
-  getIncomeExpenseMonthStats,
-  getIncomeIncomeMonthStats,
-} from "redux/transactions/transactionSelectors";
-import s from "./Summary.module.css";
-function Summary({ transtype = "расходы" }) {
-  const summaryIncomes = useSelector(getIncomeExpenseMonthStats);
-  const summaryExpenses = useSelector(getIncomeIncomeMonthStats);
-  // const summaryExpenses = {};
-  // const summaryIncomes = {};
+  getIncomeMonthStats,
+  getExpenseMonthStats,
+} from 'redux/transactions/transactionSelectors';
+
+import s from './Summary.module.css';
+
+function Summary({ transtype }) {
+  const summaryIncomes = useSelector(getIncomeMonthStats);
+  const summaryExpenses = useSelector(getExpenseMonthStats);
+
   const elements =
-    transtype === "расходы"
+    transtype === 'расходы'
       ? Object.entries(summaryExpenses)
       : Object.entries(summaryIncomes);
   const markup = elements.map(([month, sum]) => {
@@ -21,6 +23,7 @@ function Summary({ transtype = "расходы" }) {
       </li>
     );
   });
+
   return (
     <div className={s.wrap}>
       <h2 className={s.title}>{transtype}</h2>

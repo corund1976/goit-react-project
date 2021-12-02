@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import Section from "components/Section";
-import Balance from "components/Balance";
-import GoReports from "components/GoReports";
-// import TransactionForm from "components/TransactionForm";
-// import TransactionTable from "components/TransactionTable";
-import Summary from "components/Summary";
+import Section from 'components/Section';
+import Balance from 'components/Balance';
+import GoReports from 'components/GoReports';
+import Summary from 'components/Summary';
 import TransactionForm from 'components/TransactionForm';
 import TransactionTable from 'components/TransactionTable';
 
 import s from './ExpensePage.module.css';
 
 function ExpensePage() {
-  const [summary, setSummary] = useState([]);
 	const [type, setType] = useState(false);
 
   return (
@@ -29,28 +27,34 @@ function ExpensePage() {
 					<Tab
 						selectedClassName={s.active}
 						className={s.tab}
-						onClick={() => setType(false)}
 					>
 						Расход
           </Tab>
           
-					<Tab
-						selectedClassName={s.active}
-						className={s.tab}
-						onClick={() => setType(true)}
-					>
-						Доход
-          </Tab>
+          <NavLink to='/income'>
+            <Tab
+              // selectedClassName={s.active}
+              className={s.tab}
+            >
+              Доход
+            </Tab>
+          </NavLink >
+
         </TabList>
 
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            <TransactionForm type='expenses' onHandleClick={() => {}} />
+
+            <TransactionForm type='expenses' onHandleClick={() => { }} />
+            
             <div className={s.tableContainer}>
-              <TransactionTable type={type} />
+
+              <TransactionTable transtype={'расходы'}/>
+
               <div className={s.summaryDesck}>
-                <Summary items={summary} />
+                <Summary transtype={'расходы'}/>
               </div>
+
             </div>
           </div>
         </TabPanel>
