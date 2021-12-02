@@ -13,8 +13,8 @@ const incomesReducer = createReducer(initialState, {
     ...state,
     payload.transaction,
   ],
-  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.transactionId),
+  // [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+  //   state.filter(item => item._id !== payload.transactionId),
   
   [authActions.logoutSuccess]: () => initialState,
 });
@@ -29,10 +29,9 @@ const expensesReducer = createReducer(initialState, {
   [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.expenses,
   [transactionActions.postExpenseSuccess]: (state, { payload }) =>
     [...state, payload.transaction],
-  [transactionActions.deleteTransactionSuccess]: (state, { payload }) => {
-    console.log(payload);
-    return state.filter(item => item.id !== payload.transactionId);
-    },
+  
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item._id !== payload.transactionId),
   
   [authActions.logoutSuccess]: () => initialState,
 });
