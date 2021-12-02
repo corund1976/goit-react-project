@@ -1,44 +1,39 @@
-import s from "./Header.module.css";
+import s from "./Modal.module.css";
 import closeBtn from "../../images/header-authform/closeBtn.png";
 import authOperations from "redux/auth/authOperations";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { createPortal } from "react-dom";
 
-const ExitModal = () => {
+const Modal = ({ onClick, title }) => {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const portalModal = document.querySelector("#nodalRoot");
 
   const handleLogOut = () => {
     dispatch(authOperations.handleLogout());
-    // setIsModalOpen(false);
+    onClick();
   };
 
-  return (
+  return createPortal(
     <div className={s.modalDiv}>
-      {/* {isModalOpen === true && ( */}
       <div className={s.backdrop}>
         <div className={s.exitModal}>
-          <button type="button" className={s.closeBtn}>
+          <button type="button" className={s.closeBtn} onClick={onClick}>
             <img src={closeBtn} alt="closeButton" />
           </button>
           <div className={s.btnDiv}>
-            <p className={s.modalTitle}>Вы действительно хотите выйти?</p>
+            <p className={s.modalTitle}>{title}</p>
             <button type="button" onClick={handleLogOut} className={s.modalBtn}>
               Да
             </button>
-            <button
-              type="button"
-              className={s.modalBtn}
-              onClick={() => setIsModalOpen(false)}
-            >
+            <button type="button" className={s.modalBtn} onClick={onClick}>
               Нет
             </button>
           </div>
         </div>
       </div>
-      {/* )} */}
-    </div>
+    </div>,
+    portalModal
   );
 };
 
-export default ExitModal;
+export default Modal;

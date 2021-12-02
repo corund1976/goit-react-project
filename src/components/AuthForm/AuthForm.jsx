@@ -135,19 +135,11 @@ function AuthForm() {
             <p className={s.errorMessage}>{emailError}</p>
           </div>
           <div>
-            <label htmlFor="AuthForm__password" className={s.inputTitle}>
-              {passwordError && <span style={{ color: "red" }}>*</span>}Пароль:
-            </label>
             <div className={s.pswInp}>
-              <input
-                type={isPasswordShown ? "text" : "password"}
-                name="password"
-                id="AuthForm__password"
-                value={password}
-                onChange={changePasswordValue}
-                placeholder="Пароль"
-                className={s.inputForm}
-              />
+              <label htmlFor="AuthForm__password" className={s.inputTitle}>
+                {passwordError && <span style={{ color: "red" }}>*</span>}
+                Пароль:
+              </label>
               <button
                 type="button"
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
@@ -160,8 +152,24 @@ function AuthForm() {
                   id="isPasswordShown"
                   className={s.passwordCheckbox}
                 />
-                <label for="showPassBtn" className={s.checkboxLabel} />
+                <label
+                  for="showPassBtn"
+                  className={
+                    isPasswordShown ? s.checkboxLabelActive : s.checkboxLabel
+                  }
+                />
               </button>
+            </div>
+            <div>
+              <input
+                type={isPasswordShown ? "text" : "password"}
+                name="password"
+                id="AuthForm__password"
+                value={password}
+                onChange={changePasswordValue}
+                placeholder="Пароль"
+                className={s.inputForm}
+              />
             </div>
             <p className={s.errorMessage}>{passwordError}</p>
           </div>

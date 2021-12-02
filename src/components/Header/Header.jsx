@@ -6,13 +6,11 @@ import s from "./Header.module.css";
 import logo from "images/header-authform/logo.png";
 import defaultUserPhoto from "images/header-authform/defaultUserPhoto.jpg";
 import logoutBtn from "images/header-authform/logoutBtn.png";
-import ExitModal from "./ExitModal";
 
 import { getIsAuthorized } from "redux/auth/authSelectors";
 import { getUserEmail } from "redux/user/userSelectors";
-import authOperations from "redux/auth/authOperations";
 
-const Header = () => {
+const Header = ({ onClick }) => {
   const isAuthorized = useSelector(getIsAuthorized);
   const userEmail = useSelector(getUserEmail);
 
@@ -39,18 +37,14 @@ const Header = () => {
 
               <span className={s.span}></span>
 
-              <button
-                type="button"
-                className={s.exitButton}
-                onClick={() => dispatch(authOperations.handleLogout())}
-              >
+              <button type="button" className={s.exitButton} onClick={onClick}>
                 Выйти
               </button>
 
               <button
                 type="button"
                 className={s.mobileExitBtn}
-                onClick={() => dispatch(authOperations.handleLogout())}
+                onClick={onClick}
               >
                 <img src={logoutBtn} alt="logoutBtn" />
               </button>
@@ -58,7 +52,6 @@ const Header = () => {
           )}
         </div>
       </header>
-      {/* <ExitModal /> */}
     </>
   );
 };

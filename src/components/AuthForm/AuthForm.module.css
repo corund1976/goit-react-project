@@ -18,7 +18,7 @@
 @media screen and (min-width: 1280px) {
   .authForm {
     width: 436px;
-    height: 535px;
+    height: 570px;
     padding: 50px 85px 53px 85px;
     margin-top: 117px;
   }
@@ -44,6 +44,11 @@
     width: 265px;
     height: 52px;
   }
+}
+
+.inputForm:focus {
+  border: 2px solid #1d346a;
+  outline: none;
 }
 
 .inputForm::placeholder {
@@ -139,13 +144,9 @@
 }
 
 .showPassBtn {
-  width: 40px;
-  height: 25px;
   border-color: transparent;
   background-color: transparent;
   cursor: pointer;
-  text-transform: uppercase;
-  font-size: 11px;
 }
 
 .passwordCheckbox {
@@ -159,27 +160,30 @@
   overflow: hidden;
 }
 
-.checkboxLabel::before {
+.checkboxLabel {
   display: block;
-  content: "";
-  min-width: 16px;
-  min-height: 16px;
+  width: 16px;
+  height: 16px;
   border: 2px solid #ff751d;
   border-radius: 2px;
   cursor: pointer;
   margin-right: 7px;
 }
 
-.passwordCheckbox:checked + .checkboxLabel::before {
-  background-image: url(../../images/header-authform/checked.png);
-  /* background-color: #ff751d; */
+.checkboxLabelActive {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1d140f;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 7px;
 }
 
 .pswInp {
-  margin: 0 auto;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
   display: flex;
+  align-items: center;
 }
 
 .btnDiv {
