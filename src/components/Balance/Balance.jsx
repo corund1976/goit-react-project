@@ -36,6 +36,8 @@ const Balance = () => {
           value={input}
           onChange={handleChange}
         />
+        {/* {!initialBalance && <BalanceModal />} */}
+        <BalanceModal />
       </span>
       <button type="button" className={s.balance_submit} onClick={addBalance}>
         Подтвердить
