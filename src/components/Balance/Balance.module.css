@@ -85,6 +85,9 @@
     border-radius: 16px;
     margin-left: 15px;
   }
+  .balance_form {
+    margin: 0 auto;
+  }
 }
 .balance_submit:hover {
   background-color: #ff751d;
