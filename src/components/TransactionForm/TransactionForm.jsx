@@ -15,7 +15,7 @@ import { getExpenseCategories, getIncomeCategories } from 'redux/categories/cate
 function TransactionForm({ transtype }) {
 	const [date, setDate] = useState(''); //Инпут Дата Календаря
 	const [description, setDescription] = useState(''); //Инпут Описание товара/дохода
-  const [amount, setAmount] = useState('');//Инпут Сумма транзакции
+  const [amount, setAmount] = useState(''); //Инпут Сумма транзакции
 	const [category, setCategory] = useState(''); //Список категорий для Селекта
 
   const dispatch = useDispatch();

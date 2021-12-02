@@ -52,7 +52,9 @@ function ExpensePage({ onClick }) {
             <TransactionForm transtype={"расходы"} onHandleClick={() => {}} />
 
             <div className={s.tableContainer}>
-              <TransactionTable transtype={"расходы"} onClick={toggleModal} />
+              <div>
+                <TransactionTable transtype={"расходы"} />
+              </div>
 
               <div className={s.summaryDesck}>
                 <Summary transtype={"расходы"} />
