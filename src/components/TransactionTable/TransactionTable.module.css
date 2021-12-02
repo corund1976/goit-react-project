@@ -1,17 +1,36 @@
-.tableContainer {
+.bodyTable {
 	width: 97%;
 	table-layout: fixed;
 	border: none;
 	overflow-x: hidden;
 }
-.table {
-	width: 586px;
+
+.bodyTableScroll {
+	height: 342px;
+	overflow-x: hidden;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #fff;
+}
+
+.bodyTableScroll::-webkit-scrollbar {
+	width: 6px;
+	height: 130px;
+}
+
+.bodyTableScroll::-webkit-scrollbar-thumb {
+	background-color: #ff751d;
+	border-radius: 2px;
+}
+
+.main {
+	width: 605px;
 	text-align: center;
 	border-radius: 30px;
-	color: #000;
+	color: rgb(0, 0, 0);
 	border-radius: 20px 20px 0 0;
 	background-color: #f5f6fb;
-	border-spacing: 0 2px;
+	border-spacing: 0px 2px;
 	border-left: 2px;
 	border-left-style: outset;
 	border-right-style: inset;
@@ -19,48 +38,48 @@
 	border-left-color: transparent;
 }
 
-.headerTable {
-	font-style: normal;
+.mainTbody {
+	border-radius: 0;
+}
+
+.theadTable {
+	display: none;
+	align-items: center;
+	height: 38px;
+	font-size: 13px;
+	font-weight: normal;
+	color: #52555f;
+}
+
+.th {
+	padding: 10px;
+	text-transform: uppercase;
+	color: rgb(0, 0, 0);
+	align-items: center;
+	letter-spacing: 0.02em;
 	font-weight: bold;
 	font-size: 12px;
-	line-height: 1.17;
-	letter-spacing: 0.02em;
-	text-transform: uppercase;
-	color: #000000;
-	/* background-color: #f5f6fb; */
+	line-height: 14px;
+	font-family: Roboto;
+	font-style: normal;
 }
 
-@media screen and (min-width: 768px) {
-	/* .tableContainer {
-		margin: 0 auto;
-		width: 605px;
-		overflow: hidden;
-	} */
-
-	/* .table {
-		width: 605px;
-	} */
-	.headerTable {
-		display: revert;
-	}
+.td {
+	display: revert;
+	align-items: center;
+	height: 38px;
+	padding: 0 8px;
+	background: #ffffff;
+	color: #52555f;
+	border-bottom: 2px solid #f4f6fb;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: 0.04em;
 }
 
-@media screen and (min-width: 1280px) {
-	.tableContainer {
-		margin: 0;
-		width: 760px;
-		/* overflow: visible; */
-	}
-
-	.table {
-		width: 760px;
-	}
-}
-
-.tableTh {
-	height: 40px;
-	padding: 10px;
-}
 .thData {
 	width: 100px;
 }
@@ -81,123 +100,59 @@
 	width: 130px;
 	color: #407946;
 }
-.tableTd {
-	/* display: flex; */
-	padding: 5px;
-
-	font-style: normal;
-	font-weight: normal;
-	font-size: 12px;
-	line-height: 1.17;
-	letter-spacing: 0.04em;
-	color: #52555f;
-	border-top: solid 2px #f5f6fb;
-	border-bottom: 2px solid #f5f6fb;
-	justify-content: center;
-}
-
-.amountRed {
-	color: #e7192e;
+.tdSumExpense {
 	font-weight: bold;
-}
-.amountGreen {
-	color: #407946;
-	font-weight: bold;
-}
-
-.icon {
-	padding: 10px 5px 3px 5px;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	cursor: pointer;
-}
-.delIcon {
-	width: 18px;
-	height: 18px;
-	border-radius: 50%;
 	color: #e7192e;
 }
-.icon:hover {
-	background-color: #f5f6fb;
-	border-radius: 50%;
+.tdDesc {
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.icon:hover {
-	background-color: #f5f6fb;
-	border-radius: 50%;
+.thIcon {
+	width: 40px;
 }
-@media screen and (max-width: 767px) {
-	.tableContainer {
-		display: none;
+
+@media screen and (min-width: 1280px) {
+	.main {
+		width: 760px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.theadTable {
+		display: revert;
 	}
 }
 
 .deleteBtn {
-	background-color: transparent;
-	border: none;
+	margin-right: auto;
+	margin-left: auto;
 	cursor: pointer;
-}
-/* .deleteBtn:hover {
-	background-color: #f5764f;
-} */
-.tr {
-	line-height: 14px;
-	font-size: 12px;
-	display: revert;
-	height: 38px;
-	padding: 0 8px;
-	background: #fff;
-	color: #52555f;
-	border-bottom: 2px solid #f4f6fb;
-	font-weight: 400;
-	letter-spacing: 0.04em;
-}
-.td {
-	display: revert;
-	align-items: center;
-	height: 38px;
-	padding: 0 8px;
-	background: #ffffff;
-	color: #52555f;
-	border-bottom: 2px solid #f4f6fb;
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 14px;
-	letter-spacing: 0.04em;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: transparent;
+	background-color: transparent;
 }
 
-.bodyTableScroll {
-	height: 342px;
-	overflow-x: hidden;
-	margin-top: 0;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #fff;
-}
-.bodyTableScroll::-webkit-scrollbar {
-	width: 6px;
-	height: 130px;
+.deleteBtnIcon {
+	width: 16px;
+	height: 18px;
 }
 
-.bodyTableScroll::-webkit-scrollbar-thumb {
-	background-color: #ff751d;
-	border-radius: 2px;
+.deleteBtn:hover svg path {
+	color: #ff751d;
+	fill: currentColor;
 }
-.listTableBorder {
-	border-radius: 0;
+
+@media screen and (min-width: 1280px) {
+	.bodyTable {
+		width: 75%;
+	}
 }
-.transactionListTable {
-	width: 605px;
-	text-align: center;
-	border-radius: 30px;
-	color: #000;
-	border-radius: 20px 20px 0 0;
-	background-color: #f5f6fb;
-	border-spacing: 0 2px;
-	border-left: 2px;
-	border-left-style: outset;
-	border-right-style: inset;
-	border-right-color: transparent;
-	border-left-color: transparent;
+.amountRed {
+	color: #e7192e;
+	font-weight: bold;
 }

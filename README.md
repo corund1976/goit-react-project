@@ -38,6 +38,22 @@ npm i @reduxjs/toolkit redux-persist react-redux react-router-dom@5.3.0 axios mo
 10. Библиотека календаря (от Алексея) @mui/material
     npm i @mui/material или
     yarn add @mui/material @emotion/react @emotion/styled
+11. Библиотека календаря react-datepicker
+    npm i react-datepicker
+    ***
+    Month Picker
+
+() => {
+const [startDate, setStartDate] = useState(new Date());
+return (
+<DatePicker
+selected={startDate}
+onChange={(date) => setStartDate(date)}
+dateFormat="MM/yyyy"
+showMonthYearPicker
+/>
+);
+};
 
 11. Библиотека для работы с таблицами react-tabs
     npm install --save react-tabs или

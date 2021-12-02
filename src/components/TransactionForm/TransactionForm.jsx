@@ -9,68 +9,43 @@ import Select from '@mui/material/Select';
 
 import s from './TransactionForm.module.css';
 import CalendarTableForm from 'components/CalendarTableForm';
-import {
-	transactionSelectors,
-	transactionOperations,
-} from 'redux/transactions';
-import {
-	getExpenseCategories,
-	getIncomeCategories,
-} from 'redux/categories/categoriesSelectors';
-// import { expensesOpt, incomesOpt } from '../../data/selectOptions';
+import { transactionOperations } from 'redux/transactions';
+import { getExpenseCategories, getIncomeCategories } from 'redux/categories/categoriesSelectors';
 
-function TransactionForm({ onHandleClick, type }) {
-	const [description, setDescription] = useState('');
-	const [category, setCategory] = useState('');
-	const [amount, setAmount] = useState('');
-	const [showLabel, setShowlabel] = useState(false);
-	const [categ, setCateg] = useState('');
+function TransactionForm({ transtype }) {
+	const [date, setDate] = useState(''); //Инпут Дата Календаря
+	const [description, setDescription] = useState(''); //Инпут Описание товара/дохода
+  const [amount, setAmount] = useState('');//Инпут Сумма транзакции
+	const [category, setCategory] = useState(''); //Список категорий для Селекта
 
-	// const day = useSelector(transactionsSelectors.getDay);
-	// const month = useSelector(transactionsSelectors.getMonth);
-	// const year = useSelector(transactionsSelectors.getYear);
-	const date = 2020 - 12 - 31;
+  const dispatch = useDispatch();
 
-	const incomesOpt = useSelector(getIncomeCategories);
-	const expensesOpt = useSelector(getExpenseCategories);
+	const incomeCategories = useSelector(getIncomeCategories);
+  const expenseCategories = useSelector(getExpenseCategories);
 
-	const dispatch = useDispatch();
+  const formTitleData = {
+    descriptionTitle: '',
+    categoryTitle: '',
+    categoriesList: [],
+  }
 
-	const data = type === 'incomes' ? incomesOpt : expensesOpt;
-
-	const categoryLabel =
-		type === 'incomes' ? 'Категория дохода' : 'Категория товара';
-
-	const desc = type === 'incomes' ? 'Описание дохода' : 'Описание товара';
-
-	const emptyLabel = '';
-
-	const handleChange = event => {
-		setCateg(event.target.value);
+  if (transtype === 'доходы') {
+    formTitleData.descriptionTitle = 'Описание дохода';
+    formTitleData.categoryTitle =	'Категория дохода';
+    formTitleData.categoriesList = incomeCategories;
+  } else {
+    formTitleData.descriptionTitle = 'Описание товара';
+    formTitleData.categoryTitle = 'Категория товара';
+    formTitleData.categoriesList = expenseCategories;
+  }
+// Хендлер инпута Календарь и преобразователь к формату сервера
+  const dateHandle = date => {
+		const year = String(date.getFullYear());
+		const month = String(date.getMonth() + 1).padStart(2,'0');
+    const day = String(date.getDate()).padStart(2,'0');
+    setDate(`${year}-${month}-${day}`);
 	};
-
-	const handleClick = e => {
-		setCategory(e.target.dataset.value);
-		setShowlabel(true);
-	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		const newOperation = { category, description, amount, date };
-
-		type === 'incomes'
-			? dispatch(transactionOperations.handlePostIncome(newOperation))
-			: dispatch(transactionOperations.handlePostExpense(newOperation));
-		onHandleClick();
-	};
-
-	const handleBtnClear = e => {
-		setAmount('');
-		setDescription('');
-		setCateg('');
-		setShowlabel(false);
-	};
-
+// Хендлер 2х инпутов "Описание товара" и "Сумма"
 	const handleInputChange = e => {
 		const { name, value } = e.currentTarget;
 
@@ -85,73 +60,115 @@ function TransactionForm({ onHandleClick, type }) {
 				throw new Error(`there is no such name as ${name}`);
 		}
 	};
+//Хендлер инпута селекта "Категории"
+	const handleChange = event => {
+		setCategory(event.target.value);
+	};
+// Хендлер кнопки "Ввод"
+	const handleSubmit = e => {
+    e.preventDefault();
+    
+    const transaction = { date, description, category, amount };
+    
+		transtype === 'доходы'
+			? dispatch(transactionOperations.handlePostIncome(transaction))
+			: dispatch(transactionOperations.handlePostExpense(transaction));
+		handleBtnClear();
+	};
+// Хендлер кнопки "Очистить"
+  const handleBtnClear = () => {
+    setDescription('');
+    setAmount('');
+    setCategory('');
+	};
 
 	return (
-		<div className={s.tabletFormPosition}>
-			<form className={s.form} onSubmit={handleSubmit}>
-				<div className={s.dataInput}>
-					<CalendarTableForm />
+    <div className={s.tabletFormPosition}>
+      
+      <form className={s.form} onSubmit={handleSubmit}>
+        <div className={s.dataInput}>
+
+          {/* К А Л Е Н Д А Р Ь */}
+          <CalendarTableForm dateHandle={dateHandle}/>
+
+          {/* О П И С А Н И Е */}
 					<input
 						type='text'
 						name='product'
 						onChange={handleInputChange}
 						value={description}
 						className={s.inputDescribe}
-						placeholder={desc}
+						placeholder={formTitleData.descriptionTitle}
 						autoFocus='off'
-					/>
-
+          />
+          
+          {/* К А Т Е Г О Р И Я */}
 					<Box sx={{ minWidth: 120 }} className={s.box}>
-						<FormControl fullWidth className={s.form}>
-							<InputLabel
+            <FormControl fullWidth className={s.form}>
+              
+              <InputLabel
+                id='demo-simple-select-label'
 								className={s.dropdownInput}
-								id='demo-simple-select-label'
 							>
-								{showLabel ? emptyLabel : categoryLabel}
-							</InputLabel>
-
+                {formTitleData.categoryTitle}
+              </InputLabel>
+              
 							<Select
 								labelId='demo-simple-select-label'
-								id='demo-simple-select'
-								value={categ}
-								label='Category'
+								value={category}
 								onChange={handleChange}
 							>
-								{data.map(el => (
-									<MenuItem value={el} onClick={handleClick} key={el}>
-										{el}
+								{formTitleData.categoriesList.map(category => (
+                  <MenuItem
+                    value={category}
+                    key={category}
+                  >
+										{category}
 									</MenuItem>
 								))}
-							</Select>
+              </Select>
+              
 						</FormControl>
-					</Box>
-
+          </Box>
+          
+          {/* С У М М А */}
 					<div className={s.inputWrapper}>
 						<input
-							type='number'
-							className={s.priceInput}
-							name='price'
-							onWheelCapture={e => {
-								e.target.blur();
-							}}
+              type='number'
+              name='price'
 							onChange={handleInputChange}
 							value={amount}
-							placeholder='0.00'
-							autoFocus='off'
-						/>
-					</div>
-				</div>
-			</form>
-			<div className={s.btnWrapper}>
-				<button type='submit' className={s.btn}>
+              className={s.priceInput}
+              placeholder='0.00'
+              autoFocus='off'
+              // onWheelCapture={e => { e.target.blur() }}
+            />
+          </div>
+
+        </div>
+      
+      <div className={s.btnWrapper}>
+
+        {/* В В О Д */}
+        <button
+          type='submit'
+          className={s.btn}
+          >
 					Ввод
-				</button>
-				<button type='button' className={s.btn} onClick={handleBtnClear}>
+        </button>
+
+        {/* О Ч И С Т И Т Ь */}
+        <button
+          type='button'
+          className={s.btn}
+          onClick={handleBtnClear}
+          >
 					Очистить
-				</button>
-			</div>
+        </button>
+        </div>
+      </form>
 		</div>
 	);
-}
+};
 
 export default TransactionForm;

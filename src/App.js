@@ -1,5 +1,5 @@
-import { Suspense, lazy, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { Suspense, lazy, useEffect } from "react";
+// import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
@@ -9,9 +9,12 @@ import Section from "components/Section";
 import Modal from "components/Modal/Modal";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
-import { getAccessToken } from "redux/auth/authSelectors";
+// import { getAccessToken } from 'redux/auth/authSelectors';
 
-import api from "services/kapusta-api";
+// import transactionOperations from 'redux/transactions/transactionOperations';
+// import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
+
+// import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
   import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
@@ -30,13 +33,17 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  const token = useSelector(getAccessToken);
-  const [showModal, setShowModal] = useState(false);
+  // const token = useSelector(getAccessToken);
+  // useEffect(() => {
+  //   if (token) api.token.set(token);
+  // }, [token]);
 
-  useEffect(() => {
-    if (token) api.token.set(token);
-  }, [token]);
+  // const expenseTransactions = useSelector(getExpenseTransactions);
+  // const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(transactionOperations.handleGetExpense());
+  // }, [dispatch]);
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
   };
@@ -62,19 +69,15 @@ function App() {
               >
                 <AuthPage />
               </PublicRoute>
-
               <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
                 <HomePage />
               </PrivateRoute>
-
               <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
                 <ExpensePage />
               </PrivateRoute>
-
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
                 <IncomePage />
               </PrivateRoute>
-
               <PrivateRoute path={routes.report} redirectTo={routes.auth}>
                 <ReportPage />
               </PrivateRoute>

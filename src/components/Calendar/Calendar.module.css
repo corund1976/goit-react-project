@@ -3,9 +3,44 @@
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.04em;
+  text-align: center;
 }
 .calendarBlock {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+.monthName {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.17;
+  text-align: center;
+  color: #000000;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-family: Roboto;
+  width: 110px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.btnMonth {
+  padding: 0px;
+  border-style: none;
+  background-color: transparent;
+  margin: 0px;
+}
+.divCalendar {
+  width: 148px;
+  display: flex;
+  height: 20px;
+  margin: 0 auto;
+}
+.spanArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
 }

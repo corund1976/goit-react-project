@@ -49,6 +49,7 @@ function ExpensePage({ onClick }) {
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
             <TransactionForm type="expenses" onHandleClick={() => {}} />
+            <TransactionForm transtype={"расходы"} onHandleClick={() => {}} />
 
             <div className={s.tableContainer}>
               <TransactionTable transtype={"расходы"} onClick={toggleModal} />
@@ -59,6 +60,7 @@ function ExpensePage({ onClick }) {
             </div>
           </div>
         </TabPanel>
+        <TabPanel></TabPanel>
       </Tabs>
     </Section>
   );
