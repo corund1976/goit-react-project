@@ -1,5 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -12,7 +10,7 @@ import TransactionTable from 'components/TransactionTable';
 
 import s from './ExpensePage.module.css';
 
-function ExpensePage() {
+function ExpensePage() { 
   return (
     <Section>
       <div className={ s.balanceHeader}>

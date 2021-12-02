@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
@@ -8,9 +8,13 @@ import MainPage from 'components/MainPage';
 import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
-import { getAccessToken } from 'redux/auth/authSelectors';
+// import { getAccessToken } from 'redux/auth/authSelectors';
 
-import api from 'services/kapusta-api';
+// import transactionOperations from 'redux/transactions/transactionOperations';
+// import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
+
+
+// import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
 	import('pages/AuthPage' /* webpackChunkName: "AuthPage" */)
@@ -29,13 +33,19 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-	const token = useSelector(getAccessToken);
+	// const token = useSelector(getAccessToken);
+  	// useEffect(() => {
+  //   if (token) api.token.set(token);
+	// }, [token]);
 
-	useEffect(() => {
-		if (token) api.token.set(token);
-	}, [token]);
+	// const expenseTransactions = useSelector(getExpenseTransactions);
+  // const dispatch = useDispatch();
 
-	return (
+  // useEffect(() => {
+  //   dispatch(transactionOperations.handleGetExpense());
+  // }, [dispatch]);
+
+  return (
 		<>
 			<Header />
 			<MainPage>
