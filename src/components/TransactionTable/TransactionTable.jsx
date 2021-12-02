@@ -129,7 +129,6 @@ const TransactionTable = ({ transtype }) => {
 		// 		</table>
 		// 	</div>
 		// </div>
-	
 	);
 };
 

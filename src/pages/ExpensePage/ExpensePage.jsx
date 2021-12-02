@@ -20,8 +20,8 @@ function ExpensePage() {
         <GoReports />
       </div>
 
-      <Tabs className={s.tabs}>
-        <TabList className={s.tabList}>
+			<Tabs className={s.tabs}>
+				<TabList className={s.tabList}>
 					<Tab
 						selectedClassName={s.active}
 						className={s.tab}
