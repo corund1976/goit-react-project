@@ -44,7 +44,9 @@ function ExpensePage() {
             
             <div className={s.tableContainer}>
 
+              <div>
               <TransactionTable transtype={'расходы'}/>
+              </div>
 
               <div className={s.summaryDesck}>
                 <Summary transtype={'расходы'}/>

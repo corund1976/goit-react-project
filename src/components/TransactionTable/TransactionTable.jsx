@@ -22,6 +22,7 @@ const TransactionTable = ({ transtype }) => {
 
 	return (
 		<div className={s.dataContainer}>
+      
 			<div className={s.bodyTable}>
 				<table className={s.main}>
 					<thead className={s.theadTable}>
@@ -39,19 +40,19 @@ const TransactionTable = ({ transtype }) => {
 					<table className={(s.main, s.mainTbody)}>
 						<tbody>
 							{transactions.map(item => (
-								<tr className={s.td} key={item._id}>
-									<td className={s.thData}>{item.date}</td>
+								<tr className={s.tr} key={item._id}>
+									<td className={s.tdData}>{item.date}</td>
 
 									<td className={s.tdDesc} data-tip={item.description}>
 										{cliTruncate(item.description, 15)}
 									</td>
 
-									<td className={s.thCateg}>{item.category}</td>
+									<td className={s.tdCateg}>{item.category}</td>
 
 									<td
 										className={
-											(s.tdSum,
-											item.typeOftransactions ? s.tdSum : s.tdSumExpence)
+                      (s.tdSum,
+                      transtype === 'доходы' ? s.tdSum : s.tdSumExpense)
 										}
 									>
 										{transtype === 'доходы' ? `+` : `-`}
