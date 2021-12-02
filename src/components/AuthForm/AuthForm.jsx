@@ -153,7 +153,14 @@ function AuthForm() {
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
                 className={s.showPassBtn}
               >
-                {isPasswordShown ? "hide" : "show"}
+                {/* {isPasswordShown ? "hide" : "show"} */}
+                <input
+                  type="checkbox"
+                  name="isPasswordShown"
+                  id="isPasswordShown"
+                  className={s.passwordCheckbox}
+                />
+                <label for="showPassBtn" className={s.checkboxLabel} />
               </button>
             </div>
             <p className={s.errorMessage}>{passwordError}</p>
