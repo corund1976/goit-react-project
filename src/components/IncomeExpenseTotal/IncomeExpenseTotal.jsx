@@ -2,13 +2,13 @@ import s from "./IncomeExpenseTotal.module.css";
 import { useSelector } from "react-redux";
 
 import {
-  getIncomeIncomeMonthStats,
-  getIncomeExpenseMonthStats,
-} from "redux/transactions/transactionSelectors";
+  totalExpensesOfMonthSelector,
+  totalIncomesOfMonthSelector,
+} from "redux/trans_month_stats/trans_month_stats-selectors";
 
 function IncomeExpenseTotal() {
-  const expense = useSelector(getIncomeExpenseMonthStats);
-  const income = useSelector(getIncomeIncomeMonthStats);
+  const expense = useSelector(totalExpensesOfMonthSelector);
+  const income = useSelector(totalIncomesOfMonthSelector);
 
   return (
     <div className={s.container}>
