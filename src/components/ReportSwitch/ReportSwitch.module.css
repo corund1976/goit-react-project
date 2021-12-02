@@ -90,3 +90,15 @@
   border: none;
   background-color: transparent;
 }
+.spanArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+}
+.no_data {
+  text-align: center;
+}
