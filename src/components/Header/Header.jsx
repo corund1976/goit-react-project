@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import s from "./Header.module.css";
@@ -13,8 +13,6 @@ import { getUserEmail } from "redux/user/userSelectors";
 const Header = ({ onClick }) => {
   const isAuthorized = useSelector(getIsAuthorized);
   const userEmail = useSelector(getUserEmail);
-
-  const dispatch = useDispatch();
 
   return (
     <>

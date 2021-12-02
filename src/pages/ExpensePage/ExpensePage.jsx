@@ -10,13 +10,37 @@ import Summary from "components/Summary";
 import TransactionForm from "components/TransactionForm";
 import TransactionTable from "components/TransactionTable";
 
+import { transactionOperations } from "redux/transactions";
+import styles from "components/Modal/Modal.module.css";
+import Modal from "components/Modal/Modal";
+
 import s from "./ExpensePage.module.css";
 
-function ExpensePage() {
+function ExpensePage({ onClick }) {
   const [type, setType] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const onDelete = (transactionId) => {
+    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+  };
+
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
 
   return (
     <Section>
+      {/* {children} */}
+      {showModal && (
+        <Modal onClick={toggleModal} title="Вы уверены?">
+          <button type="button" onClick={onDelete} className={styles.modalBtn}>
+            Да
+          </button>
+        </Modal>
+      )}
+
       <div className={s.balanceHeader}>
         <Balance />
         <GoReports />
@@ -43,7 +67,7 @@ function ExpensePage() {
             <TransactionForm type="expenses" onHandleClick={() => {}} />
 
             <div className={s.tableContainer}>
-              <TransactionTable transtype={"расходы"} />
+              <TransactionTable transtype={"расходы"} onClick={onClick} />
 
               <div className={s.summaryDesck}>
                 <Summary transtype={"расходы"} />

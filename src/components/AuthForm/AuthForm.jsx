@@ -157,7 +157,7 @@ function AuthForm() {
                   className={s.passwordCheckbox}
                 />
                 <label
-                  for="showPassBtn"
+                  htmlFor="showPassBtn"
                   className={
                     isPasswordShown ? s.checkboxLabelActive : s.checkboxLabel
                   }

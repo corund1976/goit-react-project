@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
@@ -7,7 +8,9 @@ import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
 import Modal from "components/Modal/Modal";
-import { getIsAuthorized } from "redux/auth/authSelectors";
+import s from "components/Modal/Modal.module.css";
+import { authOperations } from "redux/auth";
+import { transactionOperations } from "redux/transactions";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
 import { getAccessToken } from "redux/auth/authSelectors";
@@ -32,17 +35,25 @@ const ReportPage = lazy(() =>
 
 function App() {
   const token = useSelector(getAccessToken);
-  const isAuthorized = useSelector(getIsAuthorized);
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const onDelete = (transactionId) => {
+    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+  };
 
   useEffect(() => {
     if (token) api.token.set(token);
   }, [token]);
 
-  function toggleModal() {
+  const toggleModal = () => {
     setShowModal((prevState) => !prevState);
-    console.log(showModal);
-  }
+  };
+
+  const handleLogOut = () => {
+    dispatch(authOperations.handleLogout());
+    toggleModal();
+  };
 
   return (
     <>
@@ -50,10 +61,15 @@ function App() {
       <MainPage>
         <Section>
           {showModal && (
-            <Modal
-              onClick={toggleModal}
-              title="Вы действительно хотите выйти?"
-            />
+            <Modal onClick={toggleModal} title="Вы действительно хотите выйти?">
+              <button
+                type="button"
+                onClick={handleLogOut}
+                className={s.modalBtn}
+              >
+                Да
+              </button>
+            </Modal>
           )}
           <Suspense
             fallback={
@@ -76,7 +92,19 @@ function App() {
               </PrivateRoute>
 
               <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-                <ExpensePage />
+                <ExpensePage onClick={toggleModal}>
+                  {/* {showModal && (
+                    <Modal onClick={toggleModal} title="Вы уверены?">
+                      <button
+                        type="button"
+                        onClick={onDelete}
+                        className={s.modalBtn}
+                      >
+                        Да
+                      </button>
+                    </Modal>
+                  )} */}
+                </ExpensePage>
               </PrivateRoute>
 
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
