@@ -9,25 +9,6 @@ const handleLogin = (credentials) => (dispatch) => {
   api
     .login(credentials)
     .then(({ data }) => {
-      // data = {
-      //   accessToken,
-      //   refreshToken,
-      //   sid,
-      //   userData: {
-      //     email,
-      //     balance,
-      //     id,
-      //     transactions: [
-      //       {
-      //         description,
-      //         category,
-      //         amount,
-      //         date,
-      //         _id,
-      //       }
-      //     ]
-      //   }
-      // }
       api.token.set(data.accessToken);
       dispatch(authActions.loginSuccess(data));
       dispatch(transactionOperations.handleGetIncome());
