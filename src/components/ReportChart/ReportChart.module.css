@@ -1,3 +1,16 @@
+.container {
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+
+  height: 422px;
+}
 .list {
   display: flex;
   flex-wrap: wrap;

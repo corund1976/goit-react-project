@@ -3,44 +3,55 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import transactionActions from 'redux/transactions/transactionActions';
 import authActions from 'redux/auth/authActions';
+import userActions from 'redux/user/userActions';
 
 const initialState = [];
 
-const incomes = createReducer(initialState, {
-  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload,
+const incomesReducer = createReducer(initialState, {
+  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.incomes,
   [transactionActions.postIncomeSuccess]: (state, { payload }) => [
     ...state,
     payload.transaction,
   ],
-  [transactionActions.deleteIncomeSuccess]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.transaction.id),
-  [authActions.logoutSuccess]: (_, __) => initialState,
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item.id !== payload.transactionId),
+  
+  [authActions.logoutSuccess]: () => initialState,
 });
 
-const expenses = createReducer(initialState, {
-  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload,
-  [transactionActions.postExpenseSuccess]: (state, { payload }) => [
-    ...state,
-    payload.transaction,
-  ],
-  [transactionActions.deleteExpenseSuccess]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.transaction.id),
-  [authActions.logoutSuccess]: (_, __) => initialState,
+const incomeMonthStatsReducer = createReducer(initialState, {
+  [transactionActions.getIncomeSuccess]: (_, { payload }) => payload.monthsStats,
+  
+  [authActions.logoutSuccess]: () => initialState,
+});
+
+const expensesReducer = createReducer(initialState, {
+  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.expenses,
+  [transactionActions.postExpenseSuccess]: (state, { payload }) =>
+    [...state, payload.transaction],
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item.id !== payload.transactionId),
+  
+  [authActions.logoutSuccess]: () => initialState,
+});
+
+const expenseMonthStatsReducer = createReducer(initialState, {
+  [transactionActions.getExpenseSuccess]: (_, { payload }) => payload.monthsStats,
+
+  [authActions.logoutSuccess]: () => initialState,
+});
+
+const transactionsReducer = createReducer(initialState, {
+  [authActions.loginSuccess]: (_, { payload }) => payload.userData.transactions,
+  [authActions.logoutSuccess]: () => initialState,
+
+  [userActions.getUserInfoSuccess]: (_, { payload }) => payload.transactions,
 });
 
 export default combineReducers({
-  incomes,
-  expenses,
+  incomes: incomesReducer,
+  incomeMonthStats: incomeMonthStatsReducer,
+  expenses: expensesReducer,
+  expenseMonthStats: expenseMonthStatsReducer,
+  transactions: transactionsReducer,
 });
-
-// const transactionsInitialState = [];
-// const transactions = createReducer(transactionsInitialState, {
-//   [userActions.getUserInfoSuccess]: (_, { payload }) => payload,
-// });
-
-// const userInitialState = {};
-// const user = createReducer(userInitialState, {
-//   [authActions.loginSuccess]: (_, { payload }) => payload,
-//   [authActions.logoutSuccess]: () => userInitialState,
-//   [authActions.refreshSuccess]: (_, { payload }) => payload,
-// });

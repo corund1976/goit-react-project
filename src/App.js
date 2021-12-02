@@ -9,6 +9,7 @@ import Section from 'components/Section';
 
 import { routes, PublicRoute, PrivateRoute } from 'routes';
 import { getAccessToken } from 'redux/auth/authSelectors';
+
 import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
@@ -32,13 +33,8 @@ function App() {
 
 	useEffect(() => {
 		if (token) api.token.set(token);
-	}, [token]);
-
-	// const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-	// const dispatch = useDispatch();
-	// useEffect(() =>
-	//   dispatch(authOperations.fetchCurrentUser()), [dispatch]);
-
+  }, [token]);
+  
 	return (
 		<>
 			<Header />

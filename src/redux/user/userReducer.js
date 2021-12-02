@@ -2,12 +2,15 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
 import authActions from 'redux/auth/authActions';
+import userActions from 'redux/user/userActions';
 
 const userEmailInitialState = null;
 
 const userEmailReducer = createReducer(userEmailInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.userData.email,
   [authActions.logoutSuccess]: () => userEmailInitialState,
+
+  [userActions.getUserInfoSuccess]: (_, { payload }) => payload.email,
 });
 
 const userIdInitialState = null;

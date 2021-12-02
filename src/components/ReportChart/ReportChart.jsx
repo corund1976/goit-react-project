@@ -1,5 +1,6 @@
 import PageTitle from "components/PageTitle/PageTitle";
 import { useSelector } from "react-redux";
+import { ResponsiveBar } from "@nivo/bar";
 import {
   expensesOfMonthSelector,
   incomesOfMonthSelector,
@@ -8,85 +9,61 @@ import s from "./ReportChart.module.css";
 
 function ReportChart({ activeCategory, activeTrancaction }) {
   const arrExpenses = useSelector(expensesOfMonthSelector);
-
   const arrIncomes = useSelector(incomesOfMonthSelector);
-
-  // const arrExpenses = {
-  //   Транспорт: {
-  //     total: 4000,
-  //     СТО: 3500,
-  //     Мойка: 500,
-  //   },
-  //   "Всё для дома": {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  //   Здоровье: {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  //   "Коммуналка и связь": {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  //   Образование: {
-  //     total: 4000,
-  //     СТО: 3500,
-  //     Мойка: 500,
-  //   },
-  //   Алкоголь: {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  //   Продукты: {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  //   Прочее: {
-  //     total: 1200,
-  //     Вазон: 150,
-  //     "Шкаф-купе": 1050,
-  //   },
-  // };
-  // const arrIncomes = {
-  //   "З/П": {
-  //     total: 12000,
-  //     Аванс: 5000,
-  //     Основная: 7000,
-  //   },
-  // };
+  let dataForChart = [];
 
   const arrForFilter =
     activeTrancaction === "Расходы" ? arrExpenses : arrIncomes;
-  const cards = arrForFilter === undefined ? [] : Object.entries(arrForFilter);
-  let markup = "";
-  const elements = cards.find((item) => item[0] === activeCategory);
-  if (elements) {
-    markup = Object.entries(elements[1])
+
+  const selectedCategoryToArray =
+    arrForFilter === undefined ? [] : Object.entries(arrForFilter);
+
+  const findCategoryEqualToActive = selectedCategoryToArray.find(
+    (item) => item[0] === activeCategory
+  );
+  if (findCategoryEqualToActive) {
+    dataForChart = Object.entries(findCategoryEqualToActive[1])
       .splice(1)
       .map((item) => {
-        return (
-          <li key={item[0]} className={s.item}>
-            <span className={s.sum}>{item[1]}.00</span>
-            <div
-              className={s.graph}
-              style={{
-                width: 40,
-                height: item[1] * 0.05,
-              }}
-            ></div>
-            <span className={s.title}>{item[0]}</span>
-          </li>
-        );
+        return {
+          Подкатегория: item[0],
+          Сумма: item[1],
+        };
+      })
+      .sort((a, b) => {
+        return a.Сумма - b.Сумма;
       });
   }
+  if (!dataForChart) dataForChart = [];
 
-  return <ul className={s.list}>{markup}</ul>;
+  return (
+    <section className={s.container}>
+      {!!dataForChart.length && (
+        <ResponsiveBar
+          // className={s.chart}
+          data={dataForChart}
+          keys={["Сумма"]}
+          indexBy='Подкатегория'
+          margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+          padding={0.8}
+          valueScale={{ type: "linear" }}
+          colors='#ff751d'
+          animate={true}
+          enableLabel={false}
+          axisTop={null}
+          axisRight={null}
+          axisLeft={{
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: "Сумма",
+            legendPosition: "middle",
+            legendOffset: -40,
+          }}
+        />
+      )}
+    </section>
+  );
 }
 
 export default ReportChart;
