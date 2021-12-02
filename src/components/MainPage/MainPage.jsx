@@ -6,13 +6,11 @@ import Container from "components/Container";
 
 const MainPage = ({ children }) => {
   const isLogin = useSelector(getIsAuthorized);
-  
+
   return (
-    <div className={isLogin ? s.topAuth : s.top}>
-      <Container>
-        {children}
-      </Container>
-      <div className={isLogin ? s.bottomAuth : s.bottom}></div>
+    <div className={isLogin ? s.mainAuth : s.main}>
+      <div className={isLogin ? s.topAuth : s.top}></div>
+      <Container>{children}</Container>
     </div>
   );
 };

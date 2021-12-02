@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import s from './Balance.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from "react";
+import s from "./Balance.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-import userOperations from 'redux/user/userOperations';
-import { getBalance } from 'redux/balance/balanceSelectors';
+import userOperations from "redux/user/userOperations";
+import { getBalance } from "redux/balance/balanceSelectors";
 
 const Balance = () => {
   const initialBalance = useSelector(getBalance);
-  const [input, setInput] = useState(initialBalance)
+  const [input, setInput] = useState(initialBalance);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setInput(e.target.value);
-  }
+  };
 
   const dispatch = useDispatch();
   
@@ -24,20 +24,17 @@ const Balance = () => {
     <div className={s.balance_form}>
       <p className={s.balance_title}>Баланс:</p>
       <span className={s.balance_value_span}>
-        <input className={s.balance_value}
-          name='balance'
-          pattern='^[ 0-9]+$'
-          title='поле должно состоять только из цифр'
-          type='number'
+        <input
+          className={s.balance_value}
+          name="balance"
+          pattern="^[ 0-9]+$"
+          title="поле должно состоять только из цифр"
+          type="number"
           value={input}
           onChange={handleChange}
         />
       </span>
-      <button
-        type='button'
-        className={s.balance_submit}
-        onClick={addBalance}
-      >
+      <button type="button" className={s.balance_submit} onClick={addBalance}>
         Подтвердить
       </button>
     </div>
