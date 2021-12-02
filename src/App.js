@@ -33,8 +33,8 @@ function App() {
 
 	useEffect(() => {
 		if (token) api.token.set(token);
-  }, [token]);
-  
+	}, [token]);
+
 	return (
 		<>
 			<Header />
@@ -61,7 +61,7 @@ function App() {
 							</PrivateRoute>
 
 							<PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-                <ExpensePage />
+								<ExpensePage />
 							</PrivateRoute>
 
 							<PrivateRoute path={routes.income} redirectTo={routes.auth}>
