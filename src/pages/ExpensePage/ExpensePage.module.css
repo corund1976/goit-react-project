@@ -85,6 +85,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .balanceHeader {
   display: flex;
   flex-direction: column-reverse;

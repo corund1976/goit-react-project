@@ -1,13 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import cliTruncate from 'cli-truncate';
-// import s from './TransactionTable.module.css';
 
-import {
-  getIncomeTransactions,
-  getExpenseTransactions,
-} from 'redux/transactions/transactionSelectors';
+import { getIncomeTransactions, getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 import transactionOperations from 'redux/transactions/transactionOperations';
-
+// import s from './TransactionTable.module.css';
 import s from './Table.module.css';
 import deleteIcon from 'images/svg/delete.svg';
 

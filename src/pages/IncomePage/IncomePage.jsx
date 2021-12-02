@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -13,11 +13,9 @@ import TransactionTable from 'components/TransactionTable';
 import s from './IncomePage.module.css';
 
 function IncomePage() {
-	const [type, setType] = useState(false);
-
   return (
     <Section>
-      <div>
+      <div className={ s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
@@ -45,7 +43,7 @@ function IncomePage() {
 				<TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
             
-            <TransactionForm type='incomes' onHandleClick={() => { }} />
+            <TransactionForm transtype={'доходы'} onHandleClick={() => { }} />
             
             <div className={s.tableContainer}>
               
@@ -58,7 +56,8 @@ function IncomePage() {
 						</div>
 					</div>
         </TabPanel>
-        
+        <TabPanel>
+        </TabPanel>
 			</Tabs>
     </Section>
   );
