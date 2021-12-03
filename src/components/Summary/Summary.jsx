@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
 
 import {
   getIncomeMonthStats,
@@ -7,12 +8,15 @@ import {
 
 import s from "./Summary.module.css";
 
-function Summary({ transtype }) {
+function Summary() {
+  const { pathname } = useLocation();
+  const transtype = pathname.slice(1);
+
   const summaryIncomes = useSelector(getIncomeMonthStats);
   const summaryExpenses = useSelector(getExpenseMonthStats);
 
   const elements =
-    transtype === "расходы"
+    transtype === "expense" // "income" or "expense"
       ? Object.entries(summaryExpenses)
       : Object.entries(summaryIncomes);
   const markup = elements
