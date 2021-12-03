@@ -1,71 +1,99 @@
 import { ResponsiveBar } from "@nivo/bar";
+import { useBreakpoint } from "react-use-size";
 import { useEffect } from "react";
 
 import s from "./ReportChart.module.css";
 
 function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
   let dataForChart = [];
+  const isSmall = useBreakpoint(768);
+
   const sum = "Сумма";
   const subCategory = "Подкатегория";
   const findCategoryEqualToActive = arrTransactionsOfMonth.find(
     (item) => item[0] === activeCategoryOfTransactions
   );
-  // console.log(findCategoryEqualToActive);
   if (findCategoryEqualToActive) {
     dataForChart = Object.entries(findCategoryEqualToActive[1])
-      //   .splice(
-      //   Object.entries(findCategoryEqualToActive[1]).findIndex(
-      //     (item) => item[0] === "total"
-      //   ),
-      //   1
-      // );
-      // console.log(
-      //   Object.entries(findCategoryEqualToActive[1]).findIndex(
-      //     (item) => item[0] === "total"
-      //   )
-      // );
-      // console.log(dataForChart);
-
       .map(([subCategoryFromArr, sumFromArr]) => {
         return {
           [subCategory]: subCategoryFromArr,
           [sum]: sumFromArr,
-          // Подкатегория: subCategory,
-          // Сумма: sum,
         };
       })
       .filter((item) => item[subCategory] !== "total")
-      // .filter(({ Подкатегория }) => Подкатегория !== "total")
-
       .sort((a, b) => {
-        return a[sum] - b[sum];
+        if (!isSmall) {
+          return b[sum] - a[sum];
+        } else {
+          return a[sum] - b[sum];
+        }
       });
   }
   if (!dataForChart) dataForChart = [];
+
+  // if (isSmall) console.log("small");
   return (
     <section className={s.container}>
       {!!dataForChart.length && (
         <ResponsiveBar
-          // className={s.chart}
           data={dataForChart}
-          keys={["Сумма"]}
-          indexBy='Подкатегория'
-          margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-          padding={0.8}
+          keys={isSmall ? [sum] : [sum]}
+          indexBy={isSmall ? [subCategory] : [subCategory]}
+          margin={
+            isSmall
+              ? { top: 20, right: 15, bottom: 50, left: 50 }
+              : { top: 100, right: 100, bottom: 100, left: 100 }
+          }
+          padding={0.7}
           valueScale={{ type: "linear" }}
+          layout={isSmall ? "horizontal" : "vertical"}
           colors='#ff751d'
           animate={true}
-          enableLabel={false}
+          enableGridX={true}
+          labelSkipWidth={10}
+          labelSkipHeight={10}
+          enableLabel={isSmall ? true : false}
           axisTop={null}
           axisRight={null}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "Сумма",
-            legendPosition: "middle",
-            legendOffset: -40,
-          }}
+          axisLeft={
+            isSmall
+              ? {
+                  tickSize: 0,
+                  tickPadding: 0,
+                  tickRotation: 0,
+                  legend: "",
+                  legendPosition: "middle",
+                  legendOffset: -50,
+                }
+              : {
+                  tickSize: 0,
+                  tickPadding: 5,
+                  tickRotation: 0,
+                  legend: "Сумма",
+                  legendPosition: "middle",
+                  legendOffset: -50,
+                }
+          }
+          axisBottom={
+            isSmall
+              ? {
+                  tickSize: 0,
+                  tickPadding: 5,
+                  tickRotation: -45,
+                  legend: "Сумма",
+                  legendPosition: "middle",
+                  legendOffset: 32,
+                }
+              : {
+                  tickSize: 0,
+                  tickPadding: 5,
+                  tickRotation: -45,
+                  legend: "",
+                  legendPosition: "middle",
+                  legendOffset: 32,
+                }
+          }
         />
       )}
       {!dataForChart.length && <p>No Data Available</p>}
