@@ -11,9 +11,12 @@ import TransactionForm from 'components/TransactionForm';
 import TransactionTable from 'components/TransactionTable';
 import DeleteModal from 'components/Modal/DeleteModal';
 
-import { transactionOperations } from 'redux/transactions';
+
+import transactionOperations from 'redux/transactions/transactionOperations';
+import categoriesOperations from 'redux/categories/categoriesOperations';
 
 import s from './ExpensePage.module.css';
+import BtnConfirmBalance from 'components/Balance/BtnConfirmBalance';
 
 function ExpensePage() {
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
@@ -48,7 +51,8 @@ function ExpensePage() {
       }
 
       <div className={s.balanceHeader}>
-        <Balance />
+        <Balance displayStyle={ true} />
+      
         <GoReports />
       </div>
       

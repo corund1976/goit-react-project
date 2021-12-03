@@ -4,6 +4,7 @@
   font-size: 12px;
   letter-spacing: 0.04em;
   text-align: center;
+  margin-top: 0px;
 }
 .calendarBlock {
   display: flex;
@@ -43,4 +44,20 @@
   height: 20px;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarDiv {
+    margin-bottom: 0px;
+    margin-left: 80px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .calendarDiv {
+    margin-left: 225px;
+    margin-bottom: 30px;
+  }
+}
+.calendarDiv {
+  margin-bottom: 30px;
 }
