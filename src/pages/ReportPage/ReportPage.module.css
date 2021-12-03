@@ -1,0 +1,23 @@
+/* @media screen and (min-width: 1280px) {
+  .reportHeaderBalance {
+    display: flex;
+  }
+} */
+.calendarBalanceBox {
+  display: flex;
+  /* flex-direction: column; */
+  flex-direction: column-reverse;
+}
+@media screen and (min-width: 768px) {
+  .calendarBalanceBox {
+    flex-direction: row;
+  }
+  .reportHeaderBalance {
+    display: flex;
+  }
+}
+@media screen and (min-width: 768px) {
+  .reportHeaderBalance {
+    justify-content: space-between;
+  }
+}

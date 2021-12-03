@@ -65,7 +65,7 @@ const CalendarView = () => {
     dispatch(getPeriod(selectedDate));
   }, [selectedDate]);
   return (
-    <div>
+    <div className={ s.calendarDiv}>
       <p className={s.calendarStyle}>Текущий период</p>
       <div className={s.divCalendar}>
         <button onClick={prevNext} className={s.btnMonth}>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import s from "./Balance.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
-import userOperations from "redux/user/userOperations";
+import BtnConfirmBalance from './BtnConfirmBalance'
+// import userOperations from "redux/user/userOperations";
 import { getBalance } from "redux/balance/balanceSelectors";
 import BalanceModal from "./BalanceModal";
 
-const Balance = () => {
+const Balance = ({ displayStyle}) => {
   const initialBalance = useSelector(getBalance);
   const [input, setInput] = useState(initialBalance);
 
@@ -14,14 +14,14 @@ const Balance = () => {
     setInput(e.target.value);
   };
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const addBalance = () => {
-    const newBalance = Number(input);
-    dispatch(
-      userOperations.handleUpdateUserBalance({ newBalance: newBalance })
-    );
-  };
+  // const addBalance = () => {
+  //   const newBalance = Number(input);
+  //   dispatch(
+  //     userOperations.handleUpdateUserBalance({ newBalance: newBalance })
+  //   );
+  // };
 
   return (
     <div className={s.balance_form}>
@@ -37,9 +37,10 @@ const Balance = () => {
           onChange={handleChange}
         />
       </span>
-      <button type="button" className={s.balance_submit} onClick={addBalance}>
+      <BtnConfirmBalance input={ input} displayStyle={ displayStyle}/>
+      {/* <button type="button" className={s.balance_submit} onClick={addBalance}>
         Подтвердить
-      </button>
+      </button> */}
       {!initialBalance && <BalanceModal />}
     </div>
   );
