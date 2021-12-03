@@ -8,7 +8,7 @@ const accessTokenInitialState = null;
 const accessTokenReducer = createReducer(accessTokenInitialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.logoutSuccess]: () => accessTokenInitialState,
-  [authActions.setGoogleToken]: (_, { payload }) => payload,
+  [authActions.setGoogleTokenSuccess]: (_, { payload }) => payload,
   [authActions.refreshSuccess]: (_, { payload }) => payload.newAccessToken,
   [authActions.setGoogleTokenSuccess]: (_, { payload }) => payload.accessToken,
 });

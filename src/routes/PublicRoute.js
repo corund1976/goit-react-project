@@ -3,13 +3,16 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { getIsAuthorized } from 'redux/auth/authSelectors';
 
-function PublicRoute({ children, restricted = false, redirectTo = '/', ...routeProps }) {
+function PublicRoute({ children, redirectTo = '/', ...routeProps }) {
   const isLoggedIn = useSelector(getIsAuthorized);
-  const shouldRedirect = isLoggedIn && restricted;
   
   return (
     <Route {...routeProps}>
-      {shouldRedirect ? <Redirect to={redirectTo}/> : children}
+      {isLoggedIn
+        ?
+        <Redirect to={redirectTo} />
+        :
+        children}
     </Route>
   );
 };

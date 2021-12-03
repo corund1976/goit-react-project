@@ -1,23 +1,24 @@
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import UniversalModal from "components/Modal/UniversalModal";
-import styles from "components/Modal/Modal.module.css";
+import Section from 'components/Section';
+import Balance from 'components/Balance';
+import GoReports from 'components/GoReports';
+import Summary from 'components/Summary';
+import TransactionForm from 'components/TransactionForm';
+import TransactionTable from 'components/TransactionTable';
+import DeleteModal from 'components/Modal/DeleteModal';
 
-import transactionOperations from 'redux/transactions/transactionOperations';
+import { transactionOperations } from 'redux/transactions';
 
-import s from "./IncomePage.module.css";
+import s from './ExpensePage.module.css';
 
-function IncomePage() {
+function ExpensePage() {
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
   const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
   
-  const handleModal = (id) => {
-    setShowModal((prevState) => !prevState);
-    setTransactionId(id);
-  };
-
   const handleModal = (id) => {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
@@ -29,18 +30,10 @@ function IncomePage() {
   const transtype = pathname.slice(1);
 
   useEffect(() => {
-    transtype === "expense"
+    transtype === 'expense'
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
-
-  const onDelete = () => {
-    transtype === "expense"
-      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
-      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
-    handleModal();
-  };
 
   return (
     <Section>
@@ -53,29 +46,24 @@ function IncomePage() {
         />
       }
 
-          <button type="button" onClick={onDelete} className={styles.modalBtn}>
-            Да
-          </button>
-        </UniversalModal>
-      )}
-
       <div className={s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
-
+      
       <Tabs className={s.tabs}>
+
         <TabList className={s.tabList}>
-          <NavLink to="/expense">
+          <NavLink to='/expense'>
             <Tab
               // selectedClassName={s.active}
               className={s.tab}
             >
               Расход
             </Tab>
-          </NavLink>
+          </NavLink >
 
-          <NavLink to="/income">
+          <NavLink to='/income'>
             <Tab
               // selectedClassName={s.active}
               className={s.tab}
@@ -87,11 +75,30 @@ function IncomePage() {
 
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            <TransactionForm onHandleClick={() => { }} />
-            
-            <div className={s.tableContainer}>
-              <TransactionTable handleModal={handleModal} />
 
-							<div className={s.summaryDesck}>
-								<Summary />
+            <TransactionForm
+              onHandleClick={() => { }}
+            />
+
+            <div className={s.tableContainer}>
+              <div>
+                <TransactionTable
+                  handleModal={handleModal}
+                />
               </div>
+
+              <div className={s.summaryDesck}>
+                <Summary />
+              </div>
+
+            </div>
+          </div>
+        </TabPanel>
+      
+        <TabPanel></TabPanel>
+      </Tabs>
+    </Section>
+  );
+}
+
+export default ExpensePage;

@@ -1,94 +1,107 @@
-import { Suspense, lazy, useEffect } from "react";
-
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
-
-// import { useDispatch } from "react-redux";
-// import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
-
-import Modal from "components/Modal/Modal";
+import UniversalModal from "components/Modal/UniversalModal";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
-// import { getAccessToken } from 'redux/auth/authSelectors';
-
+import { getAccessToken } from "redux/auth/authSelectors";
+import { authOperations } from "redux/auth";
 import transactionOperations from "redux/transactions/transactionOperations";
-// import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 
-// import api from 'services/kapusta-api';
+import s from "components/Modal/Modal.module.css";
 
 const AuthPage = lazy(() =>
-  import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
+  import('pages/AuthPage' /* webpackChunkName: 'AuthPage' */)
 );
 const HomePage = lazy(() =>
-  import("pages/HomePage" /* webpackChunkName: "HomePage" */)
+  import('pages/HomePage' /* webpackChunkName: 'HomePage' */)
 );
 const ExpensePage = lazy(() =>
-  import("pages/ExpensePage" /* webpackChunkName: "ExpensePage" */)
+  import('pages/ExpensePage' /* webpackChunkName: 'ExpensePage' */)
 );
 const IncomePage = lazy(() =>
-  import("pages/IncomePage" /* webpackChunkName: "IncomePage" */)
+  import('pages/IncomePage' /* webpackChunkName: 'IncomePage' */)
 );
 const ReportPage = lazy(() =>
-  import("pages/ReportPage" /* webpackChunkName: "ReportPage" */)
+  import('pages/ReportPage' /* webpackChunkName: 'ReportPage' */)
 );
 
 function App() {
-  // const token = useSelector(getAccessToken);
-  // useEffect(() => {
-  //   if (token) api.token.set(token);
-  // }, [token]);
-
-  // const expenseTransactions = useSelector(getExpenseTransactions);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(transactionOperations.handleGetExpense());
-  // }, [dispatch]);
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
-  const onDelete = (transactionId) => {
-    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
-  };
+  const accessToken = useSelector(getAccessToken);
+  const sid = useSelector(getSid);
 
-  const toggleModal = () => {
-    setShowModal((prevState) => !prevState);
-  };
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(authOperations.handleRefresh({ sid }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(userOperations.handleGetUserInfo());
+      dispatch(transactionOperations.handleGetIncome());
+      dispatch(transactionOperations.handleGetExpense());
+      dispatch(categoriesOperations.handleGetIncomeCategories());
+      dispatch(categoriesOperations.handleGetExpenseCategories());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessToken]);
+
+  const [showModal, setShowModal] = useState(false);
+  
+  const toggleModal = () => setShowModal((prevState) => !prevState);
+
+  const handleLogOut = () => {
+    dispatch(authOperations.handleLogout());
+    toggleModal();
+  };
+  
   return (
     <>
       <Header onClick={toggleModal} />
+
       <MainPage>
         <Section>
-          {showModal && <Modal toggleModal={toggleModal} />}
+          {showModal && (
+            <UniversalModal toggleModal={toggleModal}>
+              <p className={s.modalTitle}>Вы действительно хотите выйти?</p>
+              <button
+                type="button"
+                onClick={handleLogOut}
+                className={s.modalBtn}
+              >
+                Да
+              </button>
+            </UniversalModal>
+          )}
           <Suspense
             fallback={
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
+                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
               </div>
             }
           >
             <Switch>
-              <PublicRoute
-                path={routes.auth}
-                restricted
-                redirectTo={routes.home}
-              >
+              <PublicRoute path={routes.auth} redirectTo={routes.home}>
                 <AuthPage />
               </PublicRoute>
+
               <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
                 <HomePage />
               </PrivateRoute>
+
               <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
                 <ExpensePage />
               </PrivateRoute>
+
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
                 <IncomePage />
               </PrivateRoute>
@@ -97,6 +110,7 @@ function App() {
                 <ReportPage />
               </PrivateRoute>
             </Switch>
+
           </Suspense>
         </Section>
       </MainPage>

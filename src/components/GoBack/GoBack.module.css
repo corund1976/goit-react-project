@@ -3,6 +3,7 @@
   text-decoration: none;
   color: #f5f6fb;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 44px;
 }
 
 @media screen and (min-width: 768px) {

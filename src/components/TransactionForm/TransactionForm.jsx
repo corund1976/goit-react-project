@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,29 +8,33 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import s from './TransactionForm.module.css';
 import CalendarTableForm from 'components/CalendarTableForm';
 import { transactionOperations } from 'redux/transactions';
 import { getExpenseCategories, getIncomeCategories } from 'redux/categories/categoriesSelectors';
 
-function TransactionForm({ transtype }) {
+import s from './TransactionForm.module.css';
+
+function TransactionForm() {
 	const [date, setDate] = useState(''); //Инпут Дата Календаря
 	const [description, setDescription] = useState(''); //Инпут Описание товара/дохода
   const [amount, setAmount] = useState(''); //Инпут Сумма транзакции
 	const [category, setCategory] = useState(''); //Список категорий для Селекта
 
   const dispatch = useDispatch();
-
+  // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
+  const { pathname } = useLocation();
+  const transtype = pathname.slice(1); // income или expense
+  // Записываем значения возможные инпута Селектора, основываясь на данных сервера
 	const incomeCategories = useSelector(getIncomeCategories);
   const expenseCategories = useSelector(getExpenseCategories);
-
+  // Формируем объект для записи РАЗНЫХ значений заголовков формы
   const formTitleData = {
     descriptionTitle: '',
     categoryTitle: '',
     categoriesList: [],
   }
-
-  if (transtype === 'доходы') {
+  // Наполняем этот объект в зависимости от типа обрабатываемых транзакций
+  if (transtype === 'income') {
     formTitleData.descriptionTitle = 'Описание дохода';
     formTitleData.categoryTitle =	'Категория дохода';
     formTitleData.categoriesList = incomeCategories;
@@ -38,7 +43,7 @@ function TransactionForm({ transtype }) {
     formTitleData.categoryTitle = 'Категория товара';
     formTitleData.categoriesList = expenseCategories;
   }
-// Хендлер инпута Календарь и преобразователь к формату сервера
+// Хендлер инпута Календарь и преобразователь к формату даты сервера
   const dateHandle = date => {
 		const year = String(date.getFullYear());
 		const month = String(date.getMonth() + 1).padStart(2,'0');
@@ -67,10 +72,10 @@ function TransactionForm({ transtype }) {
 // Хендлер кнопки "Ввод"
 	const handleSubmit = e => {
     e.preventDefault();
-    
+    // Формируем объект ТРАНЗАКЦИЯ для передачи на сервер
     const transaction = { date, description, category, amount };
-    
-		transtype === 'доходы'
+    // Отправляем объект в ОПЕРАЦИИ в зависимости от типа транзакции
+		transtype === 'income'
 			? dispatch(transactionOperations.handlePostIncome(transaction))
 			: dispatch(transactionOperations.handlePostExpense(transaction));
 		handleBtnClear();
@@ -141,7 +146,6 @@ function TransactionForm({ transtype }) {
               className={s.priceInput}
               placeholder='0.00'
               autoFocus='off'
-              // onWheelCapture={e => { e.target.blur() }}
             />
           </div>
 

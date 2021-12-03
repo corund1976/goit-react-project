@@ -1,18 +1,10 @@
 import s from "./Modal.module.css";
 import closeBtn from "../../images/header-authform/closeBtn.png";
-import authOperations from "redux/auth/authOperations";
-import { useDispatch } from "react-redux";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
 
-const Modal = ({ toggleModal }) => {
-  const dispatch = useDispatch();
+const UniversalModal = ({ toggleModal, children }) => {
   const portalModal = document.querySelector("#nodalRoot");
-
-  const handleLogOut = () => {
-    dispatch(authOperations.handleLogout());
-    toggleModal();
-  };
 
   const modalEscape = (e) => {
     if (e.code === "Escape") {
@@ -25,6 +17,7 @@ const Modal = ({ toggleModal }) => {
     return () => {
       window.removeEventListener("keydown", modalEscape);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clickBackdrop = (event) => {
@@ -39,11 +32,10 @@ const Modal = ({ toggleModal }) => {
         <button type="button" className={s.closeBtn} onClick={toggleModal}>
           <img src={closeBtn} alt="closeButton" />
         </button>
+
         <div className={s.btnDiv}>
-          <p className={s.modalTitle}>Вы действительно хотите выйти?</p>
-          <button type="button" onClick={handleLogOut} className={s.modalBtn}>
-            Да
-          </button>
+          {children}
+
           <button type="button" className={s.modalBtn} onClick={toggleModal}>
             Нет
           </button>
@@ -54,4 +46,4 @@ const Modal = ({ toggleModal }) => {
   );
 };
 
-export default Modal;
+export default UniversalModal;

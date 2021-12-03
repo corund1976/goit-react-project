@@ -3,7 +3,7 @@ import vector from "images/VectorLeft.png";
 import vectorRight from "images/VectorRight.png";
 
 import s from "./ReportSwitch.module.css";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 function ReportSwitch({
   activeTypeOfTransactions,
