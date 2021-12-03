@@ -6,6 +6,10 @@ import s from "./AuthForm.module.css";
 import googleSymbol from "images/header-authform/google-symbol.png";
 import authOperations from "redux/auth/authOperations";
 
+import Checkbox from "@mui/material/Checkbox";
+import { orange } from "@mui/material/colors";
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 function AuthForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -133,16 +137,36 @@ function AuthForm() {
               id="AuthForm__email"
               value={email}
               onChange={changeEmailValue}
+              pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
               placeholder="name@mail.com"
               className={s.inputForm}
             />
             <p className={s.errorMessage}>{emailError}</p>
           </div>
           <div>
-            <label htmlFor="AuthForm__password" className={s.inputTitle}>
-              {passwordError && <span style={{ color: "red" }}>*</span>}Пароль:
-            </label>
             <div className={s.pswInp}>
+              <label htmlFor="AuthForm__password" className={s.inputTitle}>
+                {passwordError && <span style={{ color: "red" }}>*</span>}
+                Пароль:
+              </label>
+              <button
+                type="button"
+                onClick={() => setIsPasswordShown(!isPasswordShown)}
+                className={s.showPassBtn}
+              >
+                <Checkbox
+                  {...label}
+                  defaultChecked
+                  sx={{
+                    color: orange[800],
+                    "&.Mui-checked": {
+                      color: orange[800],
+                    },
+                  }}
+                />
+              </button>
+            </div>
+            <div>
               <input
                 type={isPasswordShown ? "text" : "password"}
                 name="password"
@@ -152,13 +176,6 @@ function AuthForm() {
                 placeholder="Пароль"
                 className={s.inputForm}
               />
-              <button
-                type="button"
-                onClick={() => setIsPasswordShown(!isPasswordShown)}
-                className={s.showPassBtn}
-              >
-                {isPasswordShown ? "hide" : "show"}
-              </button>
             </div>
             <p className={s.errorMessage}>{passwordError}</p>
           </div>

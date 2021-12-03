@@ -9,19 +9,16 @@ import Select from '@mui/material/Select';
 
 import s from './TransactionForm.module.css';
 import CalendarTableForm from 'components/CalendarTableForm';
-import { transactionSelectors, transactionOperations } from 'redux/transactions';
+import { transactionOperations } from 'redux/transactions';
 import { getExpenseCategories, getIncomeCategories } from 'redux/categories/categoriesSelectors';
 
 function TransactionForm({ transtype }) {
+	const [date, setDate] = useState(''); //Инпут Дата Календаря
 	const [description, setDescription] = useState(''); //Инпут Описание товара/дохода
-  const [amount, setAmount] = useState('');//Инпут Сумма транзакции
-	const [categoriesList, setCategoriesList] = useState(''); //Список категорий для Селекта
+  const [amount, setAmount] = useState(''); //Инпут Сумма транзакции
+	const [category, setCategory] = useState(''); //Список категорий для Селекта
 
   const dispatch = useDispatch();
-	// const day = useSelector(transactionsSelectors.getDay);
-	// const month = useSelector(transactionsSelectors.getMonth);
-	// const year = useSelector(transactionsSelectors.getYear);
-  const date = '2020-12-31';
 
 	const incomeCategories = useSelector(getIncomeCategories);
   const expenseCategories = useSelector(getExpenseCategories);
@@ -41,6 +38,13 @@ function TransactionForm({ transtype }) {
     formTitleData.categoryTitle = 'Категория товара';
     formTitleData.categoriesList = expenseCategories;
   }
+// Хендлер инпута Календарь и преобразователь к формату сервера
+  const dateHandle = date => {
+		const year = String(date.getFullYear());
+		const month = String(date.getMonth() + 1).padStart(2,'0');
+    const day = String(date.getDate()).padStart(2,'0');
+    setDate(`${year}-${month}-${day}`);
+	};
 // Хендлер 2х инпутов "Описание товара" и "Сумма"
 	const handleInputChange = e => {
 		const { name, value } = e.currentTarget;
@@ -58,13 +62,13 @@ function TransactionForm({ transtype }) {
 	};
 //Хендлер инпута селекта "Категории"
 	const handleChange = event => {
-		setCategoriesList(event.target.value);
+		setCategory(event.target.value);
 	};
 // Хендлер кнопки "Ввод"
 	const handleSubmit = e => {
-		e.preventDefault();
-    const transaction = { date, description, categoriesList, amount };
-    console.log(transaction);
+    e.preventDefault();
+    
+    const transaction = { date, description, category, amount };
     
 		transtype === 'доходы'
 			? dispatch(transactionOperations.handlePostIncome(transaction))
@@ -75,7 +79,7 @@ function TransactionForm({ transtype }) {
   const handleBtnClear = () => {
     setDescription('');
     setAmount('');
-    setCategoriesList('');
+    setCategory('');
 	};
 
 	return (
@@ -85,7 +89,7 @@ function TransactionForm({ transtype }) {
         <div className={s.dataInput}>
 
           {/* К А Л Е Н Д А Р Ь */}
-          <CalendarTableForm />
+          <CalendarTableForm dateHandle={dateHandle}/>
 
           {/* О П И С А Н И Е */}
 					<input
@@ -111,7 +115,7 @@ function TransactionForm({ transtype }) {
               
 							<Select
 								labelId='demo-simple-select-label'
-								value={categoriesList}
+								value={category}
 								onChange={handleChange}
 							>
 								{formTitleData.categoriesList.map(category => (

@@ -95,11 +95,7 @@
 }
 
 .userPhoto {
-  border-radius: 20px;
-  background: #f5f6fa;
   margin-right: 15px;
-  width: 32px;
-  height: 32px;
 }
 @media screen and (min-width: 768px) {
   .userPhoto {
