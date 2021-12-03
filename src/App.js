@@ -1,5 +1,8 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useSelector } from "react-redux";
+
+import { useDispatch,useSelector } from "react-redux";
+import { useState } from "react";
+
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
@@ -7,12 +10,24 @@ import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
 
-import { routes, PublicRoute, PrivateRoute } from "routes";
-import { getAccessToken } from "redux/auth/authSelectors";
 
-import api from "services/kapusta-api";
+
+
+
+
 import { useDispatch } from "react-redux";
 // import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
+
+import Modal from "components/Modal/Modal";
+
+import { routes, PublicRoute, PrivateRoute } from "routes";
+// import { getAccessToken } from 'redux/auth/authSelectors';
+
+import transactionOperations from "redux/transactions/transactionOperations";
+// import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
+
+// import api from 'services/kapusta-api';
+
 
 const AuthPage = lazy(() =>
   import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
@@ -31,21 +46,39 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  const token = useSelector(getAccessToken);
+
+  // const token = useSelector(getAccessToken);
+  // useEffect(() => {
+  //   if (token) api.token.set(token);
+  // }, [token]);
+
+  // const expenseTransactions = useSelector(getExpenseTransactions);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(transactionOperations.handleGetExpense());
+  // }, [dispatch]);
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch(getPeriod("2021-12"));
-  }, [token]);
+
+  const onDelete = (transactionId) => {
+    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+  };
+
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
 
   return (
     <>
-      <Header />
+      <Header onClick={toggleModal} />
       <MainPage>
         <Section>
+          {showModal && <Modal toggleModal={toggleModal} />}
           <Suspense
             fallback={
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
+                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
               </div>
             }
           >
@@ -57,15 +90,12 @@ function App() {
               >
                 <AuthPage />
               </PublicRoute>
-
               <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
                 <HomePage />
               </PrivateRoute>
-
               <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
                 <ExpensePage />
               </PrivateRoute>
-
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
                 <IncomePage />
               </PrivateRoute>
