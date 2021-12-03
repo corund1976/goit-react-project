@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 import { Switch } from "react-router-dom";
@@ -10,12 +10,7 @@ import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
 
-
-
-
-
-
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
 
 import Modal from "components/Modal/Modal";
@@ -27,7 +22,6 @@ import transactionOperations from "redux/transactions/transactionOperations";
 // import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 
 // import api from 'services/kapusta-api';
-
 
 const AuthPage = lazy(() =>
   import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
@@ -46,7 +40,6 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-
   // const token = useSelector(getAccessToken);
   // useEffect(() => {
   //   if (token) api.token.set(token);
@@ -78,7 +71,7 @@ function App() {
           <Suspense
             fallback={
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
               </div>
             }
           >
