@@ -16,7 +16,7 @@ const TransactionTable = ({ transtype, onClick }) => {
 
   return (
     <div className={s.dataContainer}>
-      <div className={s.bodyTable}>
+      <div className={(s.bodyTable, s.bodyTable320)}>
         <table className={s.main}>
           <thead className={s.theadTable}>
             <tr>
