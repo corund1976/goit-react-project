@@ -1,23 +1,28 @@
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import Section from "components/Section";
+import Balance from "components/Balance";
+import GoReports from "components/GoReports";
+import Summary from "components/Summary";
+import TransactionForm from "components/TransactionForm";
+import TransactionTable from "components/TransactionTable";
+import BtnConfirmBalance from 'components/Balance/BtnConfirmBalance';
 import UniversalModal from "components/Modal/UniversalModal";
 import styles from "components/Modal/Modal.module.css";
 
-import transactionOperations from 'redux/transactions/transactionOperations';
 
-import s from "./IncomePage.module.css";
+import transactionOperations from 'redux/transactions/transactionOperations';
+import categoriesOperations from 'redux/categories/categoriesOperations';
+
+import s from './IncomePage.module.css';
 
 function IncomePage() {
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
   const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
   
-  const handleModal = (id) => {
-    setShowModal((prevState) => !prevState);
-    setTransactionId(id);
-  };
-
   const handleModal = (id) => {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
@@ -42,16 +47,15 @@ function IncomePage() {
     handleModal();
   };
 
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
+
   return (
     <Section>
-
-      {showModal &&
-        <DeleteModal
-          toggleModal={handleModal} //статус модалки 'видима-невидима'
-          transtype={transtype} //тип транзакции доход/расход
-          transactionId={transactionId} //Id транзакции для удаления
-        />
-      }
+      {showModal && (
+        <UniversalModal toggleModal={toggleModal}>
+          <p className={styles.modalTitle}>Вы уверены?</p>
 
           <button type="button" onClick={onDelete} className={styles.modalBtn}>
             Да
@@ -60,7 +64,7 @@ function IncomePage() {
       )}
 
       <div className={s.balanceHeader}>
-        <Balance />
+        <Balance displayStyle={ true} />
         <GoReports />
       </div>
 
@@ -87,11 +91,24 @@ function IncomePage() {
 
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            <TransactionForm onHandleClick={() => { }} />
-            
-            <div className={s.tableContainer}>
-              <TransactionTable handleModal={handleModal} />
 
-							<div className={s.summaryDesck}>
-								<Summary />
+            <TransactionForm onHandleClick={() => { }} />
+
+            <div className={s.tableContainer}>
+                <TransactionTable handleModal={handleModal} />
+
+              <div className={s.summaryDesck}>
+                <Summary />
               </div>
+
+            </div>
+          </div>
+        </TabPanel>
+
+        <TabPanel></TabPanel>
+      </Tabs>
+    </Section>
+  );
+}
+
+export default IncomePage;

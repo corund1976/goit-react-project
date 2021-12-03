@@ -65,7 +65,6 @@ function ExpensePage() {
 
       <div className={s.balanceHeader}>
         <Balance displayStyle={ true} />
-      
         <GoReports />
       </div>
 

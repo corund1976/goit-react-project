@@ -9,11 +9,13 @@ import Section from "components/Section";
 import UniversalModal from "components/Modal/UniversalModal";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
-import { getAccessToken } from "redux/auth/authSelectors";
+import { getAccessToken, getSid } from "redux/auth/authSelectors";
 import { authOperations } from "redux/auth";
 import transactionOperations from "redux/transactions/transactionOperations";
 
 import s from "components/Modal/Modal.module.css";
+import { userOperations } from "redux/user";
+import { categoriesOperations } from "redux/categories";
 
 const AuthPage = lazy(() =>
   import('pages/AuthPage' /* webpackChunkName: 'AuthPage' */)
