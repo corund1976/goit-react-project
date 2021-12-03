@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
@@ -10,12 +10,11 @@ import Section from "components/Section";
 import Modal from "components/Modal/Modal";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
-// import { getAccessToken } from 'redux/auth/authSelectors';
-
-import transactionOperations from "redux/transactions/transactionOperations";
+import { getAccessToken } from 'redux/auth/authSelectors';
+// import transactionOperations from "redux/transactions/transactionOperations";
 // import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 
-// import api from 'services/kapusta-api';
+import api from 'services/kapusta-api';
 
 const AuthPage = lazy(() =>
   import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
@@ -34,23 +33,32 @@ const ReportPage = lazy(() =>
 );
 
 function App() {
-  // const token = useSelector(getAccessToken);
+  const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
+
+  useEffect(() => {
+    if (accessToken) api.token.set(accessToken);
+  }, [accessToken]);
+
+
+
+
   // useEffect(() => {
   //   if (token) api.token.set(token);
   // }, [token]);
 
+
+  // const onDelete = (transactionId) => {
+  //   dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+  // };
+
   // const expenseTransactions = useSelector(getExpenseTransactions);
-  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(transactionOperations.handleGetExpense());
   // }, [dispatch]);
-  const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
 
-  const onDelete = (transactionId) => {
-    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
-  };
+  const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);

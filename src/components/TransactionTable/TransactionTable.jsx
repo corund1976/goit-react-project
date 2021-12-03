@@ -75,6 +75,7 @@ const TransactionTable = ({ transtype, onClick }) => {
                           </clipPath>
                         </defs>
                       </svg>
+
                     </button>
                   </td>
                 </tr>

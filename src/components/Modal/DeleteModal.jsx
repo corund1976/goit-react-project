@@ -9,8 +9,10 @@ const DeleteModal = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const portalModal = document.querySelector("#nodalRoot");
 
+
   const onDelete = (transactionId) => {
-    dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+    dispatch(transactionOperations.handleDeleteIncome(transactionId));
+    dispatch(transactionOperations.handleDeleteExpense(transactionId));
   };
 
   const modalEscape = (e) => {

@@ -43,7 +43,11 @@ const Header = ({ onClick }) => {
 
               <span className={s.span}></span>
 
-              <button type="button" className={s.exitButton} onClick={onClick}>
+              <button
+                type="button"
+                className={s.exitButton}
+                onClick={onClick}
+              >
                 Выйти
               </button>
 

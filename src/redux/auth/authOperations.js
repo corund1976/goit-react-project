@@ -31,7 +31,7 @@ const handleRegister = (credentials) => (dispatch) => {
     .catch((error) => dispatch(authActions.registerError(error.message)));
 };
 
-const handleLogout = () => (dispatch) => {
+const handleLogout = () => dispatch => {
   dispatch(authActions.logoutRequest());
 
   api
@@ -56,6 +56,8 @@ const handleRefresh = (sessionId) => (dispatch, getState) => {
     api
       .refresh(sessionId)
       .then(({ data }) => {
+        // console.log(data);
+        api.token.set(data.newAccessToken);
         dispatch(authActions.refreshSuccess(data));
       })
       .catch((error) => dispatch(authActions.refreshError(error.message)));
