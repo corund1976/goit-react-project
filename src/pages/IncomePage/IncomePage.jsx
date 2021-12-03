@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-import Section from 'components/Section';
-import Balance from 'components/Balance';
-import GoReports from 'components/GoReports';
-import Summary from 'components/Summary';
-import TransactionForm from 'components/TransactionForm';
-import TransactionTable from 'components/TransactionTable';
-import DeleteModal from 'components/Modal/DeleteModal';
+import Section from "components/Section";
+import Balance from "components/Balance";
+import GoReports from "components/GoReports";
+import Summary from "components/Summary";
+import TransactionForm from "components/TransactionForm";
+import TransactionTable from "components/TransactionTable";
+import DeleteModal from "components/Modal/DeleteModal";
 
-import transactionOperations from 'redux/transactions/transactionOperations';
-import { getExpenseTransactions, getIncomeTransactions } from 'redux/transactions/transactionSelectors';
+import transactionOperations from "redux/transactions/transactionOperations";
+import {
+  getExpenseTransactions,
+  getIncomeTransactions,
+} from "redux/transactions/transactionSelectors";
 
-import s from './IncomePage.module.css';
+import s from "./IncomePage.module.css";
 
 function IncomePage() {
   const [showModal, setShowModal] = useState(false);
@@ -42,24 +45,23 @@ function IncomePage() {
     <Section>
       {showModal && <DeleteModal toggleModal={toggleModal} />}
 
-      <div className={ s.balanceHeader}>
+      <div className={s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
 
       <Tabs className={s.tabs}>
-        
         <TabList className={s.tabList}>
-          <NavLink to='/expense'>
+          <NavLink activeClassName={s.active} className={s.link} to="/expense">
             <Tab
               // selectedClassName={s.active}
-              className={s.tab}
+              className={s.tab_left}
             >
               Расход
             </Tab>
-          </NavLink >
+          </NavLink>
 
-          <NavLink to='/income'>
+          <NavLink to="/income">
             <Tab
               // selectedClassName={s.active}
               className={s.tab}
@@ -68,25 +70,22 @@ function IncomePage() {
             </Tab>
           </NavLink>
         </TabList>
-               
-				<TabPanel className={s.tabPanel}>
+
+        <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            
-            <TransactionForm transtype={'доходы'} onHandleClick={() => { }} />
-            
+            <TransactionForm transtype={"доходы"} onHandleClick={() => {}} />
+
             <div className={s.tableContainer}>
-              
-              <TransactionTable transtype={'доходы'} onClick={toggleModal}/>
-              
-							<div className={s.summaryDesck}>
-								<Summary transtype={'доходы'}/>
+              <TransactionTable transtype={"доходы"} onClick={toggleModal} />
+
+              <div className={s.summaryDesck}>
+                <Summary transtype={"доходы"} />
               </div>
-              
-						</div>
-					</div>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel> </TabPanel>
-			</Tabs>
+      </Tabs>
     </Section>
   );
 }
