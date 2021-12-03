@@ -9,12 +9,14 @@ import GoReports from "components/GoReports";
 import Summary from "components/Summary";
 import TransactionForm from "components/TransactionForm";
 import TransactionTable from "components/TransactionTable";
-import DeleteModal from "components/Modal/DeleteModal";
+import UniversalModal from "components/Modal/UniversalModal";
+import styles from "components/Modal/Modal.module.css";
 
 import {
   getExpenseTransactions,
   getIncomeTransactions,
 } from "redux/transactions/transactionSelectors";
+import { transactionOperations } from "redux/transactions";
 
 import s from "./ExpensePage.module.css";
 
@@ -39,14 +41,27 @@ function ExpensePage() {
   //   : dispatch(transactionOperations.handleGetIncome());
   // }, [transtype]);
 
+  const onDelete = () => {
+    transtype === "expense"
+      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
+      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
+    handleModal();
+  };
+
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
+
   return (
     <Section>
       {showModal && (
-        <DeleteModal
-          toggleModal={handleModal} //статус модалки "видима-невидима"
-          transtype={transtype} //тип транзакции доход/расход
-          transactionId={transactionId} //Id транзакции для удаления
-        />
+        <UniversalModal toggleModal={toggleModal}>
+          <p className={styles.modalTitle}>Вы уверены?</p>
+
+          <button type="button" onClick={onDelete} className={styles.modalBtn}>
+            Да
+          </button>
+        </UniversalModal>
       )}
 
       <div className={s.balanceHeader}>

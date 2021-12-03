@@ -12,14 +12,16 @@ import Section from "components/Section";
 // import { useDispatch } from "react-redux";
 // import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
 
-import Modal from "components/Modal/Modal";
+import UniversalModal from "components/Modal/UniversalModal";
+import s from "components/Modal/Modal.module.css";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
-import { getAccessToken } from 'redux/auth/authSelectors';
+import { getAccessToken } from "redux/auth/authSelectors";
+import { authOperations } from "redux/auth";
 // import transactionOperations from "redux/transactions/transactionOperations";
 // import { getExpenseTransactions } from 'redux/transactions/transactionSelectors';
 
-import api from 'services/kapusta-api';
+import api from "services/kapusta-api";
 
 const AuthPage = lazy(() =>
   import("pages/AuthPage" /* webpackChunkName: "AuthPage" */)
@@ -45,13 +47,9 @@ function App() {
   //   if (accessToken) api.token.set(accessToken);
   // }, [accessToken]);
 
-
-
-
   // useEffect(() => {
   //   if (token) api.token.set(token);
   // }, [token]);
-
 
   // const onDelete = (transactionId) => {
   //   dispatch(transactionOperations.handleDeleteTransaction(transactionId));
@@ -69,16 +67,32 @@ function App() {
     setShowModal((prevState) => !prevState);
   };
 
+  const handleLogOut = () => {
+    dispatch(authOperations.handleLogout());
+    toggleModal();
+  };
+
   return (
     <>
       <Header onClick={toggleModal} />
       <MainPage>
         <Section>
-          {showModal && <Modal toggleModal={toggleModal} />}
+          {showModal && (
+            <UniversalModal toggleModal={toggleModal}>
+              <p className={s.modalTitle}>Вы действительно хотите выйти?</p>
+              <button
+                type="button"
+                onClick={handleLogOut}
+                className={s.modalBtn}
+              >
+                Да
+              </button>
+            </UniversalModal>
+          )}
           <Suspense
             fallback={
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
+                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
               </div>
             }
           >

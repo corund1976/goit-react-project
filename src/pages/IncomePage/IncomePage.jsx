@@ -1,26 +1,36 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-import Section from 'components/Section';
-import Balance from 'components/Balance';
-import GoReports from 'components/GoReports';
-import Summary from 'components/Summary';
-import TransactionForm from 'components/TransactionForm';
-import TransactionTable from 'components/TransactionTable';
-import DeleteModal from 'components/Modal/DeleteModal';
+import Section from "components/Section";
+import Balance from "components/Balance";
+import GoReports from "components/GoReports";
+import Summary from "components/Summary";
+import TransactionForm from "components/TransactionForm";
+import TransactionTable from "components/TransactionTable";
+import UniversalModal from "components/Modal/UniversalModal";
+import styles from "components/Modal/Modal.module.css";
 
-import transactionOperations from 'redux/transactions/transactionOperations';
-import { getExpenseTransactions, getIncomeTransactions } from 'redux/transactions/transactionSelectors';
+import transactionOperations from "redux/transactions/transactionOperations";
+import {
+  getExpenseTransactions,
+  getIncomeTransactions,
+} from "redux/transactions/transactionSelectors";
 
-import s from './IncomePage.module.css';
+import s from "./IncomePage.module.css";
 
 function IncomePage() {
   const [showModal, setShowModal] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
 
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
+  };
+
+  const handleModal = (id) => {
+    setShowModal((prevState) => !prevState);
+    setTransactionId(id);
   };
 
   const dispatch = useDispatch();
@@ -38,28 +48,42 @@ function IncomePage() {
       : dispatch(transactionOperations.handleGetIncome());
   }, []);
 
+  const onDelete = () => {
+    transtype === "expense"
+      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
+      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
+    handleModal();
+  };
+
   return (
     <Section>
-      {showModal && <DeleteModal toggleModal={toggleModal} />}
+      {showModal && (
+        <UniversalModal toggleModal={toggleModal}>
+          <p className={styles.modalTitle}>Вы уверены?</p>
 
-      <div className={ s.balanceHeader}>
+          <button type="button" onClick={onDelete} className={styles.modalBtn}>
+            Да
+          </button>
+        </UniversalModal>
+      )}
+
+      <div className={s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
 
       <Tabs className={s.tabs}>
-        
         <TabList className={s.tabList}>
-          <NavLink to='/expense'>
+          <NavLink to="/expense">
             <Tab
               // selectedClassName={s.active}
               className={s.tab}
             >
               Расход
             </Tab>
-          </NavLink >
+          </NavLink>
 
-          <NavLink to='/income'>
+          <NavLink to="/income">
             <Tab
               // selectedClassName={s.active}
               className={s.tab}
@@ -68,25 +92,25 @@ function IncomePage() {
             </Tab>
           </NavLink>
         </TabList>
-               
-				<TabPanel className={s.tabPanel}>
+
+        <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            
-            <TransactionForm transtype={'доходы'} onHandleClick={() => { }} />
-            
+            <TransactionForm transtype={"доходы"} onHandleClick={() => {}} />
+
             <div className={s.tableContainer}>
-              
-              <TransactionTable transtype={'доходы'} onClick={toggleModal}/>
-              
-							<div className={s.summaryDesck}>
-								<Summary transtype={'доходы'}/>
+              <TransactionTable
+                transtype={"доходы"}
+                handleModal={handleModal}
+              />
+
+              <div className={s.summaryDesck}>
+                <Summary transtype={"доходы"} />
               </div>
-              
-						</div>
-					</div>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel> </TabPanel>
-			</Tabs>
+      </Tabs>
     </Section>
   );
 }
