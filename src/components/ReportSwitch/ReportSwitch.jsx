@@ -34,6 +34,7 @@ function ReportSwitch({
               <use href={svg} />
             </svg>
             <span className={s.title}>{title}</span>
+            <div className={s.backForSvg}></div>
           </li>
         );
       }

@@ -5,10 +5,10 @@
   border-radius: 30px;
   height: 80px;
 
-  display: flex;
-  justify-content: center;
-  padding-left: 20px;
-
+  /* display: flex; */
+  /* justify-content: center; */
+  /* padding-left: 20px; */
+  margin: 0 auto;
   height: 422px;
 }
 .list {
