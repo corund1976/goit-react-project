@@ -13,29 +13,35 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
   // console.log(findCategoryEqualToActive);
   if (findCategoryEqualToActive) {
     dataForChart = Object.entries(findCategoryEqualToActive[1])
-      // .splice(
+      //   .splice(
+      //   Object.entries(findCategoryEqualToActive[1]).findIndex(
+      //     (item) => item[0] === "total"
+      //   ),
+      //   1
+      // );
+      // console.log(
       //   Object.entries(findCategoryEqualToActive[1]).findIndex(
       //     (item) => item[0] === "total"
       //   )
-      // )
+      // );
+      // console.log(dataForChart);
 
-      .map(([subCategory, sum]) => {
+      .map(([subCategoryFromArr, sumFromArr]) => {
         return {
-          // [subCategory]: subCategory,
-          // [sum]: sum,
-          Подкатегория: subCategory,
-          Сумма: sum,
+          [subCategory]: subCategoryFromArr,
+          [sum]: sumFromArr,
+          // Подкатегория: subCategory,
+          // Сумма: sum,
         };
       })
-      // .filter((item) => item.subCategory !== "total")
-      .filter(({ Подкатегория }) => Подкатегория !== "total")
+      .filter((item) => item[subCategory] !== "total")
+      // .filter(({ Подкатегория }) => Подкатегория !== "total")
 
       .sort((a, b) => {
         return a[sum] - b[sum];
       });
   }
   if (!dataForChart) dataForChart = [];
-  useEffect(() => {}, []);
   return (
     <section className={s.container}>
       {!!dataForChart.length && (

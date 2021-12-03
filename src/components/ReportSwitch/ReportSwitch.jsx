@@ -39,7 +39,6 @@ function ReportSwitch({
       }
     })
     .filter((item) => item !== undefined);
-  useEffect(() => {}, []);
   return (
     <div className={s.container}>
       <div className={s.switch_button}>

@@ -44,7 +44,7 @@ function ReportPage() {
     setActiveCategoryOfTransaction(e.target.closest("LI").dataset.id);
   };
   useEffect(() => {
-    if (arrTransactionsOfMonth.length > 0) {
+    if (arrTransactionsOfMonth.length) {
       setActiveCategoryOfTransaction(arrTransactionsOfMonth[0][0]);
     }
   }, [arrEexpensesOfMonth, arrIncomesOfMonth, activeTypeOfTransactions]);
