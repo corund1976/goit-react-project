@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BtnConfirmBalance from './BtnConfirmBalance'
 // import userOperations from "redux/user/userOperations";
 import { getBalance } from "redux/balance/balanceSelectors";
-import BalanceModal from "./BalanceModal";
+import BalanceModal from "../Modal/BalanceModal";
 
 const Balance = ({ displayStyle}) => {
   const initialBalance = useSelector(getBalance);

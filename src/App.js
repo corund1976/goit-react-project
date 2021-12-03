@@ -1,19 +1,19 @@
-import { useState, Suspense, lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Switch } from 'react-router-dom';
-import Loader from 'react-loader-spinner';
+import { Suspense, lazy, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Switch } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
-import Header from 'components/Header';
-import MainPage from 'components/MainPage';
-import Section from 'components/Section';
-import Modal from 'components/Modal/Modal';
+import Header from "components/Header";
+import MainPage from "components/MainPage";
+import Section from "components/Section";
+import UniversalModal from "components/Modal/UniversalModal";
 
-import { routes, PublicRoute, PrivateRoute } from 'routes';
-import { getAccessToken, getSid } from 'redux/auth/authSelectors';
-import { authOperations } from 'redux/auth';
-import { userOperations } from 'redux/user';
-import { transactionOperations } from 'redux/transactions';
-import { categoriesOperations } from 'redux/categories';
+import { routes, PublicRoute, PrivateRoute } from "routes";
+import { getAccessToken } from "redux/auth/authSelectors";
+import { authOperations } from "redux/auth";
+import transactionOperations from "redux/transactions/transactionOperations";
+
+import s from "components/Modal/Modal.module.css";
 
 const AuthPage = lazy(() =>
   import('pages/AuthPage' /* webpackChunkName: 'AuthPage' */)
@@ -58,6 +58,11 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   
   const toggleModal = () => setShowModal((prevState) => !prevState);
+
+  const handleLogOut = () => {
+    dispatch(authOperations.handleLogout());
+    toggleModal();
+  };
   
   return (
     <>
@@ -65,13 +70,22 @@ function App() {
 
       <MainPage>
         <Section>
-          {showModal &&
-            <Modal toggleModal={toggleModal} />
-          }
+          {showModal && (
+            <UniversalModal toggleModal={toggleModal}>
+              <p className={s.modalTitle}>Вы действительно хотите выйти?</p>
+              <button
+                type="button"
+                onClick={handleLogOut}
+                className={s.modalBtn}
+              >
+                Да
+              </button>
+            </UniversalModal>
+          )}
           <Suspense
             fallback={
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
               </div>
             }
           >
