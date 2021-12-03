@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Section from 'components/Section';
@@ -12,7 +12,7 @@ import TransactionTable from 'components/TransactionTable';
 import DeleteModal from 'components/Modal/DeleteModal';
 
 import transactionOperations from 'redux/transactions/transactionOperations';
-import categoriesOperations from 'redux/categories/categoriesOperations';
+import { getExpenseTransactions, getIncomeTransactions } from 'redux/transactions/transactionSelectors';
 
 import s from './IncomePage.module.css';
 
@@ -25,11 +25,18 @@ function IncomePage() {
 
   const dispatch = useDispatch();
 
+  const expenses = useSelector(getExpenseTransactions);
+  const incomes = useSelector(getIncomeTransactions);
+
+  const { pathname } = useLocation();
+
+  const transtype = pathname.slice(1);
+
   useEffect(() => {
-    dispatch(transactionOperations.handleGetIncome());
-    dispatch(transactionOperations.handlePostIncome());
-    dispatch(categoriesOperations.handleGetIncomeCategories());
-  }, [dispatch]);
+    transtype === "expense"
+      ? dispatch(transactionOperations.handleGetExpense())
+      : dispatch(transactionOperations.handleGetIncome());
+  }, []);
 
   return (
     <Section>

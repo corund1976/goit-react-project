@@ -1,19 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import cliTruncate from "cli-truncate";
 
 import {
   getIncomeTransactions,
   getExpenseTransactions,
 } from "redux/transactions/transactionSelectors";
-import transactionOperations from "redux/transactions/transactionOperations";
 import s from "./TransactionTable.module.css";
 
-const TransactionTable = ({ transtype, onClick }) => {
+const TransactionTable = ({ transtype, handleModal }) => {
   const incomes = useSelector(getIncomeTransactions);
   const expenses = useSelector(getExpenseTransactions);
 
   const transactions = transtype === "доходы" ? incomes : expenses;
 
+  const onDelete = e => handleModal(e.currentTarget.id);
+  
   return (
     <div className={s.dataContainer}>
       <div className={(s.bodyTable, s.bodyTable320)}>
@@ -32,7 +33,7 @@ const TransactionTable = ({ transtype, onClick }) => {
         <div className={s.bodyTableScroll}>
           <table className={(s.main, s.mainTbody)}>
             <tbody>
-              {transactions.map((item) => (
+              {transactions.map(item => (
                 <tr className={s.tr} key={item._id}>
                   <td className={s.tdData}>{item.date}</td>
 
@@ -55,8 +56,8 @@ const TransactionTable = ({ transtype, onClick }) => {
                   <td className={s.thIcon}>
                     <button
                       className={s.deleteBtn}
-                      // onClick={() => onDelete(item._id)}
-                      onClick={onClick}
+                      id={item._id}
+                      onClick={onDelete}
                     >
                       <svg
                         className={s.deleteBtnIcon}
@@ -75,9 +76,9 @@ const TransactionTable = ({ transtype, onClick }) => {
                           </clipPath>
                         </defs>
                       </svg>
-
                     </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>

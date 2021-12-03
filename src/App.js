@@ -41,9 +41,9 @@ function App() {
   const dispatch = useDispatch();
   const accessToken = useSelector(getAccessToken);
 
-  useEffect(() => {
-    if (accessToken) api.token.set(accessToken);
-  }, [accessToken]);
+  // useEffect(() => {
+  //   if (accessToken) api.token.set(accessToken);
+  // }, [accessToken]);
 
 
 
