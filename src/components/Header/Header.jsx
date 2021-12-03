@@ -18,7 +18,7 @@ const Header = ({ onClick }) => {
     <>
       <header className={s.header}>
         <div className={s.navDiv}>
-          <Link to="/">
+          <Link to="/expense">
             <img
               src={logo}
               alt="logo"

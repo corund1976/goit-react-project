@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import Header from "components/Header";
@@ -22,12 +22,6 @@ const AuthPage = lazy(() =>
 );
 const HomePage = lazy(() =>
   import('pages/HomePage' /* webpackChunkName: 'HomePage' */)
-);
-const ExpensePage = lazy(() =>
-  import('pages/ExpensePage' /* webpackChunkName: 'ExpensePage' */)
-);
-const IncomePage = lazy(() =>
-  import('pages/IncomePage' /* webpackChunkName: 'IncomePage' */)
 );
 const ReportPage = lazy(() =>
   import('pages/ReportPage' /* webpackChunkName: 'ReportPage' */)
@@ -92,25 +86,23 @@ function App() {
             }
           >
             <Switch>
-              <PublicRoute path={routes.auth} redirectTo={routes.home}>
+              <PublicRoute path={routes.auth} redirectTo={routes.expense}>
                 <AuthPage />
               </PublicRoute>
 
-              <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
+              <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
                 <HomePage />
               </PrivateRoute>
 
-              <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
-                <ExpensePage />
-              </PrivateRoute>
-
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
-                <IncomePage />
+                <HomePage />
               </PrivateRoute>
 
               <PrivateRoute path={routes.report} redirectTo={routes.auth}>
                 <ReportPage />
               </PrivateRoute>
+
+              <Redirect to={routes.auth} />
             </Switch>
 
           </Suspense>
@@ -129,3 +121,17 @@ export default App;
 //     </div>
 //   )
 // }
+
+              // <PrivateRoute exact path={routes.home} redirectTo={routes.auth}>
+              //   <HomePage />
+              // </PrivateRoute>
+
+              // <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
+              //   <ExpensePage />
+              // </PrivateRoute>
+
+              // <PrivateRoute path={routes.income} redirectTo={routes.auth}>
+              //   <IncomePage />
+              // </PrivateRoute>
+
+
