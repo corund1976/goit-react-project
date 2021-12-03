@@ -1,4 +1,4 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import Section from "components/Section";
 import GoBack from "components/GoBack";
@@ -7,18 +7,47 @@ import Calendar from "components/Calendar";
 import IncomeExpenseTotal from "components/IncomeExpenseTotal";
 import ReportSwitch from "components/ReportSwitch";
 import ReportChart from "components/ReportChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  expensesOfMonthSelector,
+  incomesOfMonthSelector,
+} from "redux/trans_month_stats/trans_month_stats-selectors";
 
 // import s from './ReportPage.module.css';
 
 function ReportPage() {
-  const [activeCategory, setActiveCategory] = useState("");
-  const [activeTrancaction, setActiveTrancaction] = useState("");
+  const [activeTypeOfTransactions, setActiveTypeOfTransactions] =
+    useState("Расходы");
+  const [activeCategoryOfTransactions, setActiveCategoryOfTransaction] =
+    useState("");
 
-  const getActiveCategory = (category, typeOfTrancaction) => {
-    setActiveCategory(category);
-    setActiveTrancaction(typeOfTrancaction);
+  const arrEexpensesOfMonth = useSelector(expensesOfMonthSelector);
+  const arrIncomesOfMonth = useSelector(incomesOfMonthSelector);
+
+  // const [stateq, useStateq] = useState(false);
+
+  const arrForMarkup =
+    activeTypeOfTransactions === "Расходы"
+      ? arrEexpensesOfMonth
+      : arrIncomesOfMonth;
+  const arrTransactionsOfMonth =
+    arrForMarkup === undefined ? [] : Object.entries(arrForMarkup);
+  // console.log(arrTransactionsOfMonth[0][0]);
+  // console.log(arrTransactionsOfMonth);
+  const handleChangeCategory = () => {
+    activeTypeOfTransactions === "Расходы"
+      ? setActiveTypeOfTransactions("Доходы")
+      : setActiveTypeOfTransactions("Расходы");
   };
+
+  const toggleActiveCategory = (e) => {
+    setActiveCategoryOfTransaction(e.target.closest("LI").dataset.id);
+  };
+  useEffect(() => {
+    if (arrTransactionsOfMonth.length) {
+      setActiveCategoryOfTransaction(arrTransactionsOfMonth[0][0]);
+    }
+  }, [arrEexpensesOfMonth, arrIncomesOfMonth, activeTypeOfTransactions]);
   return (
     <Section>
       <div>
@@ -26,12 +55,17 @@ function ReportPage() {
         <Balance />
         <Calendar />
       </div>
-
       <IncomeExpenseTotal />
-      <ReportSwitch getActiveCategory={getActiveCategory} />
+      <ReportSwitch
+        activeTypeOfTransactions={activeTypeOfTransactions}
+        activeCategoryOfTransactions={activeCategoryOfTransactions}
+        handleChangeCategory={handleChangeCategory}
+        toggleActiveCategory={toggleActiveCategory}
+        arrTransactionsOfMonth={arrTransactionsOfMonth}
+      />
       <ReportChart
-        activeCategory={activeCategory}
-        activeTrancaction={activeTrancaction}
+        arrTransactionsOfMonth={arrTransactionsOfMonth}
+        activeCategoryOfTransactions={activeCategoryOfTransactions}
       />
     </Section>
   );

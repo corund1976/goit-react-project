@@ -1,12 +1,18 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+
 import { Switch } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import Header from "components/Header";
 import MainPage from "components/MainPage";
 import Section from "components/Section";
+
+// import { useDispatch } from "react-redux";
+// import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
+
 import Modal from "components/Modal/Modal";
 
 import { routes, PublicRoute, PrivateRoute } from "routes";
@@ -65,7 +71,7 @@ function App() {
           <Suspense
             fallback={
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+                <Loader type='Rings' color='#00BFFF' height={100} width={100} />
               </div>
             }
           >
@@ -86,6 +92,7 @@ function App() {
               <PrivateRoute path={routes.income} redirectTo={routes.auth}>
                 <IncomePage />
               </PrivateRoute>
+
               <PrivateRoute path={routes.report} redirectTo={routes.auth}>
                 <ReportPage />
               </PrivateRoute>

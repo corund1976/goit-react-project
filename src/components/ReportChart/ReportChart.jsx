@@ -1,41 +1,47 @@
-import PageTitle from "components/PageTitle/PageTitle";
-import { useSelector } from "react-redux";
 import { ResponsiveBar } from "@nivo/bar";
-import {
-  expensesOfMonthSelector,
-  incomesOfMonthSelector,
-} from "redux/trans_month_stats/trans_month_stats-selectors";
+import { useEffect } from "react";
+
 import s from "./ReportChart.module.css";
 
-function ReportChart({ activeCategory, activeTrancaction }) {
-  const arrExpenses = useSelector(expensesOfMonthSelector);
-  const arrIncomes = useSelector(incomesOfMonthSelector);
+function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
   let dataForChart = [];
-
-  const arrForFilter =
-    activeTrancaction === "Расходы" ? arrExpenses : arrIncomes;
-
-  const selectedCategoryToArray =
-    arrForFilter === undefined ? [] : Object.entries(arrForFilter);
-
-  const findCategoryEqualToActive = selectedCategoryToArray.find(
-    (item) => item[0] === activeCategory
+  const sum = "Сумма";
+  const subCategory = "Подкатегория";
+  const findCategoryEqualToActive = arrTransactionsOfMonth.find(
+    (item) => item[0] === activeCategoryOfTransactions
   );
+  // console.log(findCategoryEqualToActive);
   if (findCategoryEqualToActive) {
     dataForChart = Object.entries(findCategoryEqualToActive[1])
-      .splice(1)
-      .map((item) => {
+      //   .splice(
+      //   Object.entries(findCategoryEqualToActive[1]).findIndex(
+      //     (item) => item[0] === "total"
+      //   ),
+      //   1
+      // );
+      // console.log(
+      //   Object.entries(findCategoryEqualToActive[1]).findIndex(
+      //     (item) => item[0] === "total"
+      //   )
+      // );
+      // console.log(dataForChart);
+
+      .map(([subCategoryFromArr, sumFromArr]) => {
         return {
-          Подкатегория: item[0],
-          Сумма: item[1],
+          [subCategory]: subCategoryFromArr,
+          [sum]: sumFromArr,
+          // Подкатегория: subCategory,
+          // Сумма: sum,
         };
       })
+      .filter((item) => item[subCategory] !== "total")
+      // .filter(({ Подкатегория }) => Подкатегория !== "total")
+
       .sort((a, b) => {
-        return a.Сумма - b.Сумма;
+        return a[sum] - b[sum];
       });
   }
   if (!dataForChart) dataForChart = [];
-
   return (
     <section className={s.container}>
       {!!dataForChart.length && (
@@ -62,6 +68,7 @@ function ReportChart({ activeCategory, activeTrancaction }) {
           }}
         />
       )}
+      {!dataForChart.length && <p>No Data Available</p>}
     </section>
   );
 }
