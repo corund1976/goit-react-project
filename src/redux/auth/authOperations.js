@@ -50,13 +50,10 @@ const handleRefresh = (sessionId) => (dispatch, getState) => {
 
   if (accessToken) {
     api.token.set(refreshToken);
-
     dispatch(authActions.refreshRequest());
-
     api
       .refresh(sessionId)
       .then(({ data }) => {
-        // console.log(data);
         api.token.set(data.newAccessToken);
         dispatch(authActions.refreshSuccess(data));
       })

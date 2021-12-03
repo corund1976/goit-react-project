@@ -25,6 +25,7 @@ const Modal = ({ toggleModal }) => {
     return () => {
       window.removeEventListener("keydown", modalEscape);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clickBackdrop = (event) => {

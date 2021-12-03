@@ -11,11 +11,11 @@ import TransactionForm from 'components/TransactionForm';
 import TransactionTable from 'components/TransactionTable';
 import DeleteModal from 'components/Modal/DeleteModal';
 
-import transactionOperations from 'redux/transactions/transactionOperations';
+import { transactionOperations } from 'redux/transactions';
 
-import s from './IncomePage.module.css';
+import s from './ExpensePage.module.css';
 
-function IncomePage() {
+function ExpensePage() {
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
   const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
   
@@ -30,10 +30,9 @@ function IncomePage() {
   const transtype = pathname.slice(1);
 
   useEffect(() => {
-    transtype === "expense"
+    transtype === 'expense'
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
 
   return (
@@ -47,13 +46,13 @@ function IncomePage() {
         />
       }
 
-      <div className={ s.balanceHeader}>
+      <div className={s.balanceHeader}>
         <Balance />
         <GoReports />
       </div>
-
+      
       <Tabs className={s.tabs}>
-        
+
         <TabList className={s.tabList}>
           <NavLink to='/expense'>
             <Tab
@@ -73,27 +72,33 @@ function IncomePage() {
             </Tab>
           </NavLink>
         </TabList>
-               
-				<TabPanel className={s.tabPanel}>
+
+        <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            
-            <TransactionForm onHandleClick={() => { }} />
-            
+
+            <TransactionForm
+              onHandleClick={() => { }}
+            />
+
             <div className={s.tableContainer}>
-              <TransactionTable handleModal={handleModal} />
-
-							<div className={s.summaryDesck}>
-								<Summary />
+              <div>
+                <TransactionTable
+                  handleModal={handleModal}
+                />
               </div>
-              
-						</div>
-					</div>
-        </TabPanel>
 
-        <TabPanel> </TabPanel>
-			</Tabs>
+              <div className={s.summaryDesck}>
+                <Summary />
+              </div>
+
+            </div>
+          </div>
+        </TabPanel>
+      
+        <TabPanel></TabPanel>
+      </Tabs>
     </Section>
   );
 }
 
-export default IncomePage;
+export default ExpensePage;

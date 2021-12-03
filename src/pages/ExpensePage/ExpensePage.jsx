@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -11,12 +11,12 @@ import TransactionForm from 'components/TransactionForm';
 import TransactionTable from 'components/TransactionTable';
 import DeleteModal from 'components/Modal/DeleteModal';
 
-import { getExpenseTransactions, getIncomeTransactions } from 'redux/transactions/transactionSelectors';
+import { transactionOperations } from 'redux/transactions';
 
 import s from './ExpensePage.module.css';
 
 function ExpensePage() {
-  const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ "видима-невидима"
+  const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
   const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
   
   const handleModal = (id) => {
@@ -25,23 +25,23 @@ function ExpensePage() {
   };
 
   const dispatch = useDispatch();
+
   const { pathname } = useLocation();
   const transtype = pathname.slice(1);
-  const expenses = useSelector(getExpenseTransactions);
-  const incomes = useSelector(getIncomeTransactions);
 
-  // useEffect(() => {
-  //   transtype === "expense"
-  //     ? dispatch(transactionOperations.handleGetExpense())
-  //     : dispatch(transactionOperations.handleGetIncome());
-  // }, [transtype]);
+  useEffect(() => {
+    transtype === 'expense'
+      ? dispatch(transactionOperations.handleGetExpense())
+      : dispatch(transactionOperations.handleGetIncome());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [transtype]);
 
   return (
     <Section>
 
       {showModal &&
         <DeleteModal
-          toggleModal={handleModal} //статус модалки "видима-невидима"
+          toggleModal={handleModal} //статус модалки 'видима-невидима'
           transtype={transtype} //тип транзакции доход/расход
           transactionId={transactionId} //Id транзакции для удаления
         />
@@ -76,22 +76,16 @@ function ExpensePage() {
 
         <TabPanel className={s.tabPanel}>
           <div className={s.tabPanelContainer}>
-            <TransactionForm
-              transtype={'расходы'}
-              onHandleClick={() => { }}
-            />
+
+            <TransactionForm onHandleClick={() => { }} />
 
             <div className={s.tableContainer}>
-              <div>
-                <TransactionTable
-                  transtype={'расходы'}
-                  handleModal={handleModal}
-                />
-              </div>
+                <TransactionTable handleModal={handleModal} />
 
               <div className={s.summaryDesck}>
-                <Summary transtype={'расходы'} />
+                <Summary />
               </div>
+
             </div>
           </div>
         </TabPanel>

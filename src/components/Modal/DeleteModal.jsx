@@ -27,6 +27,7 @@ const DeleteModal = ({ toggleModal, transtype, transactionId }) => {
     return () => {
       window.removeEventListener("keydown", modalEscape);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clickBackdrop = event => {
