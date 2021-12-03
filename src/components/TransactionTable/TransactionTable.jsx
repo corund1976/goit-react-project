@@ -22,8 +22,7 @@ const TransactionTable = ({ transtype }) => {
 
 	return (
 		<div className={s.dataContainer}>
-      
-			<div className={s.bodyTable}>
+			<div className={(s.bodyTable, s.bodyTable320)}>
 				<table className={s.main}>
 					<thead className={s.theadTable}>
 						<tr>
@@ -51,8 +50,8 @@ const TransactionTable = ({ transtype }) => {
 
 									<td
 										className={
-                      (s.tdSum,
-                      transtype === 'доходы' ? s.tdSum : s.tdSumExpense)
+											(s.tdSum,
+											transtype === 'доходы' ? s.tdSum : s.tdSumExpense)
 										}
 									>
 										{transtype === 'доходы' ? `+` : `-`}

@@ -14,16 +14,24 @@
 .tabPanel {
 	border-radius: 0 30px 30px 30px;
 	box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-
 	background-color: #fff;
 }
 
+@media screen and (min-width: 320px) {
+	.tabPanel {
+		background-color: transparent;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	.tabPanelContainer {
+		padding: 0;
+	}
+}
 .tabList {
 	display: flex;
 	margin: 0;
 	padding: 0;
 }
-
 .tab {
 	display: flex;
 	align-items: center;
@@ -40,6 +48,17 @@
 	border-radius: 20px 20px 0 0;
 	color: #000;
 	background-color: #fafbfd;
+}
+@media screen and (min-width: 320px) {
+	.tabList {
+		position: fixed;
+		bottom: 0;
+	}
+	.tab {
+		height: 53px;
+		border-radius: 0;
+		width: 150px;
+	}
 }
 
 .active {
@@ -90,8 +109,7 @@
 	}
 	.tableContainer {
 		display: flex;
-		margin-left: 20px;
-		margin-right: 20px;
+		justify-content: space-between;
 	}
 }
 
@@ -99,5 +117,14 @@
 	.balanceHeader {
 		margin-bottom: 9px;
 		justify-content: space-between;
+	}
+}
+@media screen and (min-width: 320px) {
+	s.bodyTable320 {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 54px auto 59px;
 	}
 }
