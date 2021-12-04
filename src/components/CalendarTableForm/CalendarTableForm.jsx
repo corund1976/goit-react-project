@@ -16,7 +16,8 @@ function CalendarTableForm({ dateHandle }) {
 				selected={date}
 				onChange={(date) => setDate(date)}
 				className={s.datePicker}
-				 dateFormat="dd/MM/yyyy"
+				dateFormat="dd/MM/yyyy"
+				
 			/>
 		</div>
 	);
