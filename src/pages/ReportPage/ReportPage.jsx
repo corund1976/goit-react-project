@@ -13,6 +13,7 @@ import {
   incomesOfMonthSelector,
 } from "redux/trans_month_stats/trans_month_stats-selectors";
 
+
 function ReportPage() {
   const [activeTypeOfTransactions, setActiveTypeOfTransactions] =
     useState("Расходы");
@@ -42,7 +43,9 @@ function ReportPage() {
     if (arrTransactionsOfMonth.length) {
       setActiveCategoryOfTransaction(arrTransactionsOfMonth[0][0]);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [arrEexpensesOfMonth, arrIncomesOfMonth, activeTypeOfTransactions]);
   return (
     <Section>
