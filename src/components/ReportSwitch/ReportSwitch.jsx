@@ -66,7 +66,7 @@ function ReportSwitch({
         </button>
       </div>
       {!elements.length ? (
-        <p className={s.no_data}>Sorry, no transaction on this period!</p>
+        <p className={s.no_data}>Нет трансакций за выбранный период!</p>
       ) : (
         <ul className={s.list}>{elements}</ul>
       )}
