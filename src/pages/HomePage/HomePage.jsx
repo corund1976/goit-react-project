@@ -1,23 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, Tabs, TabList } from 'react-tabs';
 
-import Section from "components/Section";
-import Balance from "components/Balance";
-import GoReports from "components/GoReports";
-import Summary from "components/Summary";
-import TransactionForm from "components/TransactionForm";
-import TransactionTable from "components/TransactionTable";
+import Balance from 'components/Balance';
+import GoReports from 'components/GoReports';
+import Summary from 'components/Summary';
+import TransactionForm from 'components/TransactionForm';
+import TransactionTable from 'components/TransactionTable';
 import BtnConfirmBalance from 'components/Balance/BtnConfirmBalance';
-import UniversalModal from "components/Modal/UniversalModal";
-import styles from "components/Modal/Modal.module.css";
-
+import UniversalModal from 'components/Modal/UniversalModal';
 
 import transactionOperations from 'redux/transactions/transactionOperations';
-import categoriesOperations from 'redux/categories/categoriesOperations';
 
 import s from './HomePage.module.css';
+import styles from 'components/Modal/Modal.module.css';
 
 function HomePage() {
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
@@ -34,14 +31,14 @@ function HomePage() {
   const transtype = pathname.slice(1);
 
   useEffect(() => {
-    transtype === "expense"
+    transtype === 'expense'
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
 
   const onDelete = () => {
-    transtype !== "expense"
+    transtype !== 'expense'
       ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
       : dispatch(transactionOperations.handleDeleteExpense(transactionId));
     handleModal();
@@ -52,66 +49,95 @@ function HomePage() {
   };
 
   return (
-    <Section>
+    <section className={s.sectionHomePage}>
       {showModal && (
         <UniversalModal toggleModal={toggleModal}>
-          <p className={styles.modalTitle}>Вы уверены?</p>
+          <p className={styles.modalTitle}>
+            Вы уверены?
+          </p>
 
-          <button type="button" onClick={onDelete} className={styles.modalBtn}>
+          <button
+            type='button'
+            onClick={onDelete}
+            className={styles.modalBtn}
+          >
             Да
           </button>
         </UniversalModal>
       )}
 
-      <div className={s.balanceHeader}>
-        <Balance displayStyle={ true} />
-        <GoReports />
+      <div className={s.containerBalanceGoReports}>
+        <Balance displayStyle={true} />
+        <GoReports className={s.goReports}/>
       </div>
 
-      <Tabs className={s.tabs}>
-        <TabList className={s.tabList}>
-          <NavLink to="/expense">
-            <Tab
-              // selectedClassName={s.active}
-              className={s.tab}
-            >
+      <Tabs>
+      {/* <Tabs className={s.containerTabsFormTableSummary}> */}
+        <TabList className={s.containerTabsList}>
+          <NavLink
+            to='/expense'
+            className={s.link}
+            activeClassName={s.active}
+          >
+            <Tab className={s.tab}>
               Расход
             </Tab>
           </NavLink>
 
-          <NavLink to="/income">
-            <Tab
-              // selectedClassName={s.active}
-              className={s.tab}
-            >
+          <NavLink
+            to='/income'
+            className={s.link}
+            activeClassName={s.active}
+          >
+            <Tab className={s.tab}>
               Доход
             </Tab>
           </NavLink>
         </TabList>
 
-        <TabPanel className={s.tabPanel}>
-          <div className={s.tabPanelContainer}>
+        <div className={s.containerFormTableSummary}>
 
-            <TransactionForm onHandleClick={() => { }} />
+          <TransactionForm onHandleClick={() => {}} />
 
-            <div className={s.tableContainer}>
-                <TransactionTable handleModal={handleModal} />
+          <div className={s.containerTableSummary}>
+              <TransactionTable handleModal={handleModal} />
 
-              <div className={s.summaryDesck}>
-                <Summary />
-              </div>
-
+            <div className={s.summary}>
+              <Summary />
             </div>
-          </div>
-        </TabPanel>
 
-        <TabPanel></TabPanel>
+          </div>
+        </div>
       </Tabs>
-    </Section>
+    </section>
   );
 }
 
 export default HomePage;
+// import { useBreakpoint } from 'react-use-size';
+// const width = useBreakpoint(768);
+
+// import { useWindowSize } from 'react-use-size';
+// const { width } = useWindowSize();
+
+
+// <Container>
+//   {width > 767 && (
+//     <div className={style.balanceWrap}>
+//       <Balance />
+//       <Reports />
+//     </div>
+//   )}
+
+//   <TransactionContainer>
+//     <BalanceForm category={category} submitData={submitData} />
+//     <div className={style.wrapper}>
+//       {width > 767 && <TransactionTable costList={costList} fnRemove={handleDeleteExpence} styleOption={true} />}
+//       {width > 767 && <Summary summary={summary} />}
+//     </div>
+//   </TransactionContainer>
+// </Container>
+
 
 // import React from 'react';
 // import { Redirect } from 'react-router-dom';

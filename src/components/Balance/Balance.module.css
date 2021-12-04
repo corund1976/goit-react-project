@@ -5,7 +5,9 @@
   text-align: center;
   line-height: 1.17;
   color: #52555fb2;
+
   margin-bottom: 6px;
+  margin-top: 0;
 }
 .balance_submit {
   display: inline-block;
@@ -49,23 +51,26 @@
   position: absolute;
   top: 9px;
   font-weight: bold;
-  content: 'UAH';
+  content: "UAH";
   right: 12px;
   font-size: 10px;
 }
 
 @media screen and (min-width: 768px) {
+  .balance_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 66px; */
+    padding-left: 20px;
+  }
+
   .balance_submit {
     border-radius: 16px;
     margin-left: 15px;
   }
   .balance_value {
     border-radius: 16px;
-  }
-  .balance_form {
-    display: flex;
-    justify-content: center;
-    margin-left: 66px;
   }
   .balance_title {
     margin-bottom: 0px;
@@ -75,27 +80,10 @@
     position: absolute;
     top: 16px;
     font-weight: bold;
-    content: 'UAH';
+    content: "UAH";
     right: 12px;
     font-size: 10px;
   }
-}
-@media screen and (min-width: 1280px) {
-  .balance_submit {
-    border-radius: 16px;
-    margin-left: 15px;
-  }
-  .balance_form {
-    margin: 0 auto;
-  }
-}
-.balance_submit:hover {
-  background-color: #ff751d;
-  color: #ffffff;
-}
-
-.balance_form {
-  position: relative;
 }
 
 @media screen and (max-width: 1279px) {
@@ -103,7 +91,18 @@
     display: none;
   }
 }
+
 @media screen and (min-width: 1280px) {
+  .balance_form {
+    padding-left: 20px;
+    margin: 0 auto;
+  }
+
+  .balance_submit {
+    border-radius: 16px;
+    margin-left: 15px;
+  }
+
   .balance_submit_none {
     height: 44px;
     display: inline-block;
@@ -126,5 +125,10 @@
     cursor: pointer;
     filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .balance_submit:hover {
+    background-color: #ff751d;
+    color: #ffffff;
   }
 }
