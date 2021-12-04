@@ -8,9 +8,12 @@ import IncomeExpenseTotal from "components/IncomeExpenseTotal";
 import ReportSwitch from "components/ReportSwitch";
 import ReportChart from "components/ReportChart";
 import { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
 import {
+  errorSelector,
   expensesOfMonthSelector,
   incomesOfMonthSelector,
+  isLoadingSelector,
 } from "redux/trans_month_stats/trans_month_stats-selectors";
 
 
@@ -22,6 +25,8 @@ function ReportPage() {
 
   const arrEexpensesOfMonth = useSelector(expensesOfMonthSelector);
   const arrIncomesOfMonth = useSelector(incomesOfMonthSelector);
+  const isLoading = useSelector(isLoadingSelector);
+  const error = useSelector(errorSelector);
 
   const arrForMarkup =
     activeTypeOfTransactions === "Расходы"
@@ -57,17 +62,30 @@ function ReportPage() {
         </div>
       </div>
       <IncomeExpenseTotal />
-      <ReportSwitch
-        activeTypeOfTransactions={activeTypeOfTransactions}
-        activeCategoryOfTransactions={activeCategoryOfTransactions}
-        handleChangeCategory={handleChangeCategory}
-        toggleActiveCategory={toggleActiveCategory}
-        arrTransactionsOfMonth={arrTransactionsOfMonth}
-      />
-      <ReportChart
-        arrTransactionsOfMonth={arrTransactionsOfMonth}
-        activeCategoryOfTransactions={activeCategoryOfTransactions}
-      />
+      {!isLoading ? (
+        <>
+          {" "}
+          <ReportSwitch
+            activeTypeOfTransactions={activeTypeOfTransactions}
+            activeCategoryOfTransactions={activeCategoryOfTransactions}
+            handleChangeCategory={handleChangeCategory}
+            toggleActiveCategory={toggleActiveCategory}
+            arrTransactionsOfMonth={arrTransactionsOfMonth}
+          />
+          {error ? (
+            <p>{error.message}</p>
+          ) : (
+            <ReportChart
+              arrTransactionsOfMonth={arrTransactionsOfMonth}
+              activeCategoryOfTransactions={activeCategoryOfTransactions}
+            />
+          )}
+        </>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Loader type='Rings' color='#00BFFF' height={100} width={100} />
+        </div>
+      )}
     </Section>
   );
 }

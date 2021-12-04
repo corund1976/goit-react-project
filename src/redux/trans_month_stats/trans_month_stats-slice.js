@@ -14,12 +14,13 @@ const trans_month_stats = createSlice({
   extraReducers: {
     [getPeriod.pending]: (state, _) => ({
       ...state,
-      error: null,
+
       isLoading: true,
     }),
     [getPeriod.fulfilled]: (state, { payload }) => ({
       ...state,
       data: payload,
+      error: null,
       isLoading: false,
     }),
     [getPeriod.rejected]: (state, { payload }) => ({
