@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { fnForNumberDivide } from "helpers/divideNumber";
 
 import {
   getIncomeMonthStats,
@@ -23,10 +24,14 @@ function Summary() {
   // Делаем разметку из полученных эдементов и ПЕРЕВОРАЧИВАЕМ ее
   const markup = elements
     .map(([month, sum]) => {
+      if (sum === "N/A") sum = 0;
       return (
         <li key={month} className={s.item}>
           <span className={s.month}>{month}</span>
-          <span className={s.sum}>{sum}</span>
+          <span className={s.sum}>
+            {transtype === "expense" ? "-" : "+"}
+            {fnForNumberDivide(sum)}.00 грн.
+          </span>
         </li>
       );
     })

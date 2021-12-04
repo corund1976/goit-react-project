@@ -6,18 +6,24 @@ import {
   totalIncomesOfMonthSelector,
 } from "redux/trans_month_stats/trans_month_stats-selectors";
 
+import { fnForNumberDivide } from "helpers/divideNumber";
 function IncomeExpenseTotal() {
   const expense = useSelector(totalExpensesOfMonthSelector);
   const income = useSelector(totalIncomesOfMonthSelector);
-
   return (
     <div className={s.container}>
       <p className={s.title}>
-        Расходы:&nbsp; <span className={s.outlayQuantityХ}>- {expense}</span>
+        Расходы:&nbsp;{" "}
+        <span className={s.outlayQuantityХ}>
+          - {fnForNumberDivide(expense)}.00 грн.
+        </span>
       </p>
       <span className={s.vertical}></span>
       <p className={s.title}>
-        Доходы: <span className={s.income}>&nbsp;+ {income}</span>
+        Доходы:{" "}
+        <span className={s.income}>
+          &nbsp;+ {fnForNumberDivide(income)}.00 грн.
+        </span>
       </p>
     </div>
   );

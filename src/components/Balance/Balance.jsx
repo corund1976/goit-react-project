@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./Balance.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import BtnConfirmBalance from "./BtnConfirmBalance";
@@ -12,6 +12,9 @@ const Balance = ({ displayStyle }) => {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+  useEffect(() => {
+    setInput(initialBalance);
+  }, [initialBalance]);
 
   return (
     <div className={s.balance_form}>
@@ -20,10 +23,10 @@ const Balance = ({ displayStyle }) => {
       <span className={s.balance_value_span}>
         <input
           className={!displayStyle ? s.balance_value_none : s.balance_value}
-          name="balance"
-          pattern="^[ 0-9]+$"
-          title="поле должно состоять только из цифр"
-          type="number"
+          name='balance'
+          pattern='^[ 0-9]+$'
+          title='поле должно состоять только из цифр'
+          type='number'
           value={input}
           onChange={handleChange}
         />
