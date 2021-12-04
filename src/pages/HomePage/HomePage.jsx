@@ -8,7 +8,6 @@ import GoReports from 'components/GoReports';
 import Summary from 'components/Summary';
 import TransactionForm from 'components/TransactionForm';
 import TransactionTable from 'components/TransactionTable';
-import BtnConfirmBalance from 'components/Balance/BtnConfirmBalance';
 import UniversalModal from 'components/Modal/UniversalModal';
 
 import transactionOperations from 'redux/transactions/transactionOperations';
