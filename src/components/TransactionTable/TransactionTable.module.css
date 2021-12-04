@@ -181,6 +181,10 @@
   .theadTable {
     display: revert;
   }
+
+  .main {
+    width: 605px;
+  }
 }
 
 @media screen and (min-width: 1280px) {

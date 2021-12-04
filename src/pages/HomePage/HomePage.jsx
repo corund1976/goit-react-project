@@ -96,18 +96,17 @@ function HomePage() {
         </TabList>
 
         <div className={s.containerFormTableSummary}>
-
-          <TransactionForm onHandleClick={() => {}} />
-
+          <TransactionForm />
           <div className={s.containerTableSummary}>
-            <TransactionTable handleModal={handleModal} />
 
+            <TransactionTable handleModal={handleModal} />
             <div className={s.summary}>
               <Summary />
             </div>
 
           </div>
         </div>
+
       </Tabs>
     </section>
   );
