@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Tab, Tabs, TabList } from 'react-tabs';
+import { Tab, TabList } from 'react-tabs';
 import { useWindowSize } from 'react-use-size';
 
 import Balance from 'components/Balance';
@@ -17,18 +17,22 @@ import s from './HomePage.module.css';
 import styles from 'components/Modal/Modal.module.css';
 
 function HomePage() {
+  const { width } = useWindowSize(); // Определяем размер окна пользователя
+  const dispatch = useDispatch();
+  // Извлекаем из адресной строки "income" или "expense"
+  const { pathname } = useLocation();
+  const transtype = pathname.slice(1);
+
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
   const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
-  
+  // Хендлер модалки пишет в стейт статус "видима-невидима" и id транзакции УДАЛИТЬ
   const handleModal = (id) => {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
   };
-
-  const dispatch = useDispatch();
-
-  const { pathname } = useLocation();
-  const transtype = pathname.slice(1);
+  // const toggleModal = () => {
+  //   setShowModal((prevState) => !prevState);
+  // };
 
   useEffect(() => {
     transtype === 'expense'
@@ -36,7 +40,7 @@ function HomePage() {
       : dispatch(transactionOperations.handleGetIncome());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
-
+  // Хендлер модалки "Удалить"
   const onDelete = () => {
     transtype !== 'expense'
       ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
@@ -44,16 +48,10 @@ function HomePage() {
     handleModal();
   };
 
-  const toggleModal = () => {
-    setShowModal((prevState) => !prevState);
-  };
-
-  const { width } = useWindowSize();
-
   return (
     <section className={s.sectionHomePage}>
       {showModal && (
-        <UniversalModal toggleModal={toggleModal}>
+        <UniversalModal handleModal={handleModal}>
           <p className={styles.modalTitle}>
             Вы уверены?
           </p>
@@ -73,8 +71,6 @@ function HomePage() {
         <GoReports className={s.goReports}/>
       </div>
 
-      <Tabs>
-      {/* <Tabs className={s.containerTabsFormTableSummary}> */}
         <TabList className={s.containerTabsList}>
           <NavLink
             to='/expense'
@@ -100,25 +96,24 @@ function HomePage() {
         <div className={s.containerFormTableSummary}>
           <TransactionForm />
 
+          {/* <div> */}
           <div className={s.containerTableSummary}>
 
             <TransactionTable handleModal={handleModal} />
             {width > 1279 &&
-            <div className={s.summary}>
-              <Summary />
-            </div>
+              <div className={s.summary}>
+                <Summary />
+              </div>
             }
           </div>
 
         </div>
 
       {width > 767 & width < 1280 &&
-      <div className={s.summary}>
-        <Summary />
-      </div>
+        <div className={s.summary}>
+          <Summary />
+        </div>
       }
-
-      </Tabs>
     </section>
   );
 }
