@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import s from "../Calendar/Calendar.module.css";
 import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import vector from "images/VectorLeft.png";
 import vectorRight from "images/VectorRight.png";
+import { getAccessToken } from "redux/auth/authSelectors";
 
 const monthsArr = [
   {
@@ -25,6 +26,7 @@ const monthsArr = [
 
 const CalendarView = () => {
   const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
   const [nameMonth, setNameMonth] = useState(
     monthsArr.find((el) => el.id === new Date().getMonth() + 1)
   );
@@ -36,12 +38,9 @@ const CalendarView = () => {
       // console.log(monthsArr[nameMonth.id]);
       setNameMonth(monthsArr[nameMonth.id]);
     } else {
-      // console.log(monthsArr[0]);
       setNameMonth(monthsArr[0]);
       setYear(year + 1);
     }
-    // setSelectedDate(`${year}-${nameMonth.id.toString().padStart(2, "0")}`);
-    // dispatch(getPeriod(selectedDate));
   };
 
   const prevNext = () => {
@@ -51,21 +50,18 @@ const CalendarView = () => {
       setNameMonth(monthsArr[monthsArr.length - 1]);
       setYear(year - 1);
     }
-    // setSelectedDate(`${year}-${nameMonth.id.toString().padStart(2, "0")}`);
-    // dispatch(getPeriod(selectedDate));
   };
-  // console.log(nameMonth);
-  // console.log(year);
-  // console.log(selectedDate);
+
   useEffect(() => {
     setSelectedDate(`${year}-${nameMonth.id.toString().padStart(2, "0")}`);
   }, [nameMonth, year]);
 
   useEffect(() => {
     dispatch(getPeriod(selectedDate));
-  }, [selectedDate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDate, accessToken]);
   return (
-    <div className={ s.calendarDiv}>
+    <div className={s.calendarDiv}>
       <p className={s.calendarStyle}>Текущий период</p>
       <div className={s.divCalendar}>
         <button onClick={prevNext} className={s.btnMonth}>
