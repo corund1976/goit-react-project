@@ -55,9 +55,11 @@
 @media screen and (min-width: 1280px) {
   .calendarDiv {
     margin-left: 225px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
 }
-.calendarDiv {
-  margin-bottom: 30px;
+@media screen and (max-width: 767px) {
+  .calendarDiv {
+    margin-bottom: 30px;
+  }
 }
