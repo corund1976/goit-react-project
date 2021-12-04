@@ -44,6 +44,12 @@
   background-color: #f2f5fc;
   filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
 }
+.balance_value_none {
+  composes: balance_value;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-radius: 16px;
+}
 .balance_value_span {
   position: relative;
 }
