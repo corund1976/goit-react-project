@@ -82,7 +82,12 @@
   }
   .balance_value {
     border-radius: 16px;
+    -moz-appearance: textfield;
   }
+  .balance_value::-webkit-inner-spin-button {
+    display: none;
+  }
+
   .balance_title {
     margin-bottom: 0px;
     margin-right: 21px;
