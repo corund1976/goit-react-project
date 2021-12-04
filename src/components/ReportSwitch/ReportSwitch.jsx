@@ -1,6 +1,7 @@
 import { category } from "./categoryList";
 import vector from "images/VectorLeft.png";
 import vectorRight from "images/VectorRight.png";
+import { fnForNumberDivide } from "helpers/divideNumber";
 
 import s from "./ReportSwitch.module.css";
 
@@ -25,7 +26,9 @@ function ReportSwitch({
             onClick={toggleActiveCategory}
             data-id={title}
           >
-            <span className={s.sum}>{card[1].total}.00</span>
+            <span className={s.sum}>
+              {fnForNumberDivide(card[1].total)}.00грн.
+            </span>
             <svg
               className={
                 activeCategoryOfTransactions === title ? s.svg_active : s.svg
@@ -73,7 +76,11 @@ function ReportSwitch({
         </button>
       </div>
       {!elements.length ? (
-        <p className={s.no_data}>Нет трансакций за выбранный период!</p>
+        <p className={s.no_data}>
+          Нет транзакция по типу "
+          {activeTypeOfTransactions === "Расходы" ? "расходы" : "доходы"}" за
+          выбранный период!
+        </p>
       ) : (
         <ul className={s.list}>{elements}</ul>
       )}
