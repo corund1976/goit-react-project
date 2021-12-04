@@ -57,7 +57,7 @@
   position: absolute;
   top: 9px;
   font-weight: bold;
-  content: 'UAH';
+  content: "UAH";
   right: 12px;
   font-size: 10px;
 }
@@ -86,7 +86,7 @@
     position: absolute;
     top: 16px;
     font-weight: bold;
-    content: 'UAH';
+    content: "UAH";
     right: 12px;
     font-size: 10px;
   }
@@ -137,4 +137,8 @@
     background-color: #ff751d;
     color: #ffffff;
   }
+}
+
+.balance_form {
+  position: relative;
 }
