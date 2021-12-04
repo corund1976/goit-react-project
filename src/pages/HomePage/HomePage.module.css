@@ -1,35 +1,31 @@
-.section {
+.sectionHomePage {
+  padding-top: 30px;
+  padding-bottom: 184px;
+}
+
+.containerBalanceGoReports {
+  display: flex;
+  flex-direction: column-reverse;
+
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* .containerTabsFormTableSummary {
   margin-bottom: 40px;
-}
+} */
 
-.tabs {
-  margin-bottom: 40px;
-}
-
-.tabPanelContainer {
-  padding: 30px;
-  padding-bottom: 40px;
-}
-
-.tabPanel {
-  border-radius: 0 30px 30px 30px;
-  box-shadow: 0px 10px 60px r;
-}
-
-.tabPanel {
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-}
-.tabPanelContainer {
-  padding: 0;
-}
-
-.tabList {
+.containerTabsList {
   display: flex;
   margin: 0;
   padding: 0;
+
+  position: fixed;
+  bottom: 0;
+
+  text-decoration: none;
 }
+/* Кнопка навигации - вкладки таблицы Tab  */
 .tab {
   display: flex;
   align-items: center;
@@ -43,7 +39,6 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #000;
   background-color: #fafbfd;
 }
 
@@ -65,92 +60,106 @@
   color: #000;
   background-color: #fafbfd;
 }
-.tabList {
-  position: fixed;
-  bottom: 0;
-  text-decoration: none;
+
+.active {
+  color: #ff751d;
+  /* background-color: black; */
+  /* border: 2px solid black; */
 }
 
-.bodyTable320 {
+.containerFormTableSummary {
+  padding: 30px;
+  padding-bottom: 40px;
+  padding: 0;
+}
+
+/* .bodyTable320 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   margin: 54px auto 59px;
-}
+} */
 
-.active {
-  color: #ff751d;
-  background-color: #fefefe;
-}
-
-.summaryTab {
+/* .summaryTab {
   display: none;
-}
+} */
 
-.summaryDesck {
-  display: none;
-}
-
-.tableContainer {
+.containerTableSummary {
   display: flex;
   justify-content: space-between;
 }
 
-.tableContainer {
-  display: flex;
-  justify-content: space-between;
+.summary {
+  display: none;
 }
 
-.balanceHeader {
-  display: flex;
-  flex-direction: column-reverse;
-  margin-top: 10px;
-  margin-bottom: 40px;
+.link {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {
+  .sectionHomePage {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+
+  .containerBalanceGoReports {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 31px;
+    margin-bottom: 58px;
+  }
+
+  .containerTabsList {
+    position: static;
+  }
+
   .tab {
     border-radius: 20px 20px 0 0;
   }
-  .tab_left {
-    border-radius: 20px 20px 0 0;
-  }
-  .balanceHeader {
-    flex-direction: row;
-    margin-bottom: 58px;
-    margin-top: 20px;
-  }
-  .tabPanel {
+
+  .containerFormTableSummary {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 28px;
+
     background-color: white;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 0px 30px 30px 30px;
   }
-  .tableContainer {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 30px 0 30px;
-  }
 
-  .tabList {
-    position: static;
+  .containerTableSummary {
+    margin: 0 30px 0 30px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .tabPanelContainer {
-    padding: 20px;
-    padding-bottom: 40px;
-  }
-  .tableContainer {
-    margin: 0;
-  }
-  .summaryDesck {
-    display: block;
+  .sectionHomePage {
+    padding-bottom: 83px;
   }
 
-  .balanceHeader {
+  .containerBalanceGoReports {
     margin-bottom: 9px;
-    justify-content: space-between;
+    padding-left: 332px;
+  }
+
+  .containerFormTableSummary {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 33px;
+    padding-bottom: 61px;
+  }
+
+  .containerTableSummary {
+    margin: 0;
+  }
+
+  .summary {
+    display: block;
+    margin-left: 30px;
+    margin-right: 20px;
   }
 }

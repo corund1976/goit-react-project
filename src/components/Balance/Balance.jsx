@@ -25,7 +25,9 @@ const Balance = ({ displayStyle}) => {
 
   return (
     <div className={s.balance_form}>
+
       <p className={s.balance_title}>Баланс:</p>
+
       <span className={s.balance_value_span}>
         <input
           className={s.balance_value}
@@ -37,11 +39,18 @@ const Balance = ({ displayStyle}) => {
           onChange={handleChange}
         />
       </span>
-      <BtnConfirmBalance input={ input} displayStyle={ displayStyle}/>
+
+      <BtnConfirmBalance
+        input={input}
+        displayStyle={displayStyle}
+      />
       {/* <button type="button" className={s.balance_submit} onClick={addBalance}>
         Подтвердить
       </button> */}
-      {!initialBalance && <BalanceModal />}
+
+      {!initialBalance &&
+        <BalanceModal />}
+
     </div>
   );
 };
