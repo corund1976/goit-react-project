@@ -96,7 +96,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
           }
         />
       )}
-      {!dataForChart.length && <p>No Data Available</p>}
+      {!dataForChart.length && <p>Нет данных</p>}
     </section>
   );
 }
