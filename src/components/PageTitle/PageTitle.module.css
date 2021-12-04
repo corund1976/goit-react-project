@@ -2,10 +2,13 @@
   width: 183px;
   height: auto;
   /* margin: 85px 85px auto 40px; */
+  margin-top: 85px;
 }
 
 .authTitleDiv {
-  margin: 85px auto 50px 50px;
+  /* margin: 85px auto 50px 50px; */
+  margin-left: 30px;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -28,13 +31,13 @@
 @media screen and (min-width: 768px) {
   .img {
     width: 308px;
-    margin: 0 auto auto 90px;
+    margin: 90px auto auto 90px;
   }
   .title {
     margin: 5px auto auto 170px;
   }
   .authTitleDiv {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-left: 40px;
   }
 }
