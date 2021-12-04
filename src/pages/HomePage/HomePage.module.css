@@ -67,12 +67,6 @@
   /* border: 2px solid black; */
 }
 
-.containerFormTableSummary {
-  padding: 30px;
-  padding-bottom: 40px;
-  padding: 0;
-}
-
 /* .bodyTable320 {
   display: flex;
   flex-direction: column;
@@ -84,6 +78,12 @@
 /* .summaryTab {
   display: none;
 } */
+
+.containerFormTableSummary {
+  padding: 30px;
+  padding-bottom: 40px;
+  padding: 0;
+}
 
 .containerTableSummary {
   display: flex;
@@ -126,7 +126,7 @@
     padding-right: 30px;
     padding-top: 28px;
 
-    background-color: white;
+    /* background-color: white; */
   }
 
   .containerTableSummary {
