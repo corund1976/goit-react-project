@@ -46,7 +46,9 @@ const TransactionTable = ({ handleModal }) => {
               <tbody>
                 {transactions.map((item) => (
                   <tr className={s.tr} key={item._id}>
-                    <td className={s.tdData}>{item.date}</td>
+                    <td className={s.tdData}>
+                      {item.date}
+                    </td>
 
                     <td className={s.tdDesc} data-tip={item.description}>
                       {cliTruncate(item.description, 15)}
@@ -92,8 +94,9 @@ const TransactionTable = ({ handleModal }) => {
                   </tr>
                 ))
                 .reverse()}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
