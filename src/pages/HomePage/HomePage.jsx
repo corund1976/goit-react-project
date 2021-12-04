@@ -114,8 +114,6 @@ function HomePage() {
 }
 
 export default HomePage;
-// import { useBreakpoint } from 'react-use-size';
-// const width = useBreakpoint(768);
 
 // import { useWindowSize } from 'react-use-size';
 // const { width } = useWindowSize();
@@ -123,17 +121,17 @@ export default HomePage;
 
 // <Container>
 //   {width > 767 && (
-//     <div className={style.balanceWrap}>
+//     <div>
 //       <Balance />
 //       <Reports />
 //     </div>
 //   )}
 
 //   <TransactionContainer>
-//     <BalanceForm category={category} submitData={submitData} />
-//     <div className={style.wrapper}>
-//       {width > 767 && <TransactionTable costList={costList} fnRemove={handleDeleteExpence} styleOption={true} />}
-//       {width > 767 && <Summary summary={summary} />}
+//     <BalanceForm />
+//     <div >
+//       {width > 767 && <TransactionTable />}
+//       {width > 767 && <Summary />}
 //     </div>
 //   </TransactionContainer>
 // </Container>
