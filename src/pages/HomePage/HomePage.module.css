@@ -80,9 +80,9 @@
 } */
 
 .containerFormTableSummary {
-  padding: 30px;
-  padding-bottom: 40px;
-  padding: 0;
+  /* padding: 30px; */
+  /* padding-bottom: 40px; */
+  /* padding: 0; */
 }
 
 .containerTableSummary {
@@ -126,11 +126,20 @@
     padding-right: 30px;
     padding-top: 28px;
 
-    /* background-color: white; */
+    background-color: white;
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
   }
 
   .containerTableSummary {
+    display: block;
     margin: 0;
+  }
+
+  .summary {
+    display: block;
+    margin-left: 30px;
   }
 }
 
@@ -152,12 +161,14 @@
   }
 
   .containerTableSummary {
+    display: flex;
+    justify-content: space-between;
+
     margin: 0;
   }
 
   .summary {
     display: block;
     margin-left: 30px;
-    margin-right: 20px;
   }
 }
