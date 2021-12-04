@@ -1,18 +1,17 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { useBreakpoint } from "react-use-size";
-import { useEffect } from "react";
 
 import s from "./ReportChart.module.css";
 
 function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
   let dataForChart = [];
   const isSmall = useBreakpoint(768);
-
   const sum = "Сумма";
   const subCategory = "Подкатегория";
   const findCategoryEqualToActive = arrTransactionsOfMonth.find(
     (item) => item[0] === activeCategoryOfTransactions
   );
+
   if (findCategoryEqualToActive) {
     dataForChart = Object.entries(findCategoryEqualToActive[1])
       .map(([subCategoryFromArr, sumFromArr]) => {
@@ -30,9 +29,9 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
         }
       });
   }
+
   if (!dataForChart) dataForChart = [];
 
-  // if (isSmall) console.log("small");
   return (
     <section className={s.container}>
       {!!dataForChart.length && (

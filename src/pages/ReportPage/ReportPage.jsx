@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import s from '../ReportPage/ReportPage.module.css'
+import s from "../ReportPage/ReportPage.module.css";
 import Section from "components/Section";
 import GoBack from "components/GoBack";
 import Balance from "components/Balance";
@@ -13,9 +13,6 @@ import {
   incomesOfMonthSelector,
 } from "redux/trans_month_stats/trans_month_stats-selectors";
 
-
-// import s from './ReportPage.module.css';
-
 function ReportPage() {
   const [activeTypeOfTransactions, setActiveTypeOfTransactions] =
     useState("Расходы");
@@ -24,7 +21,6 @@ function ReportPage() {
 
   const arrEexpensesOfMonth = useSelector(expensesOfMonthSelector);
   const arrIncomesOfMonth = useSelector(incomesOfMonthSelector);
-
 
   const arrForMarkup =
     activeTypeOfTransactions === "Расходы"
@@ -46,14 +42,15 @@ function ReportPage() {
     if (arrTransactionsOfMonth.length) {
       setActiveCategoryOfTransaction(arrTransactionsOfMonth[0][0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrEexpensesOfMonth, arrIncomesOfMonth, activeTypeOfTransactions]);
   return (
     <Section>
-      <div className={ s.reportHeaderBalance}>
+      <div className={s.reportHeaderBalance}>
         <GoBack />
-        <div className={ s.calendarBalanceBox}>
-        <Balance displayStyle={ false}/>
-        <Calendar />
+        <div className={s.calendarBalanceBox}>
+          <Balance displayStyle={false} />
+          <Calendar />
         </div>
       </div>
       <IncomeExpenseTotal />

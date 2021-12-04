@@ -3,7 +3,6 @@ import vector from "images/VectorLeft.png";
 import vectorRight from "images/VectorRight.png";
 
 import s from "./ReportSwitch.module.css";
-// import { useEffect } from "react";
 
 function ReportSwitch({
   activeTypeOfTransactions,
@@ -13,6 +12,7 @@ function ReportSwitch({
   arrTransactionsOfMonth,
 }) {
   const elements = category
+    // eslint-disable-next-line array-callback-return
     .map(({ title, svg }) => {
       const card = arrTransactionsOfMonth.find((item) => {
         return item[0] === title;
@@ -34,12 +34,19 @@ function ReportSwitch({
               <use href={svg} />
             </svg>
             <span className={s.title}>{title}</span>
-            <div className={s.backForSvg}></div>
+            <div
+              className={
+                activeCategoryOfTransactions === title
+                  ? s.backforsvg_active
+                  : s.backForSvg
+              }
+            ></div>
           </li>
         );
       }
     })
     .filter((item) => item !== undefined);
+
   return (
     <div className={s.container}>
       <div className={s.switch_button}>
