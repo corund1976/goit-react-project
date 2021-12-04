@@ -1,0 +1,85 @@
+.alltransactions {
+  padding: 0;
+  margin: 0;
+  padding-left: 9px;
+  padding-right: 17px;
+  flex-direction: column;
+  margin-top: 73px;
+}
+.transactions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #f5f6fb;
+}
+.div {
+  width: 25%;
+}
+
+.description {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: #52555f;
+}
+
+.date {
+  font-family: Roboto;
+  font-size: 8px;
+  line-height: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #52555f;
+  margin-top: 3px;
+}
+
+.category {
+  font-family: Roboto;
+  font-size: 8px;
+  line-height: 1.125;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: flex-end;
+  color: #52555f;
+  margin: 0;
+  margin-left: 20px;
+}
+
+.amountIncome {
+  color: #407946;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.16;
+  text-align: right;
+  letter-spacing: 0.04em;
+
+  margin: 0;
+  margin-right: 28px;
+  margin-left: auto;
+}
+.amountExpense {
+  color: #e7192e;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.16;
+  text-align: right;
+  letter-spacing: 0.04em;
+
+  margin: 0;
+  margin-right: 28px;
+  margin-left: auto;
+}
+
+.deleteBtn {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: transparent;
+  background-color: transparent;
+}

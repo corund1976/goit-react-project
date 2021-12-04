@@ -1,3 +1,7 @@
+.dataContainer {
+  width: 100%;
+}
+
 .bodyTable {
   /* width: 97%; */
   table-layout: fixed;
