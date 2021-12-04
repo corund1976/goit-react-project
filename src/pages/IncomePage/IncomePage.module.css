@@ -13,23 +13,17 @@
 
 .tabPanel {
   border-radius: 0 30px 30px 30px;
-  box-shadow: 0px 10px 60px r;
-}
-
-.tabPanel {
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-}
-.tabPanelContainer {
-  padding: 0;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 }
 
 .tabList {
   display: flex;
   margin: 0;
   padding: 0;
+
+  text-decoration: none;
 }
+
 .tab {
   display: flex;
   align-items: center;
@@ -65,23 +59,11 @@
   color: #000;
   background-color: #fafbfd;
 }
-.tabList {
-  position: fixed;
-  bottom: 0;
-  text-decoration: none;
-}
-
-.bodyTable320 {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 54px auto 59px;
-}
 
 .active {
   color: #ff751d;
-  background-color: #fefefe;
+  background-color: black;
+  border: 2px solid black;
 }
 
 .summaryTab {
@@ -92,9 +74,18 @@
   display: none;
 }
 
-.tableContainer {
-  display: flex;
-  justify-content: space-between;
+.tabList {
+  position: fixed;
+  bottom: 0;
+}
+
+.tabPanel {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+.tabPanelContainer {
+  padding: 0;
 }
 
 .tableContainer {
@@ -109,49 +100,65 @@
   margin-bottom: 40px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 768px) {
   .tab {
     border-radius: 20px 20px 0 0;
   }
+
+  .tableContainer {
+    margin: 0 30px 0 30px;
+  }
+
   .tab_left {
     border-radius: 20px 20px 0 0;
   }
+
   .balanceHeader {
     flex-direction: row;
     margin-bottom: 58px;
     margin-top: 20px;
     margin-bottom: 0px;
   }
-  .tabPanel {
+  .tabList {
+    position: static;
+  }
+  .balanceHeader {
+    margin-bottom: 58px;
+  }
+  .tabPanelContainer {
     background-color: white;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 0px 30px 30px 30px;
   }
-  .tableContainer {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 30px 0 30px;
-  }
-
-  .tabList {
-    position: static;
-  }
 }
 
 @media screen and (min-width: 1280px) {
-  .tabPanelContainer {
-    padding: 20px;
-    padding-bottom: 40px;
+  .balanceHeader {
+    margin-bottom: 9px;
+    justify-content: space-between;
   }
   .tableContainer {
     margin: 0;
   }
+  .tabPanelContainer {
+    padding: 20px;
+    padding-bottom: 40px;
+  }
   .summaryDesck {
     display: block;
+    margin-left: 30px;
+    margin-right: 20px;
   }
 
-  .balanceHeader {
-    margin-bottom: 9px;
-    justify-content: space-between;
+  .summaryTab {
+    display: block;
+    padding-bottom: 57px;
+    background-image: url("../../images/homepage/bg-desk-bot.svg");
+    background-repeat: no-repeat;
+    background-position: right bottom 57px;
   }
 }

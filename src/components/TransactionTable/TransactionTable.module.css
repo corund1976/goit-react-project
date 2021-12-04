@@ -5,18 +5,12 @@
   /* overflow-y: hidden; */
 }
 
-@media screen and (min-width: 1280px) {
-  .bodyTable {
-    /* width: 75%; */
-  }
-}
-
 .bodyTableScroll {
   height: 342px;
   overflow-x: hidden;
   margin-top: 0px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #fff;
+  background-color: #f5f6fb;
 }
 
 .bodyTableScroll::-webkit-scrollbar {
@@ -42,12 +36,6 @@
   border-right-style: inset;
   border-right-color: transparent;
   border-left-color: transparent;
-}
-
-@media screen and (min-width: 1280px) {
-  .main {
-    width: 760px;
-  }
 }
 
 .mainTbody {
@@ -163,12 +151,6 @@
   width: 40px;
 }
 
-@media screen and (min-width: 768px) {
-  .theadTable {
-    display: revert;
-  }
-}
-
 .deleteBtn {
   margin-right: auto;
   margin-left: auto;
@@ -193,4 +175,19 @@
 .amountRed {
   color: #e7192e;
   font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .theadTable {
+    display: revert;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bodyTable {
+    /* width: 75%; */
+  }
+  .main {
+    width: 760px;
+  }
 }
