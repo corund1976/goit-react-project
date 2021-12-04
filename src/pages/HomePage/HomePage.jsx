@@ -100,7 +100,7 @@ function HomePage() {
           <TransactionForm onHandleClick={() => {}} />
 
           <div className={s.containerTableSummary}>
-              <TransactionTable handleModal={handleModal} />
+            <TransactionTable handleModal={handleModal} />
 
             <div className={s.summary}>
               <Summary />
@@ -123,12 +123,12 @@ export default HomePage;
 //   {width > 767 && (
 //     <div>
 //       <Balance />
-//       <Reports />
+//       <GoReports />
 //     </div>
 //   )}
 
 //   <TransactionContainer>
-//     <BalanceForm />
+//     <TransactionForm />
 //     <div >
 //       {width > 767 && <TransactionTable />}
 //       {width > 767 && <Summary />}
