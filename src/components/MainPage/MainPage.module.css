@@ -87,7 +87,7 @@
 
   .mainAuth {
     min-height: 850px;
-    background: url(../../images/mainImg/Group\ 37.svg) bottom -40px left repeat-x;
+    background: url(../../images/mainImg/Group\ 37.svg) bottom 0px left repeat-x;
   }
 
   .topAuth {
@@ -95,9 +95,5 @@
 
     background-size: 83px;
     background-color: #f5f6fb;
-  }
-  .bottomAuth {
-    background: url(../../images/mainImg/Group\ 37.svg) top 10px left 5px
-      repeat-x;
   }
 }
