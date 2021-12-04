@@ -1,15 +1,26 @@
 .modalDiv {
-  width: 292px;
-  height: 163px;
+  width: 260px;
+  left: auto;
   background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
   border-radius: 30px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   padding: 20px 30px 31px 30px;
   display: block;
-  top: 100%;
-  left: 70%;
+  top: 120%;
   position: absolute;
   z-index: 2;
+}
+@media screen and (min-width: 768px) {
+  .modalDiv {
+    width: 292px;
+    left: 15%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .modalDiv {
+    width: 292px;
+    height: 163px;
+  }
 }
 
 .modalDiv::before {

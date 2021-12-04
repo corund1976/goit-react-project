@@ -3,21 +3,24 @@
   margin: 0 auto;
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
   border-radius: 30px;
-  width: 380px;
-  height: 194px;
+  width: 280px;
+  height: 150px;
   background-color: #fff;
   padding-top: 30px;
   top: 50%;
   left: 50%;
-  margin-top: -100px;
-  margin-left: -250px;
+  /* margin-top: -100px; */
+  margin-left: -140px;
 }
 @media screen and (min-width: 768px) {
   .exitModal {
+    padding-top: 40px;
+    width: 380px;
+    height: 194px;
     top: 50%;
     left: 60%;
     margin-top: -100px;
-    margin-left: -250px;
+    margin-left: -270px;
   }
 }
 @media screen and (min-width: 1280px) {
