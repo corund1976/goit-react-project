@@ -15,7 +15,6 @@ const TransactionTable = ({ handleModal }) => {
   const expenses = useSelector(getExpenseTransactions);
 
   const { width } = useWindowSize();
-
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
   const transtype = pathname.slice(1);
@@ -23,7 +22,7 @@ const TransactionTable = ({ handleModal }) => {
   const transactions = transtype === "income" ? incomes : expenses;
   const allTransactions = [...incomes, ...expenses];
   // Хендлер для извлечения и передачи ID транзакции для удаления "родителю"
-  const onDelete = (e) => handleModal(e.currentTarget.id);
+  const onDelete = e => handleModal(e.currentTarget.id);
 
   return (
     <div className={s.dataContainer}>

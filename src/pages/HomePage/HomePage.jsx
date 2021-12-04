@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList } from 'react-tabs';
+import { useWindowSize } from 'react-use-size';
 
 import Balance from 'components/Balance';
 import GoReports from 'components/GoReports';
@@ -46,6 +47,8 @@ function HomePage() {
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
   };
+
+  const { width } = useWindowSize();
 
   return (
     <section className={s.sectionHomePage}>
@@ -96,15 +99,24 @@ function HomePage() {
 
         <div className={s.containerFormTableSummary}>
           <TransactionForm />
+
           <div className={s.containerTableSummary}>
 
             <TransactionTable handleModal={handleModal} />
+            {width > 1279 &&
             <div className={s.summary}>
               <Summary />
             </div>
-
+            }
           </div>
+
         </div>
+
+      {width > 767 & width < 1280 &&
+      <div className={s.summary}>
+        <Summary />
+      </div>
+      }
 
       </Tabs>
     </section>
