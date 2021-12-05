@@ -140,7 +140,6 @@
   /* Проверил */
   .dataInput {
     display: flex;
-    /* align-items: center; */
     height: 44px;
     margin-bottom: 30px;
   }
@@ -181,7 +180,6 @@
     width: 192px;
 
     padding: 0;
-    /* padding-left: 20px; */
 
     background-color: transparent;
     border: 2px solid #f5f6fb;
