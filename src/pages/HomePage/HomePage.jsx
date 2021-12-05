@@ -30,9 +30,9 @@ function HomePage() {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
   };
-  // const toggleModal = () => {
-  //   setShowModal((prevState) => !prevState);
-  // };
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
 
   useEffect(() => {
     transtype === 'expense'
@@ -51,7 +51,7 @@ function HomePage() {
   return (
     <section className={s.sectionHomePage}>
       {showModal && (
-        <UniversalModal handleModal={handleModal}>
+        <UniversalModal toggleModal={toggleModal}>
           <p className={styles.modalTitle}>
             Вы уверены?
           </p>

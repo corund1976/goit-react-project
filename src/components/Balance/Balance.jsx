@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./Balance.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import BtnConfirmBalance from "./BtnConfirmBalance";
 import { getBalance } from "redux/balance/balanceSelectors";
 import BalanceModal from "../Modal/BalanceModal";
