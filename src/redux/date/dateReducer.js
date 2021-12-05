@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import dateActions from 'redux/date';
+import { dateActions } from 'redux/date';
 
 const dateInitialState = null;
 

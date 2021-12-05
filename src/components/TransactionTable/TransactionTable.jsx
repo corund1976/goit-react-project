@@ -1,22 +1,25 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import cliTruncate from "cli-truncate";
 import { useWindowSize } from "react-use-size";
+
+import CalendarForm from "components/CalendarForm";
+import { sortByDate } from "helpers/sortByDate";
 
 import {
   getIncomeTransactions,
   getExpenseTransactions,
 } from "redux/transactions/transactionSelectors";
-import { sortByDate } from "helpers/sortByDate";
+import { dateActions } from 'redux/date';
 
 import s from "./TransactionTable.module.css";
 import css from "./mobileMain.module.css";
-import CalendarForm from "components/CalendarForm";
-import { useState } from "react";
 
 const TransactionTable = ({ handleDelete, getDate }) => {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
 
+  const dispatch = useDispatch();
   const { width } = useWindowSize();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
@@ -50,6 +53,11 @@ const TransactionTable = ({ handleDelete, getDate }) => {
 
   const allTransactions = [...typeIncome, ...typeExpense];
 
+  useEffect(() => {
+    date && dispatch(dateActions.setDate(date));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
+  
   return (
     <div className={s.dataContainer}>
       {width > 767 && (

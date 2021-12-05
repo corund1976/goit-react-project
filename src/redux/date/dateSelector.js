@@ -1,1 +1,1 @@
-export const getDate = state => state.date.date;
+export const getDate = state => state.date;

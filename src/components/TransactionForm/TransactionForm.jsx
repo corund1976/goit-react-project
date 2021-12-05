@@ -15,19 +15,21 @@ import {
   getExpenseCategories,
   getIncomeCategories,
 } from "redux/categories/categoriesSelectors";
+import { getDate } from 'redux/date/dateSelector';
 
 import s from "./TransactionForm.module.css";
 import { TextField } from "@mui/material";
 
 function TransactionForm() {
-  const [date, setDate] = useState(""); //Инпут Дата Календаря
+  const mobileDate = useSelector(getDate);
+  
+  const [date, setDate] = useState(mobileDate); //Инпут Дата Календаря
   const [description, setDescription] = useState(""); //Инпут Описание товара/дохода
   const [amount, setAmount] = useState(""); //Инпут Сумма транзакции
   const [category, setCategory] = useState(""); //Список категорий для Селекта
 
-  const { width } = useWindowSize();
-
   const dispatch = useDispatch();
+  const { width } = useWindowSize();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
   const transtype = pathname.slice(1); // income или expense
