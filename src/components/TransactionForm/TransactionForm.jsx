@@ -124,7 +124,6 @@ function TransactionForm() {
               <InputLabel
                 id="demo-simple-select-label"
                 color="warning"
-                required="true"
                 className={s.inputCategory}
               >
                 {formTitleData.categoryTitle}
@@ -132,6 +131,7 @@ function TransactionForm() {
 
               <Select
                 labelId="demo-simple-select-label"
+                required="true"
                 value={category}
                 onChange={handleChange}
               >
