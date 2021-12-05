@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useWindowSize } from "react-use-size";
@@ -19,13 +19,17 @@ import {
 import s from "./TransactionForm.module.css";
 import { TextField } from "@mui/material";
 
-function TransactionForm() {
+function TransactionForm({ customDate }) {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
   const [description, setDescription] = useState(""); //Инпут Описание товара/дохода
   const [amount, setAmount] = useState(""); //Инпут Сумма транзакции
   const [category, setCategory] = useState(""); //Список категорий для Селекта
 
   const { width } = useWindowSize();
+  useEffect(() => {
+    setDate(customDate);
+    console.log("useEffect", customDate);
+  }, [customDate]);
 
   const dispatch = useDispatch();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
@@ -57,6 +61,7 @@ function TransactionForm() {
     const day = String(date.getDate()).padStart(2, "0");
     setDate(`${year}-${month}-${day}`);
   };
+
   // Хендлер 2х инпутов "Описание товара" и "Сумма"
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -96,83 +101,79 @@ function TransactionForm() {
 
   return (
     <div className={s.tabletFormPosition}>
-      {width < 768 && <CalendarForm dateHandle={dateHandle} />}
-      {width > 767 && (
-        <form className={s.form} onSubmit={handleSubmit} autoComplete="off" >
-          <div className={s.dataInput}>
-            {/* К А Л Е Н Д А Р Ь */}
-            <CalendarForm dateHandle={dateHandle} />
+      <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
+        <div className={s.dataInput}>
+          {/* К А Л Е Н Д А Р Ь */}
+          {width > 768 && (
+            <CalendarForm dateHandle={dateHandle} onChange={dateHandle} />
+          )}
 
-            {/* О П И С А Н И Е */}
+          {/* О П И С А Н И Е */}
+          <TextField
+            id="outlined-basic"
+            label={formTitleData.descriptionTitle}
+            color="warning"
+            type="text"
+            name="product"
+            value={description}
+            onChange={handleInputChange}
+            className={s.inputDescription}
+            autoFocus="off"
+          />
+
+          {/* К А Т Е Г О Р И Я */}
+          <Box sx={{ minWidth: 120 }} className={s.box}>
+            <FormControl fullWidth className={s.form}>
+              <InputLabel
+                id="demo-simple-select-label"
+                color="warning"
+                className={s.inputCategory}
+              >
+                {formTitleData.categoryTitle}
+              </InputLabel>
+
+              <Select
+                labelId="demo-simple-select-label"
+                value={category}
+                onChange={handleChange}
+              >
+                {formTitleData.categoriesList.map((category) => (
+                  <MenuItem value={category} key={category}>
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+
+          {/* С У М М А */}
+          <div className={s.inputWrapper}>
             <TextField
               id="outlined-basic"
-              label={formTitleData.descriptionTitle}
+              label="0.00"
               color="warning"
-                
-              type="text"
-              name="product"
-              value={description}
+              type="number"
+              name="price"
+              value={amount}
               onChange={handleInputChange}
-              className={s.inputDescription}
+              className={s.inputAmount}
               autoFocus="off"
             />
-
-            {/* К А Т Е Г О Р И Я */}
-            <Box sx={{ minWidth: 120 }} className={s.box}>
-              <FormControl fullWidth className={s.form}>
-                <InputLabel
-                  id="demo-simple-select-label"
-                  color="warning"
-
-                  className={s.inputCategory}
-                >
-                  {formTitleData.categoryTitle}
-                </InputLabel>
-
-                <Select
-                  labelId="demo-simple-select-label"
-                  value={category}
-                  onChange={handleChange}
-                >
-                  {formTitleData.categoriesList.map((category) => (
-                    <MenuItem value={category} key={category}>
-                      {category}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-
-            {/* С У М М А */}
-            <div className={s.inputWrapper}>
-              <TextField
-                id="outlined-basic"
-                label="0.00"
-                color="warning"
-
-                type="number"
-                name="price"
-                value={amount}
-                onChange={handleInputChange}
-                className={s.inputAmount}
-                autoFocus="off"
-              />
-            </div>
           </div>
+        </div>
 
-          <div className={s.btnWrapper}>
-            {/* В В О Д */}
-            <button type="submit" className={s.btn}>
-              Ввод
-            </button>
+        <div className={s.btnWrapper}>
+          {/* В В О Д */}
+          <button type="submit" className={s.btn}>
+            Ввод
+          </button>
 
-            {/* О Ч И С Т И Т Ь */}
-            <button type="button" className={s.btn} onClick={handleBtnClear}>
-              Очистить
-            </button>
-          </div>
-        </form>
-      )}
+          {/* О Ч И С Т И Т Ь */}
+          <button type="button" className={s.btn} onClick={handleBtnClear}>
+            Очистить
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
