@@ -1,109 +1,17 @@
 .container {
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 40px;
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
   border-radius: 30px;
   height: 80px;
-
-  /* display: flex; */
-  /* justify-content: center; */
-  /* padding-left: 20px; */
   margin: 0 auto;
   height: 422px;
 }
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 20px;
-  align-items: flex-end;
-  background: #ffffff;
-
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  border-radius: 30px;
-}
-.item {
-  display: block;
-  margin-right: 45px;
-  margin-bottom: 15px;
-  /* padding: 0; */
-}
-
-.sum {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  margin-bottom: 5px;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.svg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  /* width: 60px; */
-  width: 100%;
-  margin-bottom: 5px;
-}
-.svg_active {
-  composes: svg;
-  fill: #ff751d;
-}
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.transaction_title {
-  margin-right: 15px;
-  margin-left: 15px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.switch_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 10px;
-  height: 20px;
-  fill: #ff751d;
-
-  margin: 0;
-  padding: 0;
-}
-.button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-}
-.graph {
-  display: flex;
-  justify-content: center;
-  background-color: #ff751d;
-  border-radius: 10px 10px 0px 0px;
+@media screen and (max-width: 767px) {
+  .container {
+    min-height: 422px;
+    padding-bottom: 10px;
+  }
 }
 .noData {
   padding-top: 10px;
