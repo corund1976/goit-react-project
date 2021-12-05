@@ -10,8 +10,9 @@
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.04em;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition-timing) var(--transition-function);
 }
+
 .GoToReportsLink:hover {
   color: #ff751d;
 }
@@ -22,6 +23,7 @@
     margin-left: 111px;
   }
 }
+
 .iconReport {
   width: 24px;
   height: 24px;

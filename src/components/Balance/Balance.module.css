@@ -27,7 +27,9 @@
   letter-spacing: 0.02em;
   cursor: pointer;
   filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--transition-timing)
+      var(--transition-function),
+    color var(--transition-timing) var(--transition-function);
 }
 .balance_submit:hover {
   background-color: #ff751d;
@@ -41,7 +43,8 @@
   line-height: 1.17;
   text-align: center;
   text-transform: uppercase;
-  padding: 12px 20px 12px 20px;
+
+  padding: 12px 35px 12px 10px;
   width: 125px;
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
@@ -49,6 +52,7 @@
   background-color: #f2f5fc;
   filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
 }
+
 .balance_value_none {
   composes: balance_value;
   border-top-left-radius: 0px;
@@ -60,11 +64,11 @@
 }
 .balance_value_span::after {
   position: absolute;
-  top: 9px;
+  top: 6px;
   font-weight: bold;
-  content: 'UAH';
-  right: 12px;
-  font-size: 10px;
+  content: "UAH";
+  right: 17px;
+  font-size: 12px;
 }
 
 @media screen and (min-width: 768px) {
@@ -82,7 +86,7 @@
   }
   .balance_value {
     border-radius: 16px;
-    -moz-appearance: textfield;
+    padding: 12px 42px 12px 10px;
   }
   .balance_value::-webkit-inner-spin-button {
     display: none;
@@ -94,11 +98,11 @@
   }
   .balance_value_span::after {
     position: absolute;
-    top: 16px;
     font-weight: bold;
-    content: 'UAH';
-    right: 12px;
-    font-size: 10px;
+    content: "UAH";
+    top: 15px;
+    right: 20px;
+    font-size: 12px;
   }
 }
 

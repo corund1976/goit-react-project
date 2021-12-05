@@ -1,17 +1,24 @@
-import { useEffect, useState } from "react";
-import s from "./Balance.module.css";
-import { useSelector } from "react-redux";
-import BtnConfirmBalance from "./BtnConfirmBalance";
-import { getBalance } from "redux/balance/balanceSelectors";
-import BalanceModal from "../Modal/BalanceModal";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import BtnConfirmBalance from './BtnConfirmBalance';
+import BalanceModal from 'components/Modal/BalanceModal';
+import { getBalance } from 'redux/balance/balanceSelectors';
+
+import s from './Balance.module.css';
 
 const Balance = ({ displayStyle }) => {
   const initialBalance = useSelector(getBalance);
   const [input, setInput] = useState(initialBalance);
 
-  const handleChange = (e) => {
+  if (input < 0) {
+    alert('Баланс не может быть отрицательным');
+  }
+
+  const handleChange = e => {
     setInput(e.target.value);
   };
+
   useEffect(() => {
     setInput(initialBalance);
   }, [initialBalance]);
@@ -32,8 +39,12 @@ const Balance = ({ displayStyle }) => {
         />
       </span>
 
-      <BtnConfirmBalance input={input} displayStyle={displayStyle} />
-      {!initialBalance && <BalanceModal />}
+      <BtnConfirmBalance
+        input={input}
+        displayStyle={displayStyle}
+      />
+      {!initialBalance &&
+        <BalanceModal />}
     </div>
   );
 };

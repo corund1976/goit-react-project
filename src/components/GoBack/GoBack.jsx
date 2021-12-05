@@ -1,11 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-import s from './GoBack.module.css'
 import goBack from 'images/goBack.png';
+import s from './GoBack.module.css'
 
 function GoBack() {
+  const { pathname } = useLocation();
+  const currentPath = pathname.slice(1);
+
   return (
-    <Link to='/expense' className={s.goBackLink}>
+    <Link
+      to={currentPath === 'report' ? '/expense' : 'main'}
+      className={s.goBackLink}>
       <img
         src={goBack}
         alt='go back to reports'

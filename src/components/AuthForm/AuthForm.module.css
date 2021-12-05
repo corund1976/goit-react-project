@@ -80,6 +80,9 @@
   letter-spacing: 0.02em;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color var(--transition-timing)
+      var(--transition-function),
+    color var(--transition-timing) var(--transition-function);
 }
 
 .inputBtn:hover,

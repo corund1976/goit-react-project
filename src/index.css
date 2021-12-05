@@ -1,26 +1,30 @@
 :root {
-	--black-text-color: #000000;
-	--primary-text-color: #52555f;
-	--email-text-color: #a6abb9;
-	--warning-text-color: ##ff0000;
-	--description-color: #c7ccdc;
-	--dark-blue-color: #071f41;
+  --black-text-color: #000000;
+  --primary-text-color: #52555f;
+  --email-text-color: #a6abb9;
+  --warning-text-color: ##ff0000;
+  --description-color: #c7ccdc;
+  --dark-blue-color: #071f41;
 
-	--white-color: #ffffff;
-	--accent-color: #ff751d;
-	--balance-minus: #e53935;
-	--secondary-accent-color: #ffdac0;
+  --white-color: #ffffff;
+  --accent-color: #ff751d;
+  --balance-minus: #e53935;
+  --secondary-accent-color: #ffdac0;
 
-	--grey-bg-auth-color: #f6f7fb;
-	--grey-bg-home-color: #f5f6fb;
-	--grey-bg-u-color: #f5f6fa;
+  --grey-bg-auth-color: #f6f7fb;
+  --grey-bg-home-color: #f5f6fb;
+  --grey-bg-u-color: #f5f6fa;
 
-	--logout-btn-color: #cbccd0;
+  --logout-btn-color: #cbccd0;
 
-	--minus-balance-color: #e7192e;
-	--plus-balance-color: #407946;
+  --minus-balance-color: #e7192e;
+  --plus-balance-color: #407946;
 
-	--font-family: 'Roboto', sans-serif;
-	--primary-line-height: 1.67;
-	--primary-font-size: 14px;
+  --font-family: "Roboto", sans-serif;
+  --primary-line-height: 1.67;
+  --primary-font-size: 14px;
+
+  /* параметры transition для hover */
+  --transition-timing: 500ms;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

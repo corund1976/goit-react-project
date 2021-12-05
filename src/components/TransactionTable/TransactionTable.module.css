@@ -43,6 +43,9 @@
 
 .mainTbody {
   border-radius: 0;
+  border: solid 2px #f5f6fb;
+  border-spacing: 0 2px;
+  margin-left: 2px;
 }
 
 .theadTable {
@@ -146,7 +149,6 @@
   font-weight: bold;
   width: 160px;
   /* width: 130px; */
-
   color: #e7192e;
 }
 
@@ -163,16 +165,17 @@
   padding: 0;
   border: transparent;
   background-color: transparent;
-}
-
-.deleteBtnIcon {
-  width: 16px;
-  height: 18px;
+  transition: color var(--transition-timing) var(--transition-function);
 }
 
 .deleteBtn:hover svg path {
   color: #ff751d;
   fill: currentColor;
+}
+
+.deleteBtnIcon {
+  width: 16px;
+  height: 18px;
 }
 
 .amountRed {
