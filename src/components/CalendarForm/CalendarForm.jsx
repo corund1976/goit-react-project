@@ -2,9 +2,9 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import s from './CalendarTableForm.module.css';
+import s from './CalendarForm.module.css';
 
-function CalendarTableForm({ dateHandle }) {
+function CalendarForm({ dateHandle }) {
   const [date, setDate] = useState(new Date());
   
   dateHandle(date);
@@ -23,4 +23,4 @@ function CalendarTableForm({ dateHandle }) {
 	);
 }
 
-export default CalendarTableForm;
+export default CalendarForm;

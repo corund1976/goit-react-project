@@ -83,8 +83,6 @@ function AuthForm() {
     "263285736930-p050d1objdtu7vmkkn1md1vv86ed3eem.apps.googleusercontent.com";
 
   const responseGoogle = (response) => {
-    console.log(response.profileObj.email);
-    console.log(response.profileObj.googleId);
     const email = response.profileObj.email;
     const password = response.profileObj.googleId;
     dispatch(authOperations.handleRegister({ email, password }));

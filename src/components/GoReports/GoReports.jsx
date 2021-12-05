@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import barChart from "images/barChart.png";
-import s from '../GoReports/GoReports.module.css'
+import s from './GoReports.module.css'
 
 
 const  GoReports = () => {

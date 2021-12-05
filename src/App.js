@@ -90,6 +90,10 @@ function App() {
                 <AuthPage />
               </PublicRoute>
 
+              <PrivateRoute path={routes.main} redirectTo={routes.auth}> {/* mobile */}
+                <HomePage />
+              </PrivateRoute>
+
               <PrivateRoute path={routes.expense} redirectTo={routes.auth}>
                 <HomePage />
               </PrivateRoute>

@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import CalendarTableForm from "components/CalendarTableForm";
+import CalendarForm from "components/CalendarForm";
 import { transactionOperations } from "redux/transactions";
 import {
   getExpenseCategories,
@@ -17,6 +17,7 @@ import {
 } from "redux/categories/categoriesSelectors";
 
 import s from "./TransactionForm.module.css";
+import { TextField } from "@mui/material";
 
 function TransactionForm() {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
@@ -95,21 +96,24 @@ function TransactionForm() {
 
   return (
     <div className={s.tabletFormPosition}>
-      {width < 768 && <CalendarTableForm dateHandle={dateHandle} />}
+      {width < 768 && <CalendarForm dateHandle={dateHandle} />}
       {width > 767 && (
-        <form className={s.form} onSubmit={handleSubmit}>
+        <form className={s.form} onSubmit={handleSubmit} autoComplete="off" >
           <div className={s.dataInput}>
             {/* К А Л Е Н Д А Р Ь */}
-            <CalendarTableForm dateHandle={dateHandle} />
+            <CalendarForm dateHandle={dateHandle} />
 
             {/* О П И С А Н И Е */}
-            <input
+            <TextField
+              id="outlined-basic"
+              label={formTitleData.descriptionTitle}
+              color="warning"
+                
               type="text"
               name="product"
-              onChange={handleInputChange}
               value={description}
-              className={s.inputDescribe}
-              placeholder={formTitleData.descriptionTitle}
+              onChange={handleInputChange}
+              className={s.inputDescription}
               autoFocus="off"
             />
 
@@ -118,7 +122,9 @@ function TransactionForm() {
               <FormControl fullWidth className={s.form}>
                 <InputLabel
                   id="demo-simple-select-label"
-                  className={s.dropdownInput}
+                  color="warning"
+
+                  className={s.inputCategory}
                 >
                   {formTitleData.categoryTitle}
                 </InputLabel>
@@ -139,13 +145,16 @@ function TransactionForm() {
 
             {/* С У М М А */}
             <div className={s.inputWrapper}>
-              <input
+              <TextField
+                id="outlined-basic"
+                label="0.00"
+                color="warning"
+
                 type="number"
                 name="price"
-                onChange={handleInputChange}
                 value={amount}
-                className={s.priceInput}
-                placeholder="0.00"
+                onChange={handleInputChange}
+                className={s.inputAmount}
                 autoFocus="off"
               />
             </div>

@@ -1,7 +1,8 @@
-import s from "./Modal.module.css";
-import closeBtn from "../../images/header-authform/closeBtn.png";
-import { createPortal } from "react-dom";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
+
+import closeBtn from "../../images/header-authform/closeBtn.png";
+import s from "./Modal.module.css";
 
 const UniversalModal = ({ toggleModal, children }) => {
   const portalModal = document.querySelector("#nodalRoot");

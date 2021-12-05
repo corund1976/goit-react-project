@@ -1,5 +1,5 @@
 import s from "./PageTitle.module.css";
-import logo from "../../images/mainImg/Logo.svg";
+import logo from "images/mainImg/Logo.svg";
 
 function PageTitle() {
   return (

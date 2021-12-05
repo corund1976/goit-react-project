@@ -1,52 +1,53 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-import { Tab, TabList } from "react-tabs";
-import { useWindowSize } from "react-use-size";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Tab, TabList } from 'react-tabs';
+import { useWindowSize } from 'react-use-size';
 
-import Balance from "components/Balance";
-import GoReports from "components/GoReports";
-import Summary from "components/Summary";
-import TransactionForm from "components/TransactionForm";
-import TransactionTable from "components/TransactionTable";
-import UniversalModal from "components/Modal/UniversalModal";
+import Balance from 'components/Balance';
+import GoReports from 'components/GoReports';
+import Summary from 'components/Summary';
+import TransactionForm from 'components/TransactionForm';
+import TransactionTable from 'components/TransactionTable';
+import UniversalModal from 'components/Modal/UniversalModal';
 
-import transactionOperations from "redux/transactions/transactionOperations";
+import transactionOperations from 'redux/transactions/transactionOperations';
 
-import s from "./HomePage.module.css";
-import styles from "components/Modal/Modal.module.css";
+import s from './HomePage.module.css';
+import styles from 'components/Modal/Modal.module.css';
 
 function HomePage() {
-  const { width } = useWindowSize(); // Определяем размер окна пользователя
   const dispatch = useDispatch();
-  // Извлекаем из адресной строки "income" или "expense"
+  // Определяем размер окна пользователя
+  const { width } = useWindowSize();
+  // Извлекаем из адресной строки 'income' или 'expense'
   const { pathname } = useLocation();
   const transtype = pathname.slice(1);
-
-  const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
-  const [transactionId, setTransactionId] = useState(""); // Id транзакции для УДАЛЕНИЯ
-  // Хендлер модалки пишет в стейт статус "видима-невидима" и id транзакции УДАЛИТЬ
-  const handleModal = (id) => {
+  // Статус МОДАЛКИ 'видима-невидима' и Id транзакции для УДАЛЕНИЯ
+  const [showModal, setShowModal] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
+  // Хендлер модалки 'Удалить' пишет в стейт статус 'видима-невидима' и id транзакции УДАЛИТЬ
+  const toggleModal = () => setShowModal((prevState) => !prevState);
+  // Хендлер модалки 'Удалить' из определенного массива транзикций
+  const onDelete = () => {
+    transtype !== 'expense'
+      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
+      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
+    toggleModal();
+  };
+  // Хендлер модалки 'Удалить' ловит событие при нажатии на "корзину" и 
+  // получает из таблицы Id иранзакции и делает модалки "видимой"
+  const handleDelete = (id) => {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
   };
-  const toggleModal = () => {
-    setShowModal((prevState) => !prevState);
-  };
 
   useEffect(() => {
-    transtype === "expense"
+    transtype === 'expense'
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
-  // Хендлер модалки "Удалить"
-  const onDelete = () => {
-    transtype !== "expense"
-      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
-      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
-    handleModal();
-  };
 
   return (
     <section className={s.sectionHomePage}>
@@ -72,11 +73,11 @@ function HomePage() {
       </div>
 
       <TabList className={s.containerTabsList}>
-        <NavLink to="/expense" className={s.link} activeClassName={s.active}>
+        <NavLink to='/expense' className={s.link} activeClassName={s.active}>
           <Tab className={s.tab_left}>Расход</Tab>
         </NavLink>
 
-        <NavLink to="/income" className={s.link} activeClassName={s.active}>
+        <NavLink to='/income' className={s.link} activeClassName={s.active}>
           <Tab className={s.tab}>Доход</Tab>
         </NavLink>
       </TabList>
@@ -84,9 +85,8 @@ function HomePage() {
       <div className={s.containerFormTableSummary}>
         <TransactionForm />
 
-        {/* <div> */}
         <div className={s.containerTableSummary}>
-          <TransactionTable handleModal={handleModal} />
+          <TransactionTable handleDelete={handleDelete} />
           {width > 1279 && (
             <div className={s.summary}>
               <Summary />
@@ -95,7 +95,7 @@ function HomePage() {
         </div>
       </div>
 
-      {(width > 767) & (width < 1280) && (
+      {!!((width > 767) & (width < 1280)) && (
         <div className={s.summary}>
           <Summary />
         </div>

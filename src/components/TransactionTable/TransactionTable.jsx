@@ -1,18 +1,18 @@
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import cliTruncate from "cli-truncate";
-import { useWindowSize } from "react-use-size";
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import cliTruncate from 'cli-truncate';
+import { useWindowSize } from 'react-use-size';
 
 import {
   getIncomeTransactions,
   getExpenseTransactions,
-} from "redux/transactions/transactionSelectors";
-import { sortByDate } from "helpers/sortByDate";
+} from 'redux/transactions/transactionSelectors';
+import { sortByDate } from 'helpers/sortByDate';
 
-import s from "./TransactionTable.module.css";
-import css from "./mobileMain.module.css";
+import s from './TransactionTable.module.css';
+import css from './mobileMain.module.css';
 
-const TransactionTable = ({ handleModal }) => {
+const TransactionTable = ({ handleDelete }) => {
   const { width } = useWindowSize();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
@@ -21,20 +21,20 @@ const TransactionTable = ({ handleModal }) => {
   const incomes = useSelector(getIncomeTransactions);
   const expenses = useSelector(getExpenseTransactions);
   // Наполняем ТРАНЗАКЦИИ в зависимости от типа выводимых в таблицу транзакций
-  let transactions = transtype === "income" ? incomes : expenses;
+  let transactions = transtype === 'income' ? incomes : expenses;
 
   if (transactions.length) {
     sortByDate(transactions);
   }
-  // Хендлер для извлечения и передачи ID транзакции для удаления "родителю"
-  const onDelete = e => handleModal(e.currentTarget.id);
+  // Хендлер для извлечения и передачи ID транзакции для удаления 'родителю'
+  const onDelete = e => handleDelete(e.currentTarget.id);
   
   const typeIncome = incomes.map((item) => {
-    return { ...item, type: "income" };
+    return { ...item, type: 'income' };
   });
 
   const typeExpense = expenses.map((item) => {
-    return { ...item, type: "expenses" };
+    return { ...item, type: 'expenses' };
   });
 
   const allTransactions = [...typeIncome, ...typeExpense];
@@ -76,10 +76,10 @@ const TransactionTable = ({ handleModal }) => {
                     <td
                       className={
                         (s.tdSum,
-                        transtype === "income" ? s.tdSum : s.tdSumExpense)
+                        transtype === 'income' ? s.tdSum : s.tdSumExpense)
                       }
                     >
-                      {transtype === "income" ? `+` : `-`}
+                      {transtype === 'income' ? `+` : `-`}
                       {item.amount}.00 грн.
                     </td>
 
@@ -128,7 +128,7 @@ const TransactionTable = ({ handleModal }) => {
               <p className={css.category}>{item.category} </p>
               <p
                 className={
-                  item.type === "income" ? css.amountIncome : css.amountExpense
+                  item.type === 'income' ? css.amountIncome : css.amountExpense
                 }
               >
                 {item.amount} грн.
