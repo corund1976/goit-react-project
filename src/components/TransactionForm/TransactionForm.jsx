@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useWindowSize } from "react-use-size";
@@ -19,17 +19,13 @@ import {
 import s from "./TransactionForm.module.css";
 import { TextField } from "@mui/material";
 
-function TransactionForm({ customDate }) {
+function TransactionForm() {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
   const [description, setDescription] = useState(""); //Инпут Описание товара/дохода
   const [amount, setAmount] = useState(""); //Инпут Сумма транзакции
   const [category, setCategory] = useState(""); //Список категорий для Селекта
 
   const { width } = useWindowSize();
-  useEffect(() => {
-    setDate(customDate);
-    console.log("useEffect", customDate);
-  }, [customDate]);
 
   const dispatch = useDispatch();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
@@ -104,9 +100,7 @@ function TransactionForm({ customDate }) {
       <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <div className={s.dataInput}>
           {/* К А Л Е Н Д А Р Ь */}
-          {width > 768 && (
-            <CalendarForm dateHandle={dateHandle} onChange={dateHandle} />
-          )}
+          {width > 768 && <CalendarForm dateHandle={dateHandle} />}
 
           {/* О П И С А Н И Е */}
           <TextField

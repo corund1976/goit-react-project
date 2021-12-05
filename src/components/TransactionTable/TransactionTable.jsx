@@ -37,7 +37,7 @@ const TransactionTable = ({ handleDelete, getDate }) => {
     const year = String(date.getFullYear());
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-    getDate(`${year}-${month}-${day}`);
+    setDate(`${year}-${month}-${day}`);
   };
 
   const typeIncome = incomes.map((item) => {
@@ -124,11 +124,7 @@ const TransactionTable = ({ handleDelete, getDate }) => {
 
       {width < 768 && transtype === "main" && (
         <>
-          <CalendarForm
-            dateHandle={dateHandle}
-            onChange={dateHandle}
-            date={date}
-          />
+          <CalendarForm dateHandle={dateHandle} onChange={dateHandle} />
           <ul className={css.alltransactions}>
             {allTransactions.map((item) => (
               <li key={item._id} className={css.transactions}>

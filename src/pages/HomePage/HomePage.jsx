@@ -27,7 +27,6 @@ function HomePage() {
   // Статус МОДАЛКИ 'видима-невидима' и Id транзакции для УДАЛЕНИЯ
   const [showModal, setShowModal] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-  const [date, setdate] = useState("");
   // Хендлер модалки 'Удалить' пишет в стейт статус 'видима-невидима' и id транзакции УДАЛИТЬ
   const toggleModal = () => setShowModal((prevState) => !prevState);
   // Хендлер модалки 'Удалить' из определенного массива транзикций
@@ -48,14 +47,10 @@ function HomePage() {
     transtype === "expense"
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
 
-  function getDate(date) {
-    setdate(date);
-  }
-
-  console.log(date, "date");
   return (
     <section className={s.sectionHomePage}>
       {showModal && (
@@ -90,14 +85,14 @@ function HomePage() {
         {transtype === "income" && (
           <>
             <GoBack />
-            <TransactionForm customDate={date} />
+            <TransactionForm />
           </>
         )}
 
         {transtype === "expense" && (
           <>
             <GoBack />
-            <TransactionForm customDate={date} />
+            <TransactionForm />
           </>
         )}
 
@@ -125,7 +120,7 @@ function HomePage() {
         )}
 
         <div className={s.containerTableSummary}>
-          <TransactionTable getDate={getDate} handleDelete={handleDelete} />
+          <TransactionTable handleDelete={handleDelete} />
           {width > 1279 && (
             <div className={s.summary}>
               <Summary />
