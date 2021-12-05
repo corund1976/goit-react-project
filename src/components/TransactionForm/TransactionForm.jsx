@@ -114,6 +114,7 @@ function TransactionForm() {
             value={description}
             onChange={handleInputChange}
             className={s.inputDescription}
+            required="true"
             autoFocus="off"
           />
 
@@ -123,6 +124,7 @@ function TransactionForm() {
               <InputLabel
                 id="demo-simple-select-label"
                 color="warning"
+                required="true"
                 className={s.inputCategory}
               >
                 {formTitleData.categoryTitle}
@@ -150,6 +152,7 @@ function TransactionForm() {
               color="warning"
               type="number"
               name="price"
+              required="true"
               value={amount}
               onChange={handleInputChange}
               className={s.inputAmount}
