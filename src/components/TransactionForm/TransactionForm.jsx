@@ -15,14 +15,14 @@ import {
   getExpenseCategories,
   getIncomeCategories,
 } from "redux/categories/categoriesSelectors";
-import { getDate } from 'redux/date/dateSelector';
+import { getDate } from "redux/date/dateSelector";
 
 import s from "./TransactionForm.module.css";
 import { TextField } from "@mui/material";
 
 function TransactionForm() {
   const mobileDate = useSelector(getDate);
-  
+
   const [date, setDate] = useState(mobileDate); //Инпут Дата Календаря
   const [description, setDescription] = useState(""); //Инпут Описание товара/дохода
   const [amount, setAmount] = useState(""); //Инпут Сумма транзакции
@@ -102,7 +102,7 @@ function TransactionForm() {
       <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <div className={s.dataInput}>
           {/* К А Л Е Н Д А Р Ь */}
-          {width > 768 && <CalendarForm dateHandle={dateHandle} />}
+          {width > 767 && <CalendarForm dateHandle={dateHandle} />}
 
           {/* О П И С А Н И Е */}
           <TextField
