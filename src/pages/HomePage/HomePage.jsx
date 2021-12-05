@@ -31,9 +31,19 @@ function HomePage() {
   const toggleModal = () => setShowModal((prevState) => !prevState);
   // Хендлер модалки 'Удалить' из определенного массива транзикций
   const onDelete = () => {
-    transtype !== "expense"
-      ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
-      : dispatch(transactionOperations.handleDeleteExpense(transactionId));
+    switch (transtype) {
+      case "expense":
+        dispatch(transactionOperations.handleDeleteIncome(transactionId));
+        break;
+      case "income":
+        dispatch(transactionOperations.handleDeleteExpense(transactionId));
+        break;
+      case "main":
+        dispatch(transactionOperations.handleDeleteTransaction(transactionId));
+        break;
+      default:
+        break;
+    }
     toggleModal();
   };
   // Хендлер модалки 'Удалить' ловит событие при нажатии на "корзину" и
