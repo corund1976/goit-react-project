@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Tab, TabList } from 'react-tabs';
-import { useWindowSize } from 'react-use-size';
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+import { Tab, TabList } from "react-tabs";
+import { useWindowSize } from "react-use-size";
 
-import Balance from 'components/Balance';
-import GoReports from 'components/GoReports';
-import Summary from 'components/Summary';
-import TransactionForm from 'components/TransactionForm';
-import TransactionTable from 'components/TransactionTable';
-import UniversalModal from 'components/Modal/UniversalModal';
+import Balance from "components/Balance";
+import GoReports from "components/GoReports";
+import Summary from "components/Summary";
+import TransactionForm from "components/TransactionForm";
+import TransactionTable from "components/TransactionTable";
+import UniversalModal from "components/Modal/UniversalModal";
 
-import transactionOperations from 'redux/transactions/transactionOperations';
+import transactionOperations from "redux/transactions/transactionOperations";
 
-import s from './HomePage.module.css';
-import styles from 'components/Modal/Modal.module.css';
+import s from "./HomePage.module.css";
+import styles from "components/Modal/Modal.module.css";
 
 function HomePage() {
   const { width } = useWindowSize(); // Определяем размер окна пользователя
@@ -24,7 +24,7 @@ function HomePage() {
   const transtype = pathname.slice(1);
 
   const [showModal, setShowModal] = useState(false); // Статус МОДАЛКИ 'видима-невидима'
-  const [transactionId, setTransactionId] = useState(''); // Id транзакции для УДАЛЕНИЯ
+  const [transactionId, setTransactionId] = useState(""); // Id транзакции для УДАЛЕНИЯ
   // Хендлер модалки пишет в стейт статус "видима-невидима" и id транзакции УДАЛИТЬ
   const handleModal = (id) => {
     setShowModal((prevState) => !prevState);
@@ -35,14 +35,14 @@ function HomePage() {
   };
 
   useEffect(() => {
-    transtype === 'expense'
+    transtype === "expense"
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
   // Хендлер модалки "Удалить"
   const onDelete = () => {
-    transtype !== 'expense'
+    transtype !== "expense"
       ? dispatch(transactionOperations.handleDeleteIncome(transactionId))
       : dispatch(transactionOperations.handleDeleteExpense(transactionId));
     handleModal();
@@ -68,52 +68,38 @@ function HomePage() {
 
       <div className={s.containerBalanceGoReports}>
         <Balance displayStyle={true} />
-        <GoReports className={s.goReports}/>
+        <GoReports className={s.goReports} />
       </div>
 
-        <TabList className={s.containerTabsList}>
-          <NavLink
-            to='/expense'
-            className={s.link}
-            activeClassName={s.active}
-          >
-            <Tab className={s.tab}>
-              Расход
-            </Tab>
-          </NavLink>
+      <TabList className={s.containerTabsList}>
+        <NavLink to="/expense" className={s.link} activeClassName={s.active}>
+          <Tab className={s.tab_left}>Расход</Tab>
+        </NavLink>
 
-          <NavLink
-            to='/income'
-            className={s.link}
-            activeClassName={s.active}
-          >
-            <Tab className={s.tab}>
-              Доход
-            </Tab>
-          </NavLink>
-        </TabList>
+        <NavLink to="/income" className={s.link} activeClassName={s.active}>
+          <Tab className={s.tab}>Доход</Tab>
+        </NavLink>
+      </TabList>
 
-        <div className={s.containerFormTableSummary}>
-          <TransactionForm />
+      <div className={s.containerFormTableSummary}>
+        <TransactionForm />
 
-          {/* <div> */}
-          <div className={s.containerTableSummary}>
-
-            <TransactionTable handleModal={handleModal} />
-            {width > 1279 &&
-              <div className={s.summary}>
-                <Summary />
-              </div>
-            }
-          </div>
-
+        {/* <div> */}
+        <div className={s.containerTableSummary}>
+          <TransactionTable handleModal={handleModal} />
+          {width > 1279 && (
+            <div className={s.summary}>
+              <Summary />
+            </div>
+          )}
         </div>
+      </div>
 
-      {width > 767 & width < 1280 &&
+      {(width > 767) & (width < 1280) && (
         <div className={s.summary}>
           <Summary />
         </div>
-      }
+      )}
     </section>
   );
 }
@@ -122,7 +108,6 @@ export default HomePage;
 
 // import { useWindowSize } from 'react-use-size';
 // const { width } = useWindowSize();
-
 
 // <Container>
 //   {width > 767 && (
@@ -140,7 +125,6 @@ export default HomePage;
 //     </div>
 //   </TransactionContainer>
 // </Container>
-
 
 // import React from 'react';
 // import { Redirect } from 'react-router-dom';
