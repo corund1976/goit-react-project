@@ -10,13 +10,15 @@ import { sortByDate } from "helpers/sortByDate";
 import {
   getIncomeTransactions,
   getExpenseTransactions,
+  getAllTransactions,
 } from "redux/transactions/transactionSelectors";
-import { dateActions } from 'redux/date';
+import { dateActions } from "redux/date";
 
 import s from "./TransactionTable.module.css";
 import css from "./mobileMain.module.css";
+import { transactionOperations } from "redux/transactions";
 
-const TransactionTable = ({ handleDelete, getDate }) => {
+const TransactionTable = ({ handleDelete }) => {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
 
   const dispatch = useDispatch();
@@ -24,9 +26,10 @@ const TransactionTable = ({ handleDelete, getDate }) => {
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
   const transtype = pathname.slice(1);
-
   const incomes = useSelector(getIncomeTransactions);
   const expenses = useSelector(getExpenseTransactions);
+  const allTrans = useSelector(getAllTransactions);
+
   // Наполняем ТРАНЗАКЦИИ в зависимости от типа выводимых в таблицу транзакций
   let transactions = transtype === "income" ? incomes : expenses;
 
@@ -51,13 +54,19 @@ const TransactionTable = ({ handleDelete, getDate }) => {
     return { ...item, type: "expenses" };
   });
 
-  const allTransactions = [...typeIncome, ...typeExpense];
+  let allTransactions = sortByDate([...typeExpense, ...typeIncome]);
+  console.log(allTransactions);
 
   useEffect(() => {
     date && dispatch(dateActions.setDate(date));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
-  
+
+  useEffect(() => {
+    if (transtype === "main") transactionOperations.handleGetExpense();
+    console.log("useEffect");
+  }, []);
+  console.log(allTrans, "alltrans");
   return (
     <div className={s.dataContainer}>
       {width > 767 && (

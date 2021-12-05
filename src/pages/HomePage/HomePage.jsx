@@ -51,6 +51,8 @@ function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
 
+  console.log(transtype, "transtype");
+
   return (
     <section className={s.sectionHomePage}>
       {showModal && (
@@ -84,14 +86,14 @@ function HomePage() {
       <div className={s.containerFormTableSummary}>
         {transtype === "income" && (
           <>
-            <GoBack />
+            {width < 768 && <GoBack />}
             <TransactionForm />
           </>
         )}
 
         {transtype === "expense" && (
           <>
-            <GoBack />
+            {width < 768 && <GoBack />}
             <TransactionForm />
           </>
         )}
