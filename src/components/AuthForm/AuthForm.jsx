@@ -71,11 +71,11 @@ function AuthForm() {
 
   const errorMessage = () => {
     if (error === "Request failed with status code 404") {
-      return "Пользователь с таким email еще не зарегистрирован";
+      alert("Пользователь с таким email еще не зарегистрирован");
     } else if (error === "Request failed with status code 401") {
-      return "Некорректный пароль или email";
+      alert("Некорректный пароль или email");
     } else if (error === "Request failed with status code 409") {
-      return "Пользователь с таким email уже зарегистрирован";
+      alert("Пользователь с таким email уже зарегистрирован");
     }
   };
 

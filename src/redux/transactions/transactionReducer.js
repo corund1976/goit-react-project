@@ -45,6 +45,9 @@ const transactionsReducer = createReducer(initialState, {
   [authActions.loginSuccess]: (_, { payload }) => payload.userData.transactions,
   [authActions.logoutSuccess]: () => initialState,
 
+  [transactionActions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(item => item._id !== payload.transactionId),
+
   [userActions.getUserInfoSuccess]: (_, { payload }) => payload.transactions,
 });
 
