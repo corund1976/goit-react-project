@@ -1,5 +1,6 @@
 import api from "services/kapusta-api";
 import transactionActions from "redux/transactions/transactionActions";
+import { userOperations } from "redux/user";
 
 const handlePostIncome = (data) => (dispatch) => {
   dispatch(transactionActions.postIncomeRequest());
@@ -84,6 +85,24 @@ const handleDeleteExpense = (transactionId) => (dispatch) => {
       dispatch(transactionActions.deleteExpenseError(error.message))
     );
 };
+
+const handleDeleteTransaction = (transactionId) => (dispatch) => {
+  dispatch(transactionActions.deleteTransactionRequest());
+
+  api
+    .deleteTransaction(transactionId)
+    .then(({ data }) =>
+      dispatch(transactionActions.deleteTransactionSuccess({ data, transactionId }))
+    )
+    .then(() => {
+      dispatch(handleGetIncome());
+      dispatch(handleGetExpense());
+      dispatch(userOperations.handleGetUserInfo());
+    })
+    .catch((error) =>
+      dispatch(transactionActions.deleteTransactionError(error.message))
+    );
+};
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   handlePostIncome,
@@ -92,4 +111,5 @@ export default {
   handlePostExpense,
   handleGetExpense,
   handleDeleteExpense,
+  handleDeleteTransaction,
 };

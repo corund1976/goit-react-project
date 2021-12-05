@@ -23,6 +23,10 @@ const postExpenseError = createAction('user/postExpenseError');
 const deleteExpenseRequest = createAction('user/deleteExpenseRequest');
 const deleteExpenseSuccess = createAction('user/deleteExpenseSuccess');
 const deleteExpenseError = createAction('user/deleteExpenseError');
+
+const deleteTransactionRequest = createAction('user/deleteTransactionRequest');
+const deleteTransactionSuccess = createAction('user/deleteTransactionSuccess');
+const deleteTransactionError = createAction('user/deleteTransactionError');
 // eslint-disable-next-line
 export default {
   // INCOME
@@ -45,4 +49,7 @@ export default {
   deleteExpenseRequest,
   deleteExpenseSuccess,
   deleteExpenseError,
+  deleteTransactionRequest,
+  deleteTransactionSuccess,
+  deleteTransactionError,
 };
