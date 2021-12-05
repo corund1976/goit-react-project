@@ -27,7 +27,7 @@ function ReportSwitch({
             data-id={title}
           >
             <span className={s.sum}>
-              {fnForNumberDivide(card[1].total)}.00грн.
+              {fnForNumberDivide(card[1].total)}грн.
             </span>
             <svg
               className={

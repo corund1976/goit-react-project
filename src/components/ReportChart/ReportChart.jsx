@@ -41,7 +41,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
           indexBy={isSmall ? [subCategory] : [subCategory]}
           margin={
             isSmall
-              ? { top: 20, right: 15, bottom: 50, left: 50 }
+              ? { top: 20, right: 35, bottom: 50, left: 80 }
               : { top: 100, right: 100, bottom: 100, left: 100 }
           }
           padding={0.7}
@@ -82,7 +82,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
                   tickRotation: -45,
                   legend: "Сумма",
                   legendPosition: "middle",
-                  legendOffset: 32,
+                  legendOffset: 42,
                 }
               : {
                   tickSize: 0,
@@ -90,7 +90,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
                   tickRotation: -45,
                   legend: "",
                   legendPosition: "middle",
-                  legendOffset: 32,
+                  legendOffset: 42,
                 }
           }
         />
