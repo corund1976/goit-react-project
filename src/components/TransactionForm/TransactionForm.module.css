@@ -118,6 +118,12 @@
   border-radius: 0px 0px 16px 0px;
 }
 
+.form {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .form fieldset {
   border: white;
 }
@@ -148,6 +154,7 @@
   /* Проверил */
   .form {
     margin-bottom: 48px;
+    padding: 0;
   }
 
   .inputWrapper {
