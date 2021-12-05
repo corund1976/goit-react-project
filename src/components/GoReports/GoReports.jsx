@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import barChart from "images/barChart.png";
+import BarChart from "images/BarChart.svg";
 import s from './GoReports.module.css'
 
 
@@ -13,7 +13,7 @@ const  GoReports = () => {
       >
         Перейти к отчетам
         <img
-          src={barChart}
+          src={BarChart}
           alt="reports"
           className={s.iconReport}
         />

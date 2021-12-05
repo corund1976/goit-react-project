@@ -28,6 +28,12 @@
   width: 24px;
   height: 24px;
   margin-left: 15px;
+  fill: #52555f;
+  transition: fill var(--transition-timing) var(--transition-function);
+}
+
+.iconReport:hover .iconReport:focus {
+  fill: #ff751d;
 }
 .divToReports {
   margin-bottom: 40px;
