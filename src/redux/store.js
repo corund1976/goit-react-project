@@ -17,6 +17,7 @@ import { balanceReducer } from './balance';
 import { transactionReducer } from './transactions';
 import { categoriesReducer } from './categories';
 import { userReducer } from './user';
+import { errorReducer } from './error';
 import { dateReducer } from './date';
 import trans_month_stats_reducer from './trans_month_stats/trans_month_stats-slice';
 
@@ -41,6 +42,7 @@ export const store = configureStore({
     transactions: transactionReducer,
     categories: categoriesReducer,
     user: userReducer,
+    error: errorReducer,
     date: dateReducer,
     trans_month_stats: trans_month_stats_reducer,
   },
