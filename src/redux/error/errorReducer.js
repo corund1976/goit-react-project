@@ -8,7 +8,7 @@ import userActions from 'redux/user/userActions';
 const errorIntialState = null;
 
 const errorReducer = createReducer(errorIntialState, {
-  [authActions.registerError]: (_, { payload }) => payload,
+  [authActions.registerError]: (_, { payload }) => payload.response.status,
   [authActions.loginError]: (_, { payload }) => payload,
   [authActions.logoutError]: (_, { payload }) => payload,
   [authActions.refreshError]: (_, { payload }) => payload,

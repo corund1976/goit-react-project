@@ -28,7 +28,7 @@ const handleRegister = (credentials) => (dispatch) => {
       dispatch(authActions.registerSuccess(data));
       handleLogin(credentials)(dispatch);
     })
-    .catch((error) => dispatch(authActions.registerError(error.message)));
+    .catch((error) => dispatch(authActions.registerError(error)));
 };
 
 const handleLogout = () => dispatch => {
