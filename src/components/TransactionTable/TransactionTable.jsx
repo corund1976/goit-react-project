@@ -16,7 +16,7 @@ import { dateActions } from "redux/date";
 import s from "./TransactionTable.module.css";
 import css from "./mobileMain.module.css";
 
-const TransactionTable = ({ handleDelete, getDate }) => {
+const TransactionTable = ({ handleDelete }) => {
   const [date, setDate] = useState(""); //Инпут Дата Календаря
 
   const dispatch = useDispatch();
