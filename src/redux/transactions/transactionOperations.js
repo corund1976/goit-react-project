@@ -14,7 +14,7 @@ const handlePostIncome = (data) => (dispatch) => {
       dispatch(handleGetIncome());
     })
     .catch((error) =>
-      dispatch(transactionActions.postIncomeError(error.message))
+      dispatch(transactionActions.postIncomeError(error))
     );
 };
 
@@ -25,7 +25,7 @@ const handleGetIncome = () => (dispatch) => {
     .getIncome()
     .then(({ data }) => dispatch(transactionActions.getIncomeSuccess(data)))
     .catch((error) =>
-      dispatch(transactionActions.getIncomeError(error.message))
+      dispatch(transactionActions.getIncomeError(error))
     );
 };
 
@@ -41,7 +41,7 @@ const handleDeleteIncome = (transactionId) => (dispatch) => {
       dispatch(handleGetIncome());
     })
     .catch((error) =>
-      dispatch(transactionActions.deleteIncomeError(error.message))
+      dispatch(transactionActions.deleteIncomeError(error))
     );
 };
 
@@ -55,7 +55,7 @@ const handlePostExpense = (data) => (dispatch) => {
       dispatch(handleGetExpense());
     })
     .catch((error) =>
-      dispatch(transactionActions.postExpenseError(error.message))
+      dispatch(transactionActions.postExpenseError(error))
     );
 };
 
@@ -66,7 +66,7 @@ const handleGetExpense = () => (dispatch) => {
     .getExpense()
     .then(({ data }) => dispatch(transactionActions.getExpenseSuccess(data)))
     .catch((error) =>
-      dispatch(transactionActions.getExpenseError(error.message))
+      dispatch(transactionActions.getExpenseError(error))
     );
 };
 
@@ -82,7 +82,7 @@ const handleDeleteExpense = (transactionId) => (dispatch) => {
       dispatch(handleGetExpense());
     })
     .catch((error) =>
-      dispatch(transactionActions.deleteExpenseError(error.message))
+      dispatch(transactionActions.deleteExpenseError(error))
     );
 };
 
@@ -100,7 +100,7 @@ const handleDeleteTransaction = (transactionId) => (dispatch) => {
       dispatch(userOperations.handleGetUserInfo());
     })
     .catch((error) =>
-      dispatch(transactionActions.deleteTransactionError(error.message))
+      dispatch(transactionActions.deleteTransactionError(error))
     );
 };
 // eslint-disable-next-line import/no-anonymous-default-export
