@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { Tab, TabList } from "react-tabs";
@@ -10,7 +11,10 @@ import Summary from "components/Summary";
 import TransactionForm from "components/TransactionForm";
 import TransactionTable from "components/TransactionTable";
 import UniversalModal from "components/Modal/UniversalModal";
+import ErrorModal from "components/Modal/ErrorModal";
 import GoBack from "components/GoBack";
+
+import { getErrorMessage } from "redux/error/errorSelector";
 
 import transactionOperations from "redux/transactions/transactionOperations";
 
@@ -26,9 +30,12 @@ function HomePage() {
   const transtype = pathname.slice(1);
   // Статус МОДАЛКИ 'видима-невидима' и Id транзакции для УДАЛЕНИЯ
   const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const errorMessage = useSelector(getErrorMessage);
   const [transactionId, setTransactionId] = useState("");
   // Хендлер модалки 'Удалить' пишет в стейт статус 'видима-невидима' и id транзакции УДАЛИТЬ
   const toggleModal = () => setShowModal((prevState) => !prevState);
+  const toggleErrorModal = () => setShowErrorModal((prevState) => !prevState);
   // Хендлер модалки 'Удалить' из определенного массива транзикций
   const onDelete = () => {
     switch (transtype) {
@@ -60,6 +67,12 @@ function HomePage() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
+
+  useEffect(() => {
+    if (errorMessage !== null) {
+      setShowErrorModal(true);
+    }
+  }, [errorMessage]);
 
   console.log(transtype, "transtype");
 
@@ -144,6 +157,11 @@ function HomePage() {
         <div className={s.summary}>
           <Summary />
         </div>
+      )}
+      {showErrorModal && (
+        <ErrorModal toggleErrorModal={toggleErrorModal}>
+          <p>{errorMessage}</p>
+        </ErrorModal>
       )}
     </section>
   );
