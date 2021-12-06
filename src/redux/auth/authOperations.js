@@ -67,7 +67,6 @@ const handleGoogleAuth = (token) => (dispatch) => {
   api
     .setGoogleToken()
     .then(({ data }) => {
-      console.log({ data }, "assadasdasdasdasd");
       api.token.set(data.accessToken);
       dispatch(authActions.setGoogleTokenSuccess(data));
     })

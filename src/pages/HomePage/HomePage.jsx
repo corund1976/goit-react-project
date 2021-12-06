@@ -13,15 +13,18 @@ import TransactionTable from "components/TransactionTable";
 import UniversalModal from "components/Modal/UniversalModal";
 import ErrorModal from "components/Modal/ErrorModal";
 import GoBack from "components/GoBack";
+import Loading from "components/Loading";
 
 import { getErrorMessage } from "redux/error/errorSelector";
-
+import { getLoaderStatus } from "redux/loader/loaderSelector";
 import transactionOperations from "redux/transactions/transactionOperations";
 
 import s from "./HomePage.module.css";
 import styles from "components/Modal/Modal.module.css";
 
 function HomePage() {
+  const isLoading = useSelector(getLoaderStatus);
+
   const dispatch = useDispatch();
   // Определяем размер окна пользователя
   const { width } = useWindowSize();
@@ -64,7 +67,6 @@ function HomePage() {
     transtype === "expense"
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transtype]);
 
@@ -74,10 +76,10 @@ function HomePage() {
     }
   }, [errorMessage]);
 
-  console.log(transtype, "transtype");
-
   return (
     <section className={s.sectionHomePage}>
+      {isLoading && <Loading />}
+
       {showModal && (
         <UniversalModal toggleModal={toggleModal}>
           <p className={styles.modalTitle}>Вы уверены?</p>
@@ -87,6 +89,7 @@ function HomePage() {
           </button>
         </UniversalModal>
       )}
+
       {width > 767 && (
         <div className={s.containerBalanceGoReports}>
           <Balance displayStyle={true} />
@@ -158,11 +161,11 @@ function HomePage() {
           <Summary />
         </div>
       )}
-      {showErrorModal && (
+      {/* {showErrorModal && (
         <ErrorModal toggleErrorModal={toggleErrorModal}>
           <p>{errorMessage}</p>
         </ErrorModal>
-      )}
+      )} */}
     </section>
   );
 }

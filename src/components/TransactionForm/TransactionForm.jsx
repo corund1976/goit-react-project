@@ -115,7 +115,7 @@ function TransactionForm() {
             onChange={handleInputChange}
             className={s.inputDescription}
             required="true"
-            autoFocus="off"
+            // autoFocus="off"
           />
 
           {/* К А Т Е Г О Р И Я */}
@@ -156,7 +156,7 @@ function TransactionForm() {
               value={amount}
               onChange={handleInputChange}
               className={s.inputAmount}
-              autoFocus="off"
+              // autoFocus="off"
             />
           </div>
         </div>

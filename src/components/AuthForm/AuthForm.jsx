@@ -1,23 +1,40 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GoogleLogin } from "react-google-login";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
 
-import s from "./AuthForm.module.css";
-import googleSymbol from "images/header-authform/google-symbol.png";
-import authOperations from "redux/auth/authOperations";
+import googleSymbol from 'images/header-authform/google-symbol.png';
+import authOperations from 'redux/auth/authOperations';
+import { getErrorMessage } from 'redux/error/errorSelector';
 
-import Checkbox from "@mui/material/Checkbox";
-import { orange } from "@mui/material/colors";
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import Checkbox from '@mui/material/Checkbox';
+import { orange } from '@mui/material/colors';
+
+import s from './AuthForm.module.css';
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function AuthForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const error = useSelector((state) => state.error);
+  const error = useSelector(getErrorMessage);
   const dispatch = useDispatch();
+
+  const errorMessage = () => {
+    if (error === 'Request failed with status code 404') {
+      alert('Пользователь с таким email еще не зарегистрирован');
+    } else if (error === 'Request failed with status code 401') {
+      alert('Некорректный пароль или email');
+    } else if (error === 'Request failed with status code 409') {
+      alert('Пользователь с таким email уже зарегистрирован');
+    } else if (error === 'Request failed with status code 403') {
+      alert('Введен неверный пароль');
+    } else if (error === 'Request failed with status code 400') {
+      alert('Введены неверные данные');
+    }
+  };
 
   const changeEmailValue = (event) => setEmail(event.target.value);
   const changePasswordValue = (event) => setPassword(event.target.value);
@@ -26,15 +43,15 @@ function AuthForm() {
     event.preventDefault();
 
     !validateEmail(email)
-      ? setEmailError("Некорректно введен e-mail.")
-      : setEmailError("");
+      ? setEmailError('Некорректно введен e-mail.')
+      : setEmailError('');
 
     !validatePassword(password)
-      ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
-      : setPasswordError("");
+      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
+      : setPasswordError('');
 
-    !email && setEmailError("это обязательное поле");
-    !password && setPasswordError("это обязательное поле");
+    !email && setEmailError('это обязательное поле');
+    !password && setPasswordError('это обязательное поле');
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleLogin({ email, password }));
@@ -43,15 +60,15 @@ function AuthForm() {
 
   const onRegistration = () => {
     !validateEmail(email)
-      ? setEmailError("Некорректно введен e-mail.")
-      : setEmailError("");
+      ? setEmailError('Некорректно введен e-mail.')
+      : setEmailError('');
 
     !validatePassword(password)
-      ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
-      : setPasswordError("");
+      ? setPasswordError('Пароль должен быть от 4 до 16 символов.')
+      : setPasswordError('');
 
-    !email && setEmailError("это обязательное поле");
-    !password && setPasswordError("это обязательное поле");
+    !email && setEmailError('это обязательное поле');
+    !password && setPasswordError('это обязательное поле');
 
     if (validateEmail(email) && validatePassword(password)) {
       dispatch(authOperations.handleRegister({ email, password }));
@@ -61,7 +78,7 @@ function AuthForm() {
   const validateEmail = (email) => {
     // eslint-disable-next-line
     const response =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return response.test(email);
   };
 
@@ -69,23 +86,13 @@ function AuthForm() {
     return Boolean(password.length >= 4 && password.length <= 16);
   };
 
-  const errorMessage = () => {
-    if (error === "Request failed with status code 404") {
-      alert("Пользователь с таким email еще не зарегистрирован");
-    } else if (error === "Request failed with status code 401") {
-      alert("Некорректный пароль или email");
-    } else if (error === "Request failed with status code 409") {
-      alert("Пользователь с таким email уже зарегистрирован");
-    }
-  };
-
   const clientId =
-    "263285736930-p050d1objdtu7vmkkn1md1vv86ed3eem.apps.googleusercontent.com";
+    '263285736930-p050d1objdtu7vmkkn1md1vv86ed3eem.apps.googleusercontent.com';
 
   const responseGoogle = (response) => {
     const email = response.profileObj.email;
     const password = response.profileObj.googleId;
-    dispatch(authOperations.handleRegister({ email, password }));
+    // dispatch(authOperations.handleRegister({ email, password }));
     dispatch(authOperations.handleLogin({ email, password }));
   };
 
@@ -104,20 +111,20 @@ function AuthForm() {
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                   className={s.googelBtn}
-                  type="submit"
+                  type='button'
                 >
                   <img
                     src={googleSymbol}
-                    alt="googleSymbol"
+                    alt='googleSymbol'
                     className={s.googleSymbol}
                   />
                   Google
                 </button>
               )}
-              buttonText="Login"
+              buttonText='Login'
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              // cookiePolicy={"single_host_origin"}
+              // cookiePolicy={'single_host_origin'}
             />
           </div>
           <p className={s.inputInfo}>
@@ -125,30 +132,30 @@ function AuthForm() {
             зарегистрировавшись:
           </p>
           <div className={s.inputDiv}>
-            <label htmlFor="AuthForm__email" className={s.inputTitle}>
-              {emailError && <span style={{ color: "red" }}>*</span>}
+            <label htmlFor='AuthForm__email' className={s.inputTitle}>
+              {emailError && <span style={{ color: 'red' }}>*</span>}
               Электронная почта:
             </label>
             <input
-              type="email"
-              name="email"
-              id="AuthForm__email"
+              type='email'
+              name='email'
+              id='AuthForm__email'
               value={email}
               onChange={changeEmailValue}
-              pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-              placeholder="name@mail.com"
+              pattern='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$'
+              placeholder='name@mail.com'
               className={s.inputForm}
             />
             <p className={s.errorMessage}>{emailError}</p>
           </div>
           <div>
             <div className={s.pswInp}>
-              <label htmlFor="AuthForm__password" className={s.inputTitle}>
-                {passwordError && <span style={{ color: "red" }}>*</span>}
+              <label htmlFor='AuthForm__password' className={s.inputTitle}>
+                {passwordError && <span style={{ color: 'red' }}>*</span>}
                 Пароль:
               </label>
               <button
-                type="button"
+                type='button'
                 onClick={() => setIsPasswordShown(!isPasswordShown)}
                 className={s.showPassBtn}
               >
@@ -157,7 +164,7 @@ function AuthForm() {
                   defaultChecked
                   sx={{
                     color: orange[800],
-                    "&.Mui-checked": {
+                    '&.Mui-checked': {
                       color: orange[800],
                     },
                   }}
@@ -166,12 +173,12 @@ function AuthForm() {
             </div>
             <div>
               <input
-                type={isPasswordShown ? "text" : "password"}
-                name="password"
-                id="AuthForm__password"
+                type={isPasswordShown ? 'text' : 'password'}
+                name='password'
+                id='AuthForm__password'
                 value={password}
                 onChange={changePasswordValue}
-                placeholder="Пароль"
+                placeholder='Пароль'
                 className={s.inputForm}
               />
             </div>
@@ -179,10 +186,10 @@ function AuthForm() {
           </div>
         </div>
         <div className={s.btnDiv}>
-          <button className={s.inputBtn} type="submit">
+          <button className={s.inputBtn} type='submit'>
             Войти
           </button>
-          <button className={s.inputBtn} type="button" onClick={onRegistration}>
+          <button className={s.inputBtn} type='button' onClick={onRegistration}>
             Регистрация
           </button>
         </div>

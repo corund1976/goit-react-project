@@ -58,12 +58,12 @@ const errorMessageReducer = createReducer(errorMessageInitialState, {
 const errorStatusInitialState = null;
 
 const errorStatusReducer = createReducer(errorStatusInitialState, {
-  [authActions.registerError]: (_, { payload }) => payload.status,
-  [authActions.loginError]: (_, { payload }) => payload.status,
-  [authActions.logoutError]: (_, { payload }) => payload.response.status,
-  [authActions.refreshError]: (_, { payload }) => payload.response.status,
+  [authActions.registerError]: (_, { payload }) => payload?.status,
+  [authActions.loginError]: (_, { payload }) => payload?.status,
+  [authActions.logoutError]: (_, { payload }) => payload?.response.status,
+  [authActions.refreshError]: (_, { payload }) => payload?.response.status,
   [authActions.setGoogleTokenError]: (_, { payload }) =>
-    payload.response.status,
+    payload?.response.status,
 
   [authActions.registerRequest]: () => errorStatusInitialState,
   [authActions.loginRequest]: () => errorStatusInitialState,
