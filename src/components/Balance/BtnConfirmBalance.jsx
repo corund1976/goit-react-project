@@ -8,15 +8,18 @@ const BtnConfirmBalance = ({ input, displayStyle }) => {
   
   const addBalance = () => {
     const newBalance = Number(input);
-    dispatch(userOperations.handleUpdateUserBalance({ newBalance: newBalance }));
+
+    if (newBalance > 0) {
+      dispatch(userOperations.handleUpdateUserBalance({ newBalance: newBalance }));
+    } else {
+      alert('Баланс должен быть положительным');
+    }
   };
     
   return (
-    <>
-      <button type='button' className={displayStyle? s.balance_submit:s.balance_submit_none} onClick={addBalance}>
-        Подтвердить
-      </button >
-    </>
+    <button type='button' className={displayStyle? s.balance_submit:s.balance_submit_none} onClick={addBalance}>
+      Подтвердить
+    </button >
   );
 };
     

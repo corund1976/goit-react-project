@@ -43,8 +43,8 @@ const errorMessageReducer = createReducer(errorMessageInitialState, {
   [transactionActions.deleteExpenseRequest]: () => errorMessageInitialState,
   [transactionActions.deleteTransactionRequest]: () => errorMessageInitialState,
 
-  [userActions.updateUserBalanceError]: (_, { payload }) => payload.message,
-  [userActions.getUserInfoError]: (_, { payload }) => payload.message,
+  [userActions.updateUserBalanceError]: (_, { payload }) => payload,
+  [userActions.getUserInfoError]: (_, { payload }) => payload,
 
   [userActions.updateUserBalanceRequest]: () => errorMessageInitialState,
   [userActions.getUserInfoRequest]: () => errorMessageInitialState,
@@ -53,8 +53,8 @@ const errorMessageReducer = createReducer(errorMessageInitialState, {
 const errorStatusInitialState = null;
 
 const errorStatusReducer = createReducer(errorStatusInitialState, {
-  [authActions.registerError]: (_, { payload }) => payload.response.status,
-  [authActions.loginError]: (_, { payload }) => payload.response.status,
+  [authActions.registerError]: (_, { payload }) => payload.status,
+  [authActions.loginError]: (_, { payload }) => payload.status,
   [authActions.logoutError]: (_, { payload }) => payload.response.status,
   [authActions.refreshError]: (_, { payload }) => payload.response.status,
   [authActions.setGoogleTokenError]: (_, { payload }) => payload.response.status,
@@ -87,8 +87,8 @@ const errorStatusReducer = createReducer(errorStatusInitialState, {
   [transactionActions.deleteExpenseRequest]: () => errorStatusInitialState,
   [transactionActions.deleteTransactionRequest]: () => errorStatusInitialState,
   
-  [userActions.updateUserBalanceError]: (_, { payload }) => payload.response.status,
-  [userActions.getUserInfoError]: (_, { payload }) => payload.response.status,
+  // [userActions.updateUserBalanceError]: (_, { payload }) => payload.response?.status,
+  // [userActions.getUserInfoError]: (_, { payload }) => payload.response?.status,
 
   [userActions.updateUserBalanceRequest]: () => errorStatusInitialState,
   [userActions.getUserInfoRequest]: () => errorStatusInitialState,

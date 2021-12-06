@@ -10,7 +10,7 @@ const handleUpdateUserBalance = balance => dispatch => {
       // data = { "newBalance": 1 }
       dispatch(userActions.updateUserBalanceSuccess(data));
     })
-    .catch(error => dispatch(userActions.updateUserBalanceError(error.message)));
+    .catch(error => dispatch(userActions.updateUserBalanceError(error)));
 };
 
 const handleGetUserInfo = () => dispatch => {
@@ -34,7 +34,7 @@ const handleGetUserInfo = () => dispatch => {
       // }
       dispatch(userActions.getUserInfoSuccess(data));
     })
-    .catch(error => dispatch(userActions.getUserInfoError(error.message)));
+    .catch(error => dispatch(userActions.getUserInfoError(error)));
 };
 
 // eslint-disable-next-line

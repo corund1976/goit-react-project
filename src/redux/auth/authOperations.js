@@ -16,7 +16,7 @@ const handleLogin = (credentials) => (dispatch) => {
       dispatch(categoriesOperations.handleGetIncomeCategories());
       dispatch(categoriesOperations.handleGetExpenseCategories());
     })
-    .catch((error) => dispatch(authActions.loginError(error.message)));
+    .catch((error) => dispatch(authActions.loginError(error)));
 };
 
 const handleRegister = (credentials) => (dispatch) => {
@@ -40,7 +40,7 @@ const handleLogout = () => dispatch => {
       api.token.unset();
       dispatch(authActions.logoutSuccess());
     })
-    .catch((error) => dispatch(authActions.logoutError(error.message)));
+    .catch((error) => dispatch(authActions.logoutError(error)));
 };
 
 const handleRefresh = (sessionId) => (dispatch, getState) => {
@@ -57,7 +57,7 @@ const handleRefresh = (sessionId) => (dispatch, getState) => {
         api.token.set(data.newAccessToken);
         dispatch(authActions.refreshSuccess(data));
       })
-      .catch((error) => dispatch(authActions.refreshError(error.message)));
+      .catch((error) => dispatch(authActions.refreshError(error)));
   }
 };
 
@@ -71,7 +71,7 @@ const handleGoogleAuth = (token) => (dispatch) => {
       api.token.set(data.accessToken);
       dispatch(authActions.setGoogleTokenSuccess(data));
     })
-    .catch((error) => dispatch(authActions.setGoogleTokenError(error.message)));
+    .catch((error) => dispatch(authActions.setGoogleTokenError(error)));
 };
 // eslint-disable-next-line
 export default {

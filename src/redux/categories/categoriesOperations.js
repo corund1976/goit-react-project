@@ -7,7 +7,7 @@ const handleGetIncomeCategories = () => dispatch => {
   api
     .getIncomeCategories()
     .then(({ data }) => dispatch(categoriesActions.getIncomeCategoriesSuccess(data)))
-    .catch(error => dispatch(categoriesActions.getIncomeCategoriesError(error.message)))
+    .catch(error => dispatch(categoriesActions.getIncomeCategoriesError(error)))
 };
 
 const handleGetExpenseCategories = () => dispatch => {
@@ -16,7 +16,7 @@ const handleGetExpenseCategories = () => dispatch => {
   api
     .getExpenseCategories()
     .then(({ data }) => dispatch(categoriesActions.getExpenseCategoriesSuccess(data)))
-    .catch(error => dispatch(categoriesActions.getExpenseCategoriesError(error.message)));
+    .catch(error => dispatch(categoriesActions.getExpenseCategoriesError(error)));
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

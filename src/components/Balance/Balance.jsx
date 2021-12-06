@@ -9,11 +9,8 @@ import s from './Balance.module.css';
 
 const Balance = ({ displayStyle }) => {
   const initialBalance = useSelector(getBalance);
+  
   const [input, setInput] = useState(initialBalance);
-
-  if (input < 0) {
-    alert('Баланс не может быть отрицательным');
-  }
 
   const handleChange = e => {
     setInput(e.target.value);
