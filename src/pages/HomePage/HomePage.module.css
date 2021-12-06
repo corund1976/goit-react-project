@@ -19,6 +19,7 @@
   display: flex;
   margin: 0;
   padding: 0;
+  margin-left: -10px;
 
   position: fixed;
   bottom: 0;
@@ -56,11 +57,17 @@
 .tab:hover {
   background-color: #ff751d;
   color: white;
+  transition: background-color var(--transition-timing)
+      var(--transition-function),
+    color var(--transition-timing) var(--transition-function);
 }
 
 .tab_left:hover {
   background-color: #ff751d;
   color: white;
+  transition: background-color var(--transition-timing)
+      var(--transition-function),
+    color var(--transition-timing) var(--transition-function);
 }
 
 .tab_left {
@@ -125,6 +132,7 @@
 
   .containerTabsList {
     position: static;
+    margin-left: 0;
   }
 
   .tab_left {
