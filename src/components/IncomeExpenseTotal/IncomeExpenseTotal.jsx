@@ -13,16 +13,20 @@ function IncomeExpenseTotal() {
   return (
     <div className={s.container}>
       <p className={s.title}>
-        Расходы:&nbsp;{" "}
+        <div>
+          Расходы:&nbsp;{" "}
+        </div>
         <span className={s.outlayQuantityХ}>
-          - {fnForNumberDivide(expense)}.00 грн.
+          - {fnForNumberDivide(expense)} грн.
         </span>
       </p>
       <span className={s.vertical}></span>
       <p className={s.title}>
-        Доходы:{" "}
+        <div>
+          Доходы:{" "}
+        </div>
         <span className={s.income}>
-          &nbsp;+ {fnForNumberDivide(income)}.00 грн.
+          &nbsp;+ {fnForNumberDivide(income)} грн.
         </span>
       </p>
     </div>

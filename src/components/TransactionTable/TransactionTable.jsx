@@ -51,7 +51,7 @@ const TransactionTable = ({ handleDelete }) => {
   });
 
   let allTransactions = sortByDate([...typeExpense, ...typeIncome]);
-  console.log(allTransactions);
+  // console.log(allTransactions);
 
   useEffect(() => {
     date && dispatch(dateActions.setDate(date));
