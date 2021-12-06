@@ -32,7 +32,7 @@
   transition: fill var(--transition-timing) var(--transition-function);
 }
 
-.iconReport:hover .iconReport:focus {
+.iconReport:hover {
   fill: #ff751d;
 }
 .divToReports {
