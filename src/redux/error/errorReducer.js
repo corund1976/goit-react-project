@@ -6,26 +6,26 @@ import categoriesActions from 'redux/categories/categoriesActions';
 import transactionActions from 'redux/transactions/transactionActions';
 import userActions from 'redux/user/userActions';
 
-const errorMessageIntialState = null;
+const errorMessageInitialState = null;
 
-const errorMessageReducer = createReducer(errorMessageIntialState, {
+const errorMessageReducer = createReducer(errorMessageInitialState, {
   [authActions.registerError]: (_, { payload }) => payload.message,
   [authActions.loginError]: (_, { payload }) => payload.message,
   [authActions.logoutError]: (_, { payload }) => payload.message,
   [authActions.refreshError]: (_, { payload }) => payload.message,
   [authActions.setGoogleTokenError]: (_, { payload }) => payload.message,
 
-  [authActions.registerRequest]: (_, { payload }) => errorMessageIntialState,
-  [authActions.loginRequest]: (_, { payload }) => errorMessageIntialState,
-  [authActions.logoutRequest]: (_, { payload }) => errorMessageIntialState,
-  [authActions.refreshRequest]: (_, { payload }) => errorMessageIntialState,
-  [authActions.setGoogleTokenRequest]: (_, { payload }) => errorMessageIntialState,
+  [authActions.registerRequest]: () => errorMessageInitialState,
+  [authActions.loginRequest]: () => errorMessageInitialState,
+  [authActions.logoutRequest]: () => errorMessageInitialState,
+  [authActions.refreshRequest]: () => errorMessageInitialState,
+  [authActions.setGoogleTokenRequest]: () => errorMessageInitialState,
 
   [categoriesActions.getIncomeCategoriesError]: (_, { payload }) => payload.message,
   [categoriesActions.getExpenseCategoriesError]: (_, { payload }) => payload.message,
 
-  [categoriesActions.getIncomeCategoriesRequest]: (_, { payload }) => errorMessageIntialState,
-  [categoriesActions.getExpenseCategoriesRequest]: (_, { payload }) => errorMessageIntialState,
+  [categoriesActions.getIncomeCategoriesRequest]: () => errorMessageInitialState,
+  [categoriesActions.getExpenseCategoriesRequest]: () => errorMessageInitialState,
 
   [transactionActions.getIncomeError]: (_, { payload }) => payload.message,
   [transactionActions.postIncomeError]: (_, { payload }) => payload.message,
@@ -35,41 +35,41 @@ const errorMessageReducer = createReducer(errorMessageIntialState, {
   [transactionActions.deleteExpenseError]: (_, { payload }) => payload.message,
   [transactionActions.deleteTransactionError]: (_, { payload }) => payload.message,
 
-  [transactionActions.getIncomeRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.postIncomeRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.deleteIncomeRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.getExpenseRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.postExpenseRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.deleteExpenseRequest]: (_, { payload }) => errorMessageIntialState,
-  [transactionActions.deleteTransactionRequest]: (_, { payload }) => errorMessageIntialState,
+  [transactionActions.getIncomeRequest]: () => errorMessageInitialState,
+  [transactionActions.postIncomeRequest]: () => errorMessageInitialState,
+  [transactionActions.deleteIncomeRequest]: () => errorMessageInitialState,
+  [transactionActions.getExpenseRequest]: () => errorMessageInitialState,
+  [transactionActions.postExpenseRequest]: () => errorMessageInitialState,
+  [transactionActions.deleteExpenseRequest]: () => errorMessageInitialState,
+  [transactionActions.deleteTransactionRequest]: () => errorMessageInitialState,
 
   [userActions.updateUserBalanceError]: (_, { payload }) => payload.message,
   [userActions.getUserInfoError]: (_, { payload }) => payload.message,
 
-  [userActions.updateUserBalanceRequest]: (_, { payload }) => errorMessageIntialState,
-  [userActions.getUserInfoRequest]: (_, { payload }) => errorMessageIntialState,
+  [userActions.updateUserBalanceRequest]: () => errorMessageInitialState,
+  [userActions.getUserInfoRequest]: () => errorMessageInitialState,
 });
 
-const errorStatusIntialState = null;
+const errorStatusInitialState = null;
 
-const errorStatusReducer = createReducer(errorStatusIntialState, {
+const errorStatusReducer = createReducer(errorStatusInitialState, {
   [authActions.registerError]: (_, { payload }) => payload.response.status,
   [authActions.loginError]: (_, { payload }) => payload.response.status,
   [authActions.logoutError]: (_, { payload }) => payload.response.status,
   [authActions.refreshError]: (_, { payload }) => payload.response.status,
   [authActions.setGoogleTokenError]: (_, { payload }) => payload.response.status,
 
-  [authActions.registerRequest]: (_, { payload }) => errorStatusIntialState,
-  [authActions.loginRequest]: (_, { payload }) => errorStatusIntialState,
-  [authActions.logoutRequest]: (_, { payload }) => errorStatusIntialState,
-  [authActions.refreshRequest]: (_, { payload }) => errorStatusIntialState,
-  [authActions.setGoogleTokenRequest]: (_, { payload }) => errorStatusIntialState,
+  [authActions.registerRequest]: () => errorStatusInitialState,
+  [authActions.loginRequest]: () => errorStatusInitialState,
+  [authActions.logoutRequest]: () => errorStatusInitialState,
+  [authActions.refreshRequest]: () => errorStatusInitialState,
+  [authActions.setGoogleTokenRequest]: () => errorStatusInitialState,
 
   [categoriesActions.getIncomeCategoriesError]: (_, { payload }) => payload.response.status,
   [categoriesActions.getExpenseCategoriesError]: (_, { payload }) => payload.response.status,
 
-  [categoriesActions.getIncomeCategoriesRequest]: (_, { payload }) => errorStatusIntialState,
-  [categoriesActions.getExpenseCategoriesRequest]: (_, { payload }) => errorStatusIntialState,
+  [categoriesActions.getIncomeCategoriesRequest]: () => errorStatusInitialState,
+  [categoriesActions.getExpenseCategoriesRequest]: () => errorStatusInitialState,
 
   [transactionActions.getIncomeError]: (_, { payload }) => payload.response.status,
   [transactionActions.postIncomeError]: (_, { payload }) => payload.response.status,
@@ -79,19 +79,19 @@ const errorStatusReducer = createReducer(errorStatusIntialState, {
   [transactionActions.deleteExpenseError]: (_, { payload }) => payload.response.status,
   [transactionActions.deleteTransactionError]: (_, { payload }) => payload.response.status,
 
-  [transactionActions.getIncomeRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.postIncomeRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.deleteIncomeRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.getExpenseRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.postExpenseRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.deleteExpenseRequest]: (_, { payload }) => errorStatusIntialState,
-  [transactionActions.deleteTransactionRequest]: (_, { payload }) => errorStatusIntialState,
+  [transactionActions.getIncomeRequest]: () => errorStatusInitialState,
+  [transactionActions.postIncomeRequest]: () => errorStatusInitialState,
+  [transactionActions.deleteIncomeRequest]: () => errorStatusInitialState,
+  [transactionActions.getExpenseRequest]: () => errorStatusInitialState,
+  [transactionActions.postExpenseRequest]: () => errorStatusInitialState,
+  [transactionActions.deleteExpenseRequest]: () => errorStatusInitialState,
+  [transactionActions.deleteTransactionRequest]: () => errorStatusInitialState,
   
   [userActions.updateUserBalanceError]: (_, { payload }) => payload.response.status,
   [userActions.getUserInfoError]: (_, { payload }) => payload.response.status,
 
-  [userActions.updateUserBalanceRequest]: (_, { payload }) => errorStatusIntialState,
-  [userActions.getUserInfoRequest]: (_, { payload }) => errorStatusIntialState,
+  [userActions.updateUserBalanceRequest]: () => errorStatusInitialState,
+  [userActions.getUserInfoRequest]: () => errorStatusInitialState,
 });
 
 export default combineReducers({
