@@ -33,10 +33,10 @@ function HomePage() {
   const onDelete = () => {
     switch (transtype) {
       case "expense":
-        dispatch(transactionOperations.handleDeleteIncome(transactionId));
+        dispatch(transactionOperations.handleDeleteExpense(transactionId));
         break;
       case "income":
-        dispatch(transactionOperations.handleDeleteExpense(transactionId));
+        dispatch(transactionOperations.handleDeleteIncome(transactionId));
         break;
       case "main":
         dispatch(transactionOperations.handleDeleteTransaction(transactionId));
