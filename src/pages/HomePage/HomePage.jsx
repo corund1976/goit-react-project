@@ -169,26 +169,6 @@ function HomePage() {
 
 export default HomePage;
 
-// import { useWindowSize } from 'react-use-size';
-// const { width } = useWindowSize();
-
-// <Container>
-//   {width > 767 && (
-//     <div>
-//       <Balance />
-//       <GoReports />
-//     </div>
-//   )}
-
-//   <TransactionContainer>
-//     <TransactionForm />
-//     <div >
-//       {width > 767 && <TransactionTable />}
-//       {width > 767 && <Summary />}
-//     </div>
-//   </TransactionContainer>
-// </Container>
-
 // import React from 'react';
 // import { Redirect } from 'react-router-dom';
 

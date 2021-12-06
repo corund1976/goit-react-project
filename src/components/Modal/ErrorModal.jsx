@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
-import getErrorMessage from "../../redux/error/errorSelector";
 
-import closeBtn from "../../images/header-authform/closeBtn.png";
+import closeBtn from "images/header-authform/closeBtn.png";
 import s from "./Modal.module.css";
 
 const ErrorModal = ({ toggleErrorModal, children }) => {
   const portalModal = document.querySelector("#nodalRoot");
-  // const errorMessage = useSelector(getErrorMessage);
-
+  
   const clickBackdrop = (event) => {
     if (event.currentTarget === event.target) {
       toggleErrorModal();
