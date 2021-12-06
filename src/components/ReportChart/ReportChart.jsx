@@ -44,13 +44,13 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
               ? { top: 20, right: 35, bottom: 50, left: 80 }
               : { top: 100, right: 100, bottom: 100, left: 100 }
           }
-          padding={0.7}
+          padding={0.8}
           valueScale={{ type: "linear" }}
           layout={isSmall ? "horizontal" : "vertical"}
           colors='#ff751d'
           animate={true}
           enableGridX={true}
-          labelSkipWidth={10}
+          labelSkipWidth={15}
           labelSkipHeight={10}
           enableLabel={isSmall ? true : false}
           axisTop={null}
@@ -59,7 +59,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
             isSmall
               ? {
                   tickSize: 0,
-                  tickPadding: 0,
+                  tickPadding: 10,
                   tickRotation: 0,
                   legend: "",
                   legendPosition: "middle",
