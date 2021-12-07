@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
-import { getIsAuthorized } from "redux/auth/authSelectors";
+import { useSelector } from 'react-redux';
 
-import s from "./MainPage.module.css";
-import Container from "components/Container";
+import { authSelectors } from 'redux/auth';
+
+import Container from 'components/Container';
+
+import s from './MainPage.module.css';
 
 const MainPage = ({ children }) => {
-  const isLogin = useSelector(getIsAuthorized);
+  const isLogin = useSelector(authSelectors.getIsAuthorized);
 
   return (
     <div className={isLogin ? s.mainAuth : s.main}>

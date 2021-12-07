@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from "react";
-import s from "../Calendar/Calendar.module.css";
-import { getPeriod } from "redux/trans_month_stats/trans_month_stats-thunk";
-import { useDispatch, useSelector } from "react-redux";
-import vector from "images/VectorLeft.png";
-import vectorRight from "images/VectorRight.png";
-import { getAccessToken } from "redux/auth/authSelectors";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { reportsThunk } from 'redux/reports';
+import { authSelectors } from 'redux/auth';
+
+import vector from 'images/VectorLeft.png';
+import vectorRight from 'images/VectorRight.png';
+
+import s from './Calendar.module.css';
 
 const monthsArr = [
-  {
-    id: 1,
-    label: "январь",
-  },
-  { id: 2, label: "февраль" },
-  { id: 3, label: "март" },
-  { id: 4, label: "апрель" },
-  { id: 5, label: "май" },
-  { id: 6, label: "июнь" },
-  { id: 7, label: "июль" },
-  { id: 8, label: "август" },
-  { id: 9, label: "сентябрь" },
-  { id: 10, label: "октябрь" },
-  { id: 11, label: "ноябрь" },
-  { id: 12, label: "декабрь" },
+  { id: 1, label: 'январь' },
+  { id: 2, label: 'февраль' },
+  { id: 3, label: 'март' },
+  { id: 4, label: 'апрель' },
+  { id: 5, label: 'май' },
+  { id: 6, label: 'июнь' },
+  { id: 7, label: 'июль' },
+  { id: 8, label: 'август' },
+  { id: 9, label: 'сентябрь' },
+  { id: 10, label: 'октябрь' },
+  { id: 11, label: 'ноябрь' },
+  { id: 12, label: 'декабрь' },
 ];
 
 const CalendarView = () => {
   const dispatch = useDispatch();
-  const accessToken = useSelector(getAccessToken);
+  const accessToken = useSelector(authSelectors.getAccessToken);
+
   const [nameMonth, setNameMonth] = useState(
     monthsArr.find((el) => el.id === new Date().getMonth() + 1)
   );
@@ -35,7 +36,6 @@ const CalendarView = () => {
 
   const nextMnth = () => {
     if (nameMonth.id < monthsArr.length) {
-      // console.log(monthsArr[nameMonth.id]);
       setNameMonth(monthsArr[nameMonth.id]);
     } else {
       setNameMonth(monthsArr[0]);
@@ -53,46 +53,52 @@ const CalendarView = () => {
   };
 
   useEffect(() => {
-    setSelectedDate(`${year}-${nameMonth.id.toString().padStart(2, "0")}`);
+    setSelectedDate(`${year}-${nameMonth.id.toString().padStart(2, '0')}`);
   }, [nameMonth, year]);
 
   useEffect(() => {
-    dispatch(getPeriod(selectedDate));
+    dispatch(reportsThunk.getPeriod(selectedDate));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, accessToken]);
+
   return (
     <div className={s.calendarDiv}>
       <p className={s.calendarStyle}>Текущий период</p>
       <div className={s.divCalendar}>
+
         <button onClick={prevNext} className={s.btnMonth}>
-          {" "}
+          {' '}
           <span className={s.spanArrow}>
             <img src={vector} alt='go to previous month icon'></img>
           </span>
         </button>
+
         <span className={s.monthName}>
           {nameMonth?.label} {year}
         </span>
+
         <button onClick={nextMnth} className={s.btnMonth}>
-          {" "}
+          {' '}
           <span>
             <img src={vectorRight} alt='go to previous month icon'></img>
           </span>
         </button>
+
       </div>
     </div>
   );
 };
 
 export default CalendarView;
+
 //==============Alternative Calendar View============================///
-// import { makeStyles } from "@material-ui/core/styles";
-// import TextField from "@material-ui/core/TextField";
+// import { makeStyles } from '@material-ui/core/styles';
+// import TextField from '@material-ui/core/TextField';
 
 // const useStyles = makeStyles((theme) => ({
 //   container: {
-//     display: "flex",
-//     flexWrap: "wrap",
+//     display: 'flex',
+//     flexWrap: 'wrap',
 //   },
 //   textField: {
 //     marginLeft: theme.spacing(1),
@@ -121,9 +127,9 @@ export default CalendarView;
 //       <p className={s.calendarStyle}>Текущий период</p>
 //       <form className={classes.container} noValidate>
 //         <TextField
-//           id="date"
-//           type="month"
-//           format="MM/yyyy"
+//           id='date'
+//           type='month'
+//           format='MM/yyyy'
 //           defaultValue={selectedDate}
 //           className={classes.textField}
 //           onChange={handleDateChange}

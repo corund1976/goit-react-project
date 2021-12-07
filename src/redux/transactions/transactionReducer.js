@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import transactionActions from 'redux/transactions/transactionActions';
-import authActions from 'redux/auth/authActions';
-import userActions from 'redux/user/userActions';
+import {authActions} from 'redux/auth';
+import {userActions} from 'redux/user';
+import {transactionActions} from 'redux/transactions';
 
 const initialState = [];
 

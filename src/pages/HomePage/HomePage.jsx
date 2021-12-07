@@ -1,29 +1,30 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-import { Tab, TabList } from "react-tabs";
-import { useWindowSize } from "react-use-size";
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useWindowSize } from 'react-use-size';
+import { Tab, TabList } from 'react-tabs';
 
-import Balance from "components/Balance";
-import GoReports from "components/GoReports";
-import Summary from "components/Summary";
-import TransactionForm from "components/TransactionForm";
-import TransactionTable from "components/TransactionTable";
-import UniversalModal from "components/Modal/UniversalModal";
-import ErrorModal from "components/Modal/ErrorModal";
-import GoBack from "components/GoBack";
-import Loading from "components/Loading";
+import Balance from 'components/Balance';
+import GoReports from 'components/GoReports';
+import Summary from 'components/Summary';
+import TransactionForm from 'components/TransactionForm';
+import TransactionTable from 'components/TransactionTable';
+import UniversalModal from 'components/Modal/UniversalModal';
+import ErrorModal from 'components/Modal/ErrorModal';
+import GoBack from 'components/GoBack';
+import Loading from 'components/Loading';
 
-import { getErrorMessage } from "redux/error/errorSelector";
-import { getLoaderStatus } from "redux/loader/loaderSelector";
-import transactionOperations from "redux/transactions/transactionOperations";
+import { errorSelectors } from 'redux/error';
+import { loaderSelector } from 'redux/loader';
+import transactionOperations from 'redux/transactions/transactionOperations';
 
-import s from "./HomePage.module.css";
-import styles from "components/Modal/Modal.module.css";
+import s from './HomePage.module.css';
+import styles from 'components/Modal/Modal.module.css';
 
 function HomePage() {
-  const isLoading = useSelector(getLoaderStatus);
+  const isLoading = useSelector(loaderSelector.getLoaderStatus);
+  const errorMessage = useSelector(errorSelectors.getErrorMessage);
 
   const dispatch = useDispatch();
   // Определяем размер окна пользователя
@@ -34,21 +35,20 @@ function HomePage() {
   // Статус МОДАЛКИ 'видима-невидима' и Id транзакции для УДАЛЕНИЯ
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const errorMessage = useSelector(getErrorMessage);
-  const [transactionId, setTransactionId] = useState("");
+  const [transactionId, setTransactionId] = useState('');
   // Хендлер модалки 'Удалить' пишет в стейт статус 'видима-невидима' и id транзакции УДАЛИТЬ
   const toggleModal = () => setShowModal((prevState) => !prevState);
   const toggleErrorModal = () => setShowErrorModal((prevState) => !prevState);
   // Хендлер модалки 'Удалить' из определенного массива транзикций
   const onDelete = () => {
     switch (transtype) {
-      case "expense":
+      case 'expense':
         dispatch(transactionOperations.handleDeleteExpense(transactionId));
         break;
-      case "income":
+      case 'income':
         dispatch(transactionOperations.handleDeleteIncome(transactionId));
         break;
-      case "main":
+      case 'main':
         dispatch(transactionOperations.handleDeleteTransaction(transactionId));
         break;
       default:
@@ -56,15 +56,15 @@ function HomePage() {
     }
     toggleModal();
   };
-  // Хендлер модалки 'Удалить' ловит событие при нажатии на "корзину" и
-  // получает из таблицы Id иранзакции и делает модалки "видимой"
+  // Хендлер модалки 'Удалить' ловит событие при нажатии на 'корзину' и
+  // получает из таблицы Id иранзакции и делает модалки 'видимой'
   const handleDelete = (id) => {
     setShowModal((prevState) => !prevState);
     setTransactionId(id);
   };
 
   useEffect(() => {
-    transtype === "expense"
+    transtype === 'expense'
       ? dispatch(transactionOperations.handleGetExpense())
       : dispatch(transactionOperations.handleGetIncome());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +84,7 @@ function HomePage() {
         <UniversalModal toggleModal={toggleModal}>
           <p className={styles.modalTitle}>Вы уверены?</p>
 
-          <button type="button" onClick={onDelete} className={styles.modalBtn}>
+          <button type='button' onClick={onDelete} className={styles.modalBtn}>
             Да
           </button>
         </UniversalModal>
@@ -99,49 +99,49 @@ function HomePage() {
 
       {width > 767 && (
         <TabList className={s.containerTabsList}>
-          <NavLink to="/expense" className={s.link} activeClassName={s.active}>
+          <NavLink to='/expense' className={s.link} activeClassName={s.active}>
             <Tab className={s.tab_left}>Расход</Tab>
           </NavLink>
 
-          <NavLink to="/income" className={s.link} activeClassName={s.active}>
+          <NavLink to='/income' className={s.link} activeClassName={s.active}>
             <Tab className={s.tab}>Доход</Tab>
           </NavLink>
         </TabList>
       )}
 
       <div className={s.containerFormTableSummary}>
-        {transtype === "income" && (
+        {transtype === 'income' && (
           <>
             {width < 768 && <GoBack />}
             <TransactionForm />
           </>
         )}
 
-        {transtype === "expense" && (
+        {transtype === 'expense' && (
           <>
             {width < 768 && <GoBack />}
             <TransactionForm />
           </>
         )}
 
-        {width < 767 && transtype === "main" && (
+        {width < 767 && transtype === 'main' && (
           <div className={s.containerBalanceGoReports}>
             <Balance displayStyle={true} />
             <GoReports className={s.goReports} />
           </div>
         )}
 
-        {width < 767 && transtype === "main" && (
+        {width < 767 && transtype === 'main' && (
           <TabList className={s.containerTabsList}>
             <NavLink
-              to="/expense"
+              to='/expense'
               className={s.link}
               activeClassName={s.active}
             >
               <Tab className={s.tab_left}>Расход</Tab>
             </NavLink>
 
-            <NavLink to="/income" className={s.link} activeClassName={s.active}>
+            <NavLink to='/income' className={s.link} activeClassName={s.active}>
               <Tab className={s.tab}>Доход</Tab>
             </NavLink>
           </TabList>
@@ -161,11 +161,11 @@ function HomePage() {
           <Summary />
         </div>
       )}
-      {/* {showErrorModal && (
+      {showErrorModal && (
         <ErrorModal toggleErrorModal={toggleErrorModal}>
           <p>{errorMessage}</p>
         </ErrorModal>
-      )} */}
+      )}
     </section>
   );
 }

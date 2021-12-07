@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import BtnConfirmBalance from './BtnConfirmBalance';
 import BalanceModal from 'components/Modal/BalanceModal';
-import { getBalance } from 'redux/balance/balanceSelectors';
+import BtnConfirmBalance from 'components/Balance/BtnConfirmBalance';
+
+import { balanceSelectors } from 'redux/balance';
 
 import s from './Balance.module.css';
 
 const Balance = ({ displayStyle }) => {
-  const initialBalance = useSelector(getBalance);
+  const initialBalance = useSelector(balanceSelectors.getBalance);
   
   const [input, setInput] = useState(initialBalance);
 

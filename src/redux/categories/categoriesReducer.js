@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import categoriesActions from 'redux/categories/categoriesActions';
+import { categoriesActions } from 'redux/categories';
 
 const incomeCategories = createReducer([], {
   [categoriesActions.getIncomeCategoriesSuccess]: (_, { payload }) => payload,

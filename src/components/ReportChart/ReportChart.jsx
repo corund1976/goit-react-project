@@ -1,13 +1,13 @@
-import { ResponsiveBar } from "@nivo/bar";
-import { useBreakpoint } from "react-use-size";
+import { ResponsiveBar } from '@nivo/bar';
+import { useBreakpoint } from 'react-use-size';
 
-import s from "./ReportChart.module.css";
+import s from './ReportChart.module.css';
 
 function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
   let dataForChart = [];
   const isSmall = useBreakpoint(768);
-  const sum = "Сумма";
-  const subCategory = "Подкатегория";
+  const sum = 'Сумма';
+  const subCategory = 'Подкатегория';
   const findCategoryEqualToActive = arrTransactionsOfMonth.find(
     (item) => item[0] === activeCategoryOfTransactions
   );
@@ -20,7 +20,7 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
           [sum]: sumFromArr,
         };
       })
-      .filter((item) => item[subCategory] !== "total")
+      .filter((item) => item[subCategory] !== 'total')
       .sort((a, b) => {
         if (!isSmall) {
           return b[sum] - a[sum];
@@ -45,8 +45,8 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
               : { top: 100, right: 100, bottom: 100, left: 100 }
           }
           padding={0.8}
-          valueScale={{ type: "linear" }}
-          layout={isSmall ? "horizontal" : "vertical"}
+          valueScale={{ type: 'linear' }}
+          layout={isSmall ? 'horizontal' : 'vertical'}
           colors='#ff751d'
           animate={true}
           enableGridX={true}
@@ -61,16 +61,16 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
                   tickSize: 0,
                   tickPadding: 10,
                   tickRotation: 0,
-                  legend: "",
-                  legendPosition: "middle",
+                  legend: '',
+                  legendPosition: 'middle',
                   legendOffset: -50,
                 }
               : {
                   tickSize: 0,
                   tickPadding: 5,
                   tickRotation: 0,
-                  legend: "Сумма",
-                  legendPosition: "middle",
+                  legend: 'Сумма',
+                  legendPosition: 'middle',
                   legendOffset: -50,
                 }
           }
@@ -80,16 +80,16 @@ function ReportChart({ arrTransactionsOfMonth, activeCategoryOfTransactions }) {
                   tickSize: 0,
                   tickPadding: 5,
                   tickRotation: -45,
-                  legend: "Сумма",
-                  legendPosition: "middle",
+                  legend: 'Сумма',
+                  legendPosition: 'middle',
                   legendOffset: 42,
                 }
               : {
                   tickSize: 0,
                   tickPadding: 5,
                   tickRotation: -45,
-                  legend: "",
-                  legendPosition: "middle",
+                  legend: '',
+                  legendPosition: 'middle',
                   legendOffset: 42,
                 }
           }

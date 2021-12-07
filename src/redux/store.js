@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -9,7 +9,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth';
@@ -20,15 +19,7 @@ import { userReducer } from './user';
 import { errorReducer } from './error';
 import { loaderReducer } from './loader';
 import { dateReducer } from './date';
-import trans_month_stats_reducer from './trans_month_stats/trans_month_stats-slice';
-
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }).concat(thunk),
-];
+import { reportsReducer } from './reports';
 
 const authPersistConfig = {
   key: 'auth',
@@ -36,9 +27,18 @@ const authPersistConfig = {
   whitelist: ['accessToken', 'refreshToken', 'sid', 'isAuthorized'],
 };
 
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+
+const middleware = (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  });
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: authPersistedReducer,
     balance: balanceReducer,
     transactions: transactionReducer,
     categories: categoriesReducer,
@@ -46,7 +46,7 @@ export const store = configureStore({
     error: errorReducer,
     loader: loaderReducer,
     date: dateReducer,
-    trans_month_stats: trans_month_stats_reducer,
+    reports: reportsReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

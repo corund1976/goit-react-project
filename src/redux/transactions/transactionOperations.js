@@ -1,6 +1,7 @@
-import api from "services/kapusta-api";
-import transactionActions from "redux/transactions/transactionActions";
-import { userOperations } from "redux/user";
+import { userOperations } from 'redux/user';
+import { transactionActions } from 'redux/transactions';
+
+import api from 'services/kapusta-api';
 
 const handlePostIncome = (data) => (dispatch) => {
   dispatch(transactionActions.postIncomeRequest());

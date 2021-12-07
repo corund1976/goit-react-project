@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import authActions from 'redux/auth/authActions';
-import userActions from 'redux/user/userActions';
+import {authActions} from 'redux/auth';
+import {userActions} from 'redux/user';
 
 const userEmailInitialState = null;
 

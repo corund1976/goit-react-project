@@ -12,20 +12,15 @@ import ReportChart from 'components/ReportChart';
 import ErrorModal from 'components/Modal/ErrorModal';
 import Loading from 'components/Loading';
 
-import { getErrorMessage } from 'redux/error/errorSelector';
-import { getLoaderStatus } from 'redux/loader/loaderSelector';
-
-import {
-  errorSelector,
-  expensesOfMonthSelector,
-  incomesOfMonthSelector,
-  isLoadingSelector,
-} from 'redux/trans_month_stats/trans_month_stats-selectors';
+import { errorSelectors } from 'redux/error';
+import { loaderSelector } from 'redux/loader';
+import { reportsSelectors } from 'redux/reports';
 
 import s from './ReportPage.module.css';
 
 function ReportPage() {
-  const isLoad = useSelector(getLoaderStatus);
+  const isLoading = useSelector(loaderSelector.getLoaderStatus);
+  const errorMessage = useSelector(errorSelectors.getErrorMessage);
 
   const [activeTypeOfTransactions, setActiveTypeOfTransactions] =
     useState('Расходы');
@@ -33,15 +28,14 @@ function ReportPage() {
     useState('');
 
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const errorMessage = useSelector(getErrorMessage);
   const toggleErrorModal = () => setShowErrorModal((prevState) => !prevState);
 
-  const arrEexpensesOfMonth = useSelector(expensesOfMonthSelector);
-  const arrIncomesOfMonth = useSelector(incomesOfMonthSelector);
+  const arrEexpensesOfMonth = useSelector(reportsSelectors.expensesOfMonthSelector);
+  const arrIncomesOfMonth = useSelector(reportsSelectors.incomesOfMonthSelector);
 
-  const isLoading = useSelector(isLoadingSelector);
+  const isLoadingReport = useSelector(reportsSelectors.isLoadingSelector);
 
-  const error = useSelector(errorSelector);
+  const error = useSelector(reportsSelectors.errorSelector);
 
   const arrForMarkup =
     activeTypeOfTransactions === 'Расходы'
@@ -59,6 +53,7 @@ function ReportPage() {
   const toggleActiveCategory = (e) => {
     setActiveCategoryOfTransaction(e.target.closest('LI').dataset.id);
   };
+
   useEffect(() => {
     if (arrTransactionsOfMonth.length) {
       setActiveCategoryOfTransaction(arrTransactionsOfMonth[0][0]);
@@ -74,7 +69,7 @@ function ReportPage() {
 
   return (
     <Section>
-      {isLoad && <Loading />}
+      {isLoading && <Loading />}
 
       <div className={s.reportHeaderBalance}>
         <GoBack />
@@ -84,7 +79,7 @@ function ReportPage() {
         </div>
       </div>
       <IncomeExpenseTotal />
-      {!isLoading ? (
+      {!isLoadingReport ? (
         <>
           {' '}
           <ReportSwitch
@@ -95,7 +90,7 @@ function ReportPage() {
             arrTransactionsOfMonth={arrTransactionsOfMonth}
           />
           {error ? (
-            <p>{error.message}</p>
+            <p>{errorMessage}</p>
           ) : (
             <ReportChart
               arrTransactionsOfMonth={arrTransactionsOfMonth}
@@ -109,11 +104,11 @@ function ReportPage() {
         </div>
       )}
 
-      {/* {showErrorModal && (
+      {showErrorModal && (
         <ErrorModal toggleErrorModal={toggleErrorModal}>
           <p>{errorMessage}</p>
         </ErrorModal>
-      )} */}
+      )}
 
     </Section>
   );

@@ -14,10 +14,9 @@ function CalendarForm({ dateHandle }) {
 			<span className={s.watch}></span>
 			<DatePicker
 				selected={date}
-				onChange={(date) => setDate(date)}
-				className={s.datePicker}
-				dateFormat="dd/MM/yyyy"
-				
+        onChange={(date) => setDate(prev => date)}
+        className={s.datePicker}
+				dateFormat='dd/MM/yyyy'
 			/>
 		</div>
 	);

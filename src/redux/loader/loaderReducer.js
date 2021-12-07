@@ -1,13 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import authActions from 'redux/auth/authActions';
-import categoriesActions from 'redux/categories/categoriesActions';
-import transactionActions from 'redux/transactions/transactionActions';
-import userActions from 'redux/user/userActions';
+import {authActions} from 'redux/auth';
+import {userActions} from 'redux/user';
+import {categoriesActions} from 'redux/categories';
+import {transactionActions} from 'redux/transactions';
 
-const loaderStatusInitialState = null;
+const loaderInitialState = null;
 
-const loaderStatusReducer = createReducer(loaderStatusInitialState, {
+const loaderReducer = createReducer(loaderInitialState, {
   [authActions.registerRequest]: () => true,
   [authActions.loginRequest]: () => true,
   [authActions.logoutRequest]: () => true,
@@ -69,4 +69,4 @@ const loaderStatusReducer = createReducer(loaderStatusInitialState, {
   [userActions.getUserInfoError]: () => false,
 });
 
-export default loaderStatusReducer;
+export default loaderReducer;

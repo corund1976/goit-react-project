@@ -1,33 +1,30 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import cliTruncate from "cli-truncate";
-import { useWindowSize } from "react-use-size";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useWindowSize } from 'react-use-size';
+import cliTruncate from 'cli-truncate';
 
-import CalendarForm from "components/CalendarForm";
-import { sortByDate } from "helpers/sortByDate";
+import CalendarForm from 'components/CalendarForm';
+import { sortByDate } from 'helpers/sortByDate';
 
-import {
-  getIncomeTransactions,
-  getExpenseTransactions,
-} from "redux/transactions/transactionSelectors";
-import { dateActions } from "redux/date";
+import { transactionSelectors } from 'redux/transactions';
+import { dateActions } from 'redux/date';
 
-import s from "./TransactionTable.module.css";
-import css from "./mobileMain.module.css";
+import s from './TransactionTable.module.css';
+import css from './mobileMain.module.css';
 
 const TransactionTable = ({ handleDelete }) => {
-  const [date, setDate] = useState(""); //Инпут Дата Календаря
+  const [date, setDate] = useState(''); //Инпут Дата Календаря
 
   const dispatch = useDispatch();
   const { width } = useWindowSize();
   // Определяем тип обабатываемых транзакций в форме по ключевому слову в адресной строке
   const { pathname } = useLocation();
   const transtype = pathname.slice(1);
-  const incomes = useSelector(getIncomeTransactions);
-  const expenses = useSelector(getExpenseTransactions);
+  const incomes = useSelector(transactionSelectors.getIncomeTransactions);
+  const expenses = useSelector(transactionSelectors.getExpenseTransactions);
   // Наполняем ТРАНЗАКЦИИ в зависимости от типа выводимых в таблицу транзакций
-  let transactions = transtype === "income" ? incomes : expenses;
+  let transactions = transtype === 'income' ? incomes : expenses;
 
   if (transactions.length) {
     transactions = sortByDate(transactions);
@@ -37,21 +34,20 @@ const TransactionTable = ({ handleDelete }) => {
 
   const dateHandle = (date) => {
     const year = String(date.getFullYear());
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     setDate(`${year}-${month}-${day}`);
   };
 
   const typeIncome = incomes.map((item) => {
-    return { ...item, type: "income" };
+    return { ...item, type: 'income' };
   });
 
   const typeExpense = expenses.map((item) => {
-    return { ...item, type: "expenses" };
+    return { ...item, type: 'expenses' };
   });
 
   let allTransactions = sortByDate([...typeExpense, ...typeIncome]);
-  // console.log(allTransactions);
 
   useEffect(() => {
     date && dispatch(dateActions.setDate(date));
@@ -90,10 +86,10 @@ const TransactionTable = ({ handleDelete }) => {
                     <td
                       className={
                         (s.tdSum,
-                        transtype === "income" ? s.tdSum : s.tdSumExpense)
+                        transtype === 'income' ? s.tdSum : s.tdSumExpense)
                       }
                     >
-                      {transtype === "income" ? `+` : `-`}
+                      {transtype === 'income' ? `+` : `-`}
                       {item.amount}.00 грн.
                     </td>
 
@@ -130,7 +126,7 @@ const TransactionTable = ({ handleDelete }) => {
         </div>
       )}
 
-      {width < 768 && transtype === "main" && (
+      {width < 768 && transtype === 'main' && (
         <>
           <CalendarForm dateHandle={dateHandle} onChange={dateHandle} />
           <ul className={css.alltransactions}>
@@ -143,7 +139,7 @@ const TransactionTable = ({ handleDelete }) => {
                 <p className={css.category}>{item.category} </p>
                 <p
                   className={
-                    item.type === "income"
+                    item.type === 'income'
                       ? css.amountIncome
                       : css.amountExpense
                   }

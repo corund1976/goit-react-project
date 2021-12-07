@@ -1,3 +1,9 @@
+https://www.figma.com/file/IHc8T3LE4yfMVp6c2CL1aP/%D0%A3%D1%87%D0%B5%D1%82-%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2?node-id=0%3A1
+
+https://kapusta-backend.goit.global/api-docs/
+
+https://trello.com/b/s8tBTdQx/bc-11-online-kapustagroup1
+
 0. Установить Create React App (в текущей папке, которая открыта в VSCode)
    npx create-react-app .
 

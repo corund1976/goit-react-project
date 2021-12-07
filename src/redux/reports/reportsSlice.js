@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getPeriod } from "./trans_month_stats-thunk";
+import { reportsThunk } from "redux/reports";
+
 
 const initialState = {
   data: {},
@@ -8,22 +9,22 @@ const initialState = {
   isLoading: false,
 };
 
-const trans_month_stats = createSlice({
-  name: "userContactBooktrans_month_stats",
+const reports = createSlice({
+  name: "reports",
   initialState,
   extraReducers: {
-    [getPeriod.pending]: (state, _) => ({
+    [reportsThunk.getPeriod.pending]: (state, _) => ({
       ...state,
 
       isLoading: true,
     }),
-    [getPeriod.fulfilled]: (state, { payload }) => ({
+    [reportsThunk.getPeriod.fulfilled]: (state, { payload }) => ({
       ...state,
       data: payload,
       error: null,
       isLoading: false,
     }),
-    [getPeriod.rejected]: (state, { payload }) => ({
+    [reportsThunk.getPeriod.rejected]: (state, { payload }) => ({
       ...state,
       error: payload,
       isLoading: false,
@@ -31,4 +32,4 @@ const trans_month_stats = createSlice({
   },
 });
 
-export default trans_month_stats.reducer;
+export default reports.reducer;

@@ -11,14 +11,15 @@ import Select from '@mui/material/Select';
 import { TextField } from '@mui/material';
 
 import CalendarForm from 'components/CalendarForm';
+
 import { transactionOperations } from 'redux/transactions';
-import { getExpenseCategories, getIncomeCategories } from 'redux/categories/categoriesSelectors';
-import { getDate } from 'redux/date/dateSelector';
+import { categoriesSelectors } from 'redux/categories';
+import { dateSelector } from 'redux/date';
 
 import s from './TransactionForm.module.css';
 
 function TransactionForm() {
-  const mobileDate = useSelector(getDate);
+  const mobileDate = useSelector(dateSelector.getDate);
 
   const [date, setDate] = useState(mobileDate); //Инпут Дата Календаря
   const [description, setDescription] = useState(''); //Инпут Описание товара/дохода
@@ -31,8 +32,8 @@ function TransactionForm() {
   const { pathname } = useLocation();
   const transtype = pathname.slice(1); // income или expense
   // Записываем значения возможные инпута Селектора, основываясь на данных сервера
-  const incomeCategories = useSelector(getIncomeCategories);
-  const expenseCategories = useSelector(getExpenseCategories);
+  const incomeCategories = useSelector(categoriesSelectors.getIncomeCategories);
+  const expenseCategories = useSelector(categoriesSelectors.getExpenseCategories);
   // Формируем объект для записи РАЗНЫХ значений заголовков формы
   const formTitleData = {
     descriptionTitle: '',
@@ -56,7 +57,6 @@ function TransactionForm() {
     const day = String(date.getDate()).padStart(2, '0');
     setDate(`${year}-${month}-${day}`);
   };
-
   // Хендлер 2х инпутов 'Описание товара' и 'Сумма'
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -79,7 +79,7 @@ function TransactionForm() {
   // Хендлер кнопки 'Ввод'
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Формируем объект ТРАНЗАКЦИЯ для передачи на сервер
+    // Формируем объект ТРАНЗАКЦИЯ для передачи на сервер ВАЖНО !!!
     const transaction = { date, description, category, amount };
     // Отправляем объект в ОПЕРАЦИИ в зависимости от типа транзакции
     transtype === 'income'
@@ -111,7 +111,7 @@ function TransactionForm() {
             value={description}
             onChange={handleInputChange}
             className={s.inputDescription}
-            required='true'
+            required={true}
             // autoFocus='off'
           />
 
@@ -128,7 +128,7 @@ function TransactionForm() {
 
               <Select
                 labelId='demo-simple-select-label'
-                required='true'
+                required={true}
                 value={category}
                 onChange={handleChange}
               >
@@ -149,7 +149,7 @@ function TransactionForm() {
               color='warning'
               type='number'
               name='price'
-              required='true'
+              required={true}
               value={amount}
               onChange={handleInputChange}
               className={s.inputAmount}
@@ -169,6 +169,7 @@ function TransactionForm() {
             Очистить
           </button>
         </div>
+
       </form>
     </div>
   );

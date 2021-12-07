@@ -9,15 +9,16 @@ import ErrorModal from 'components/Modal/ErrorModal';
 import Loading from 'components/Loading';
 
 
-import { getErrorMessage } from 'redux/error/errorSelector';
-import { getLoaderStatus } from 'redux/loader/loaderSelector';
+import { errorSelectors } from 'redux/error';
+import { loaderSelector } from 'redux/loader';
 
 import s from './AuthPage.module.css';
 
 function AuthPage() {
+  const errorMessage = useSelector(errorSelectors.getErrorMessage);
+  const isLoading = useSelector(loaderSelector.getLoaderStatus);
+  
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const errorMessage = useSelector(getErrorMessage);
-  const isLoading = useSelector(getLoaderStatus);
 
   const toggleErrorModal = () => setShowErrorModal((prevState) => !prevState);
 
@@ -37,11 +38,11 @@ function AuthPage() {
         <AuthForm />
       </div>
 
-      {/* {showErrorModal && (
+      {showErrorModal && (
         <ErrorModal toggleErrorModal={toggleErrorModal}>
           <p>{errorMessage}</p>
         </ErrorModal>
-      )} */}
+      )}
 
     </Section>
   );

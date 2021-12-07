@@ -7,7 +7,6 @@ const updateUserBalanceError = createAction('user/updateUserBalanceError');
 const getUserInfoRequest = createAction('user/getUserInfoRequest');
 const getUserInfoSuccess = createAction('user/getUserInfoSuccess');
 const getUserInfoError = createAction('user/getUserInfoError');
-
 // eslint-disable-next-line
 export default {
   updateUserBalanceRequest,

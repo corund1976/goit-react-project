@@ -1,34 +1,37 @@
-import s from "./IncomeExpenseTotal.module.css";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import {
-  totalExpensesOfMonthSelector,
-  totalIncomesOfMonthSelector,
-} from "redux/trans_month_stats/trans_month_stats-selectors";
+import { reportsSelectors } from 'redux/reports';
 
-import { fnForNumberDivide } from "helpers/divideNumber";
+import { fnForNumberDivide } from 'helpers/divideNumber';
+
+import s from './IncomeExpenseTotal.module.css';
+
 function IncomeExpenseTotal() {
-  const expense = useSelector(totalExpensesOfMonthSelector);
-  const income = useSelector(totalIncomesOfMonthSelector);
+  const expense = useSelector(reportsSelectors.totalExpensesOfMonthSelector);
+  const income = useSelector(reportsSelectors.totalIncomesOfMonthSelector);
+
   return (
     <div className={s.container}>
-      <p className={s.title}>
+      
+      <div className={s.title}>
         <div>
-          Расходы:&nbsp;{" "}
+          Расходы:&nbsp;{' '}
         </div>
         <span className={s.outlayQuantityХ}>
           - {fnForNumberDivide(expense)} грн.
         </span>
-      </p>
+      </div>
+
       <span className={s.vertical}></span>
-      <p className={s.title}>
+      <div className={s.title}>
         <div>
-          Доходы:{" "}
+          Доходы:{' '}
         </div>
         <span className={s.income}>
           &nbsp;+ {fnForNumberDivide(income)} грн.
         </span>
-      </p>
+      </div>
+
     </div>
   );
 }

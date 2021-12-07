@@ -1,5 +1,6 @@
 import api from 'services/kapusta-api';
-import categoriesActions from 'redux/categories/categoriesActions';
+
+import { categoriesActions } from 'redux/categories';
 
 const handleGetIncomeCategories = () => dispatch => {
   dispatch(categoriesActions.getIncomeCategoriesRequest());

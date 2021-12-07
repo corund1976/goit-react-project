@@ -1,9 +1,9 @@
-import { category } from "./categoryList";
-import vector from "images/VectorLeft.png";
-import vectorRight from "images/VectorRight.png";
-import { fnForNumberDivide } from "helpers/divideNumber";
+import { category } from './categoryList';
+import vector from 'images/VectorLeft.png';
+import vectorRight from 'images/VectorRight.png';
+import { fnForNumberDivide } from 'helpers/divideNumber';
 
-import s from "./ReportSwitch.module.css";
+import s from './ReportSwitch.module.css';
 
 function ReportSwitch({
   activeTypeOfTransactions,
@@ -77,8 +77,8 @@ function ReportSwitch({
       </div>
       {!elements.length ? (
         <p className={s.no_data}>
-          Нет транзакция по типу "
-          {activeTypeOfTransactions === "Расходы" ? "расходы" : "доходы"}" за
+          Нет транзакция по типу '
+          {activeTypeOfTransactions === 'Расходы' ? 'расходы' : 'доходы'}' за
           выбранный период!
         </p>
       ) : (

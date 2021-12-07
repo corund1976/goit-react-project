@@ -1,7 +1,8 @@
-import api from "services/kapusta-api";
-import authActions from "redux/auth/authActions";
-import transactionOperations from 'redux/transactions/transactionOperations';
-import categoriesOperations from 'redux/categories/categoriesOperations';
+import {authActions} from 'redux/auth';
+import {transactionOperations} from 'redux/transactions';
+import {categoriesOperations} from 'redux/categories';
+
+import api from 'services/kapusta-api';
 
 const handleLogin = (credentials) => (dispatch) => {
   dispatch(authActions.loginRequest());

@@ -7,7 +7,6 @@ const getIncomeCategoriesError = createAction('user/getIncomeCategoriesError');
 const getExpenseCategoriesRequest = createAction('user/getExpenseCategoriesRequest');
 const getExpenseCategoriesSuccess = createAction('user/getExpenseCategoriesSuccess');
 const getExpenseCategoriesError = createAction('user/getExpenseCategoriesError');
-
 // eslint-disable-next-line
 export default {
   getIncomeCategoriesRequest,

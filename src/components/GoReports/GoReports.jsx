@@ -14,7 +14,7 @@ const  GoReports = () => {
         Перейти к отчетам
         <img
           src={BarChart}
-          alt="reports"
+          alt='reports'
           className={s.iconReport}
         />
       </Link >
