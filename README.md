@@ -32,28 +32,12 @@ npm i @reduxjs/toolkit redux-persist react-redux react-router-dom@5.3.0 axios mo
    npm install react-loader-spinner --save
    yarn add react-loader-spinner
 
-9. Библиотека календаря (от Алёны) @material-ui/core
-   npm i @material-ui/core
+9. Библиотека стилей инпутов формы (Алексей) @mui/material
+   npm i @mui/material или
+   yarn add @mui/material @emotion/react @emotion/styled
 
-10. Библиотека календаря (от Алексея) @mui/material
-    npm i @mui/material или
-    yarn add @mui/material @emotion/react @emotion/styled
-11. Библиотека календаря react-datepicker
+10. Библиотека календаря (Алексей) для инпута формы react-datepicker
     npm i react-datepicker
-    ***
-    Month Picker
-
-() => {
-const [startDate, setStartDate] = useState(new Date());
-return (
-<DatePicker
-selected={startDate}
-onChange={(date) => setStartDate(date)}
-dateFormat="MM/yyyy"
-showMonthYearPicker
-/>
-);
-};
 
 11. Библиотека для работы с таблицами react-tabs
     npm install --save react-tabs или
@@ -61,22 +45,22 @@ showMonthYearPicker
 
 12. Библиотека для работы с графиками @nivo/bar
     npm i @nivo/bar
-13. Запустить проект локально
+
+13. A collection of hooks to measure things in React
+    npm i react-use-size или
+    yarn add react-use-size
+
+14. Запустить проект локально
     npm start или
     yarn start
 
 xxxxxxxxxxxxxxx....Опционально....xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-.
 
-9. Календарь React-Calendar
+1. Календарь React-Calendar
    npm i react-calendar
 
-10. Набор иконок react-icons
-    npm i react-icons
-
-11. A collection of hooks to measure things in React
-    npm i react-use-size или
-    yarn add react-use-size
+2. Набор иконок react-icons
+   npm i react-icons
 
 xxxxxxxxxxxxxxx....Деплой на Netlify....хххххххххххххххххххххх
 
@@ -130,5 +114,5 @@ https://create-react-app.dev/docs/importing-a-component/#absolute-imports
    }
 
 3. Теперь при импортах указываем короткий путь относительно "src"
-   Вместо пути src/components/Button.js теперь пишем
+   Вместо пути src/components/Button.js теперь пишем, например:
    import Button from 'components/Button';

@@ -8,17 +8,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { TextField } from "@mui/material";
 
 import CalendarForm from "components/CalendarForm";
 import { transactionOperations } from "redux/transactions";
-import {
-  getExpenseCategories,
-  getIncomeCategories,
-} from "redux/categories/categoriesSelectors";
+import { getExpenseCategories, getIncomeCategories } from "redux/categories/categoriesSelectors";
 import { getDate } from "redux/date/dateSelector";
 
 import s from "./TransactionForm.module.css";
-import { TextField } from "@mui/material";
 
 function TransactionForm() {
   const mobileDate = useSelector(getDate);
